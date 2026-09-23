@@ -1,0 +1,8 @@
+{
+  "_comment": "Ustawienia widoku wątków. our_domains / our_names: kto jest 'naszą stroną' (pełne kółko na osi czasu, druga strona = obrys). stale_after_days: po ilu dniach brak odpowiedzi jest zaległy. default_utc_offset: strefa dla dat zapisanych bez strefy. originals_base_url: opcjonalny adres folderu z oryginałami (np. SharePoint), gdy plików nie ma lokalnie.",
+  "our_domains": [],
+  "our_names": [],
+  "stale_after_days": 3,
+  "default_utc_offset": "+02:00",
+  "originals_base_url": ""
+}

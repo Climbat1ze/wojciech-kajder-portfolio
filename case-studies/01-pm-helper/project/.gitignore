@@ -1,0 +1,12 @@
+# Oryginały od klienta i z poczty nie wchodzą do git (duplikaty poznajemy po treści pliku).
+_input/originals/*
+!_input/originals/.gitkeep
+*.msg
+*.eml
+*.docx
+*.pptx
+*.xlsx
+
+# Pliki tymczasowe Pythona
+__pycache__/
+*.pyc
