@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas Retail Rollout — project status</title>
+<style>
+:root{
+  --primary:#0066cc; --primary-focus:#0071e3; --primary-on-dark:#2997ff;
+  --ink:#1d1d1f; --ink-80:#333; --ink-48:#7a7a7a; --on-dark:#fff; --muted-on-dark:#ccc;
+  --canvas:#fff; --parchment:#f5f5f7;
+  --tile-1:#1c1c1e; --tile-2:#242426; --tile-3:#2a2a2c;
+  --hairline:rgba(0,0,0,.08);
+  /* status: reserved for area status and "waiting for a reply"; always with an icon and a label */
+  --red:#d70015; --red-bg:rgba(215,0,21,.08);
+  --yellow:#b25000; --yellow-bg:rgba(178,80,0,.08);
+  --green:#1a8917; --green-bg:rgba(26,137,23,.08);
+  --gray:#7a7a7a; --gray-bg:rgba(122,122,122,.08);
+  /* event types: identity is carried by the SHAPE; the hue only helps */
+  --t-decision:#2a78d6; --t-action:#7a5cd6; --t-risk:#d9781a; --t-issue:#c2418f;
+  --t-change:#8a7000; --t-milestone:#12857a; --t-meeting:#5b6b7b; --t-note:#8e949a;
+  --font-display:"Samsung Sharp Sans","Poppins",system-ui,sans-serif;
+  --font-body:"SamsungOne","Inter",system-ui,-apple-system,sans-serif;
+  --r-sm:8px; --r-md:11px; --r-lg:16px; --r-pill:9999px;
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px;
+  --maxw-grid:1240px;
+  --sec-a:var(--canvas); --sec-b:var(--parchment); --card:var(--canvas);
+  --text:var(--ink); --text-2:var(--ink-80); --text-3:var(--ink-48);
+  --accent:var(--primary); --accent-hover:var(--primary-focus);
+  --rule:var(--hairline); --frost:rgba(245,245,247,.85); --lane:rgba(0,0,0,.025);
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    --sec-a:var(--tile-1); --sec-b:var(--tile-2); --card:var(--tile-3);
+    --text:var(--on-dark); --text-2:var(--muted-on-dark); --text-3:#9a9a9c;
+    --accent:var(--primary-on-dark); --accent-hover:var(--primary-on-dark);
+    --rule:rgba(255,255,255,.10); --frost:rgba(28,28,30,.85); --lane:rgba(255,255,255,.03);
+    --red:#ff453a; --red-bg:rgba(255,69,58,.14);
+    --yellow:#ffd60a; --yellow-bg:rgba(255,214,10,.14);
+    --green:#30d158; --green-bg:rgba(48,209,88,.14);
+    --gray:#9a9a9c; --gray-bg:rgba(154,154,156,.14);
+    --t-decision:#5fa2ff; --t-action:#a48cff; --t-risk:#f0a04a; --t-issue:#ee7ab8;
+    --t-change:#d4b21e; --t-milestone:#45c9bb; --t-meeting:#93a3b4; --t-note:#a9aeb3;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --sec-a:var(--tile-1); --sec-b:var(--tile-2); --card:var(--tile-3);
+  --text:var(--on-dark); --text-2:var(--muted-on-dark); --text-3:#9a9a9c;
+  --accent:var(--primary-on-dark); --accent-hover:var(--primary-on-dark);
+  --rule:rgba(255,255,255,.10); --frost:rgba(28,28,30,.85); --lane:rgba(255,255,255,.03);
+  --red:#ff453a; --red-bg:rgba(255,69,58,.14);
+  --yellow:#ffd60a; --yellow-bg:rgba(255,214,10,.14);
+  --green:#30d158; --green-bg:rgba(48,209,88,.14);
+  --gray:#9a9a9c; --gray-bg:rgba(154,154,156,.14);
+  --t-decision:#5fa2ff; --t-action:#a48cff; --t-risk:#f0a04a; --t-issue:#ee7ab8;
+  --t-change:#d4b21e; --t-milestone:#45c9bb; --t-meeting:#93a3b4; --t-note:#a9aeb3;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{font-family:var(--font-body);font-size:16px;line-height:1.45;letter-spacing:-.01em;color:var(--text);
+  background:var(--sec-a);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{margin:0}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;margin:0}
+p{margin:0}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--primary-focus);outline-offset:2px;border-radius:var(--r-sm)}
+.t-hero{font-size:34px;font-weight:700;line-height:1.12;letter-spacing:-.02em}
+.h2{font-size:22px}.h3{font-size:15px;margin-bottom:4px}
+.t-overline{font-size:12px;font-weight:700;line-height:1.2;letter-spacing:.08em;text-transform:uppercase}
+.t-caption{font-size:13px;line-height:1.4}
+.muted{color:var(--text-2)}
+.wrap{max-width:var(--maxw-grid);margin:0 auto;padding:0 var(--s-5)}
+.sec{padding:var(--s-6) 0}.sec-a{background:var(--sec-a)}.sec-b{background:var(--sec-b)}
+
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);
+  padding:var(--s-2) var(--s-5);min-height:52px;background:var(--frost);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--rule)}
+.topbar-title{color:var(--text-2);font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.controls{display:flex;flex-wrap:wrap;gap:var(--s-2);align-items:center}
+.btn-ghost{font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--accent);background:transparent;
+  border:1px solid var(--accent);border-radius:var(--r-pill);padding:6px 14px;min-height:32px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px}
+.btn-ghost:hover{text-decoration:none;color:var(--accent-hover);border-color:var(--accent-hover)}
+.stat-strip{display:flex;flex-wrap:wrap;gap:var(--s-5);padding:var(--s-3) 0}
+.stat{font-family:var(--font-display);font-size:24px;font-weight:700}
+.stat-lbl{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em}
+
+.card{background:var(--card);border:1px solid var(--rule);border-radius:var(--r-lg);padding:var(--s-4)}
+.grid-areas{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-3)}
+.area-tile{border-left:4px solid var(--gray);display:flex;flex-direction:column;gap:6px}
+.area-tile[data-tone="red"]{border-left-color:var(--red)}
+.area-tile[data-tone="yellow"]{border-left-color:var(--yellow)}
+.area-tile[data-tone="green"]{border-left-color:var(--green)}
+.area-head{display:flex;align-items:center;gap:8px}
+.area-num{display:inline-flex;align-items:center;justify-content:center;flex:none;width:20px;height:20px;
+  border-radius:var(--r-pill);background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+  font-family:var(--font-display)}
+.area-name{font-size:14px;font-weight:700;font-family:var(--font-display)}
+.area-desc{font-size:12.5px;color:var(--text-2);font-style:italic}
+.area-divider{border-top:1px solid var(--rule);margin:2px 0}
+.area-conclusion{font-size:12.5px;color:var(--text);line-height:1.4}
+.area-count{font-size:11px;color:var(--text-3);margin-top:auto}
+
+/* model-written pages: executive summary, appendix (project card) */
+.md-block p{font-size:13.5px;line-height:1.55;color:var(--text);max-width:820px;margin-bottom:var(--s-3)}
+.md-block ul{margin:0 0 var(--s-4);padding-left:20px}
+.md-block li{font-size:13.5px;line-height:1.55;color:var(--text);margin-bottom:6px}
+.md-block h3{font-size:15px;margin:var(--s-4) 0 var(--s-2)}
+.md-block h3:first-child{margin-top:0}
+table.md-table{width:100%;max-width:820px;border-collapse:collapse;font-size:13px;margin:0 0 var(--s-4)}
+table.md-table th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3);
+  padding:6px 10px;border-bottom:1px solid var(--rule)}
+table.md-table td{padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--text)}
+table.md-table tr:last-child td{border-bottom:0}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:var(--r-pill);padding:2px 9px;font-size:11px;font-weight:700;width:fit-content}
+.pill[data-tone="red"]{background:var(--red-bg);color:var(--red)}
+.pill[data-tone="yellow"]{background:var(--yellow-bg);color:var(--yellow)}
+.pill[data-tone="green"]{background:var(--green-bg);color:var(--green)}
+.pill[data-tone="gray"]{background:var(--gray-bg);color:var(--gray)}
+.status-legend{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-5);margin:var(--s-4) 0 0;padding:0;font-size:12.5px;color:var(--text-2)}
+.status-legend li{display:flex;align-items:center;gap:8px}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-5);margin-top:var(--s-3)}
+.list{display:flex;flex-direction:column;gap:var(--s-2);margin-top:var(--s-2)}
+.row{display:flex;gap:var(--s-3);border:1px solid var(--rule);border-left:3px solid var(--gray);border-radius:var(--r-md);
+  padding:var(--s-3) var(--s-4);background:var(--card)}
+.row[data-tone="red"]{border-left-color:var(--red)}
+.row[data-tone="yellow"]{border-left-color:var(--yellow)}
+.row-body{flex:1;min-width:0}
+.row-title{font-size:13.5px;font-weight:600;line-height:1.35}
+.row-meta{font-size:11.5px;color:var(--text-3);margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 10px}
+.empty-note{font-size:13px;color:var(--text-3);font-style:italic}
+.src{font-size:11.5px;white-space:nowrap}
+.src .orig{color:var(--text-3);margin-left:4px;font-size:10.5px}
+
+/* view tabs, filters */
+.view-tabs{display:flex;gap:4px;margin:var(--s-3) 0;border-bottom:1px solid var(--rule)}
+.view-tabs button{font:inherit;font-size:13.5px;font-weight:600;padding:8px 16px;border:0;background:transparent;color:var(--text-2);
+  cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.view-tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-3);align-items:center;margin-bottom:var(--s-4)}
+.filters input[type=search],.filters select{font:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--rule);
+  border-radius:var(--r-pill);background:var(--card);color:var(--text)}
+.filters input[type=search]{min-width:240px}
+.sel{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font-size:12px;font-weight:600;border:1px solid var(--rule);border-radius:var(--r-pill);padding:3px 11px;background:var(--card);
+  color:var(--text-2);cursor:pointer;user-select:none}
+.chip.is-on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tag{font-size:11px;border:1px solid var(--rule);border-radius:var(--r-pill);padding:1px 8px;color:var(--text-2);background:var(--card)}
+
+/* timeline */
+.tl-controls{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-4);align-items:center;margin-bottom:var(--s-2)}
+.chk{font-size:12.5px;color:var(--text-2);display:flex;align-items:center;gap:6px}
+.tl-legend{list-style:none;display:flex;flex-wrap:wrap;gap:6px var(--s-4);margin:0 0 var(--s-3);padding:0;font-size:12px;color:var(--text-2)}
+.tl-legend li{display:flex;align-items:center;gap:6px}
+.tl-wrap{display:grid;grid-template-columns:250px 1fr;border:1px solid var(--rule);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
+.tl-labels{border-right:1px solid var(--rule);padding-top:34px;background:var(--card)}
+.tl-label{height:74px;padding:8px 10px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:3px;overflow:hidden;cursor:pointer}
+.tl-label:hover{background:var(--lane)}
+.tl-label .t{font-size:12.5px;font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tl-label .s{font-size:11px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.tl-scroll{overflow-x:auto;cursor:grab}
+.tl-scroll.drag{cursor:grabbing;user-select:none}
+#tlSvg{display:block}
+#tlSvg text{font-family:var(--font-body);fill:var(--text-2)}
+.tl-narrow-note{display:none;margin-top:var(--s-2)}
+.state{font-size:10.5px;font-weight:700;border-radius:var(--r-pill);padding:1px 8px;display:inline-flex;gap:4px;align-items:center;border:1px solid transparent}
+.state[data-s="awaiting"]{color:var(--yellow);background:var(--yellow-bg)}
+.state[data-s="awaiting"][data-stale="1"]{color:var(--red);background:var(--red-bg)}
+.state[data-s="closed"]{color:var(--green);background:var(--green-bg)}
+.state[data-s="ended"],.state[data-s="unclear"],.state[data-s="continued"]{color:var(--text-2);background:var(--gray-bg)}
+
+/* conversation (threads) view */
+.thread-list{display:flex;flex-direction:column;gap:var(--s-3)}
+.thr{border:1px solid var(--rule);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
+.thr>summary{list-style:none;cursor:pointer;padding:var(--s-3) var(--s-4);display:flex;gap:var(--s-3);align-items:center;flex-wrap:wrap}
+.thr>summary::-webkit-details-marker{display:none}
+.thr .ttl{flex:1 1 280px;font-size:14px;font-weight:700;min-width:0}
+.thr .cnt{font-size:11px;color:var(--text-3)}
+.thr-body{padding:0 var(--s-4) var(--s-4);border-top:1px solid var(--rule)}
+.links-row{display:flex;flex-wrap:wrap;gap:6px;margin:var(--s-3) 0}
+.lnk{font-size:11.5px;border:1px solid var(--accent);border-radius:var(--r-pill);padding:2px 10px;color:var(--accent);cursor:pointer;background:transparent}
+.lnk.suggested{border-style:dashed}
+.ladder{display:flex;flex-direction:column;gap:10px;margin-top:var(--s-3)}
+.bub{max-width:78%;border:1px solid var(--rule);border-radius:var(--r-md);padding:8px 12px;background:var(--sec-a);position:relative}
+.bub.ours{align-self:flex-start;border-left:4px solid var(--accent)}
+.bub.external{align-self:flex-end;border-right:4px solid var(--text-3)}
+.bub.unknown{align-self:center}
+.bub.sel{outline:2px solid var(--accent)}
+.bub .h{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;font-size:12.5px}
+.bub .h b{font-size:13px}
+.bub .k{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-3);font-weight:700}
+.bub .p{font-size:12.5px;color:var(--text-2);margin-top:4px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bub .reply-to{font-size:11px;color:var(--text-3)}
+.bub .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.bub .foot{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.ev-chip{font-size:11px;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--rule);border-radius:var(--r-pill);padding:1px 8px;color:var(--text-2)}
+.ev-chip svg{flex:none}
+.endnote{align-self:center;font-size:12px;color:var(--text-2)}
+
+/* files (list) view */
+.timeline{display:flex;flex-direction:column;gap:10px}
+.doc{border:1px solid var(--rule);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
+.doc[hidden]{display:none}
+.doc>summary{list-style:none;cursor:pointer;padding:var(--s-3) var(--s-4);display:flex;align-items:center;gap:var(--s-3);flex-wrap:wrap}
+.doc>summary::-webkit-details-marker{display:none}
+.doc-date{font-size:11.5px;color:var(--text-3);font-variant-numeric:tabular-nums;flex:none;width:118px}
+.doc-kind{flex:none;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3);border:1px solid var(--rule);border-radius:var(--r-sm);padding:2px 6px}
+.doc-subject{flex:1 1 260px;font-size:13.5px;font-weight:600;min-width:0}
+.doc-body{padding:0 var(--s-4) var(--s-4);border-top:1px solid var(--rule)}
+.doc-meta{display:flex;flex-wrap:wrap;gap:var(--s-5);padding:var(--s-3) 0;font-size:12.5px}
+.doc-meta .k{color:var(--text-3);font-weight:700;text-transform:uppercase;font-size:10px;letter-spacing:.05em;margin-bottom:3px}
+.doc-meta .v span{display:block}
+.expand-row{display:flex;gap:var(--s-2);margin-bottom:var(--s-3)}
+.ev{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:var(--r-sm);background:var(--sec-a);margin-top:6px}
+.ev-body{flex:1;min-width:0}.ev-title{font-size:13px;line-height:1.4}
+.ev-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;font-size:11px;color:var(--text-3)}
+.ev-foot b{color:var(--text-2);font-weight:600}
+.no-events{font-size:12.5px;color:var(--text-3);font-style:italic;padding:8px 0}
+
+/* side panel, tooltip */
+.panel{position:fixed;top:60px;right:16px;bottom:16px;width:min(420px,calc(100vw - 32px));z-index:60;overflow:auto;
+  background:var(--card);border:1px solid var(--rule);border-radius:var(--r-lg);padding:var(--s-4);box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.panel h3{font-size:15px;margin:6px 0}
+.panel .x{position:absolute;top:8px;right:10px;border:0;background:transparent;color:var(--text-2);font-size:20px;cursor:pointer}
+.panel .kv{font-size:12.5px;color:var(--text-2);margin:4px 0}.panel .kv b{color:var(--text)}
+.panel .quote{font-size:12.5px;border-left:3px solid var(--rule);padding-left:10px;margin:8px 0;color:var(--text-2)}
+.panel .why{font-size:12.5px;background:var(--sec-a);border-radius:var(--r-md);padding:8px 10px;margin:8px 0}
+.tip{position:fixed;z-index:70;pointer-events:none;max-width:320px;background:var(--tile-1);color:#fff;font-size:12px;
+  padding:6px 10px;border-radius:var(--r-md);box-shadow:0 4px 16px rgba(0,0,0,.3)}
+footer{padding:var(--s-6) 0;border-top:1px solid var(--rule)}
+.legal{color:var(--text-3);font-size:11.5px;line-height:1.5}
+
+@media (max-width:1000px){.grid-areas{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .grid-areas{grid-template-columns:1fr}.wrap{padding:0 var(--s-4)}
+  .tl-wrap,.tl-controls,.tl-legend{display:none}.tl-narrow-note{display:block}
+  .bub{max-width:100%}.doc-date{width:auto}.topbar .btn-ghost:not(#themeToggle){display:none}
+}
+
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="topbar-title">Atlas Retail Rollout — project status</span>
+  <div class="controls">
+    <a class="btn-ghost" href="#summary">Summary</a>
+    <a class="btn-ghost" href="#areas">Areas</a>
+    <a class="btn-ghost" href="#attention">Needs attention</a>
+    <a class="btn-ghost" href="#corr">Correspondence</a>
+    <a class="btn-ghost" href="#appendix">Appendix</a>
+    <button class="btn-ghost" id="themeToggle" type="button">Dark mode</button>
+  </div>
+</div>
+
+<main>
+<section class="sec sec-a">
+  <div class="wrap">
+    <p class="t-overline" style="color:var(--accent);margin-bottom:8px">PM Tracker — run of 2026-09-23</p>
+    <h1 class="t-hero">Atlas Retail Rollout — status from correspondence</h1>
+    <p class="muted t-caption" style="margin-top:10px;max-width:800px">
+      Built from the project's e-mails and documents. Each e-mail chain is split into single messages, so the
+      page shows who wrote to whom, which messages are still waiting for a reply, and which conversations
+      continue one another.
+    </p>
+    <div class="stat-strip" id="stats"></div>
+  </div>
+</section>
+
+<section class="sec sec-a" id="summary"><div class="wrap"><p class="t-overline muted" style="margin-bottom:4px">For leadership</p><h2 class="h2">Executive summary</h2><div class="md-block" style="margin-top:var(--s-4)"><p>Phase 1 is on track for the 12 October go-live, but the date depends on one thing outside our control being fixed now: the client&#x27;s legacy data cleanup.</p>
+<p>Scope, acceptance criteria, and the cutover plan are all agreed and documented. The delivery team is executing to plan and reporting honestly. Two things need leadership attention. First, the legacy data quality issue has no owner on the client side and directly threatens the migration; it is the single biggest risk to the date. Second, the client&#x27;s request to move the loyalty module into phase 1 would stretch a team that is already at full capacity, and would need either an extra developer or a later date.</p>
+<p>The recommendation into the next steering committee is to hold the 12 October date, secure a named client owner and deadline for the data cleanup this week, and decide the loyalty change explicitly rather than letting it absorb slack by default.</p></div></div></section>
+
+<section class="sec sec-b" id="areas">
+  <div class="wrap">
+    <p class="t-overline muted" style="margin-bottom:4px">Project health</p>
+    <h2 class="h2">Eight areas of project management (PMBOK 7)</h2>
+    <p class="muted t-caption" style="margin:6px 0 var(--s-4);max-width:800px">
+      PMBOK 7 is the project-management standard of the Project Management Institute. Each tile is one
+      area: what it covers, its current status and what the correspondence says about it.
+    </p>
+    <div class="grid-areas" id="areaGrid"></div>
+    <ul class="status-legend" id="statusLegend"></ul>
+  </div>
+</section>
+
+<section class="sec sec-a" id="attention">
+  <div class="wrap">
+    <p class="t-overline muted" style="margin-bottom:4px">Needs attention</p>
+    <h2 class="h2">Conversations waiting for a reply and open risks</h2>
+    <div class="two-col">
+      <div>
+        <h3 class="h3">Waiting for a reply</h3>
+        <p class="muted t-caption" id="waitingNote"></p>
+        <div class="list" id="waitingList"></div>
+      </div>
+      <div>
+        <h3 class="h3">Open risks and issues</h3>
+        <p class="muted t-caption">Most important first. These push an area to yellow or red.</p>
+        <div class="list" id="riskList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-b" id="corr">
+  <div class="wrap">
+    <p class="t-overline muted" style="margin-bottom:4px">Correspondence</p>
+    <h2 class="h2">What happened, in order</h2>
+    <div class="view-tabs" id="viewTabs" role="tablist">
+      <button type="button" role="tab" data-view="timeline">Timeline</button>
+      <button type="button" role="tab" data-view="threads">Conversations</button>
+      <button type="button" role="tab" data-view="list">Files</button>
+    </div>
+
+    <div class="filters" id="filters">
+      <input type="search" id="q" placeholder="Search people, subjects, events…" aria-label="Search">
+      <label class="sel"><span>Area</span><select id="fArea"></select></label>
+      <label class="sel"><span>Importance</span>
+        <select id="fImp"><option value="all">all</option><option value="high">high and critical</option><option value="critical">critical only</option></select></label>
+      <label class="sel"><span>State</span>
+        <select id="fState"><option value="all">all</option><option value="awaiting">waiting for a reply</option><option value="done">closed or nothing expected</option></select></label>
+      <div class="tagrow" id="tagRow"></div>
+    </div>
+
+    <div id="view-timeline" class="view">
+      <div class="tl-controls">
+        <button class="btn-ghost" id="zoomOut" type="button" aria-label="Zoom out">−</button>
+        <button class="btn-ghost" id="zoomIn" type="button" aria-label="Zoom in">+</button>
+        <label class="chk"><input type="checkbox" id="cCompress" checked> Shorten idle days</label>
+        <label class="chk"><input type="checkbox" id="cSuggested" checked> Show links proposed by the model (dashed)</label>
+        <span class="muted t-caption" id="zoneNote"></span>
+      </div>
+      <ul class="tl-legend" id="tlLegend"></ul>
+      <div class="tl-wrap" id="tlWrap">
+        <div class="tl-labels" id="tlLabels"></div>
+        <div class="tl-scroll" id="tlScroll"><svg id="tlSvg" role="img" aria-label="Timeline of conversations"></svg></div>
+      </div>
+      <p class="muted t-caption tl-narrow-note">The timeline needs a wider screen — the Conversations tab shows the same content as a list.</p>
+    </div>
+    <div id="view-threads" class="view" hidden><div class="thread-list" id="threadList"></div></div>
+    <div id="view-list" class="view" hidden>
+      <div class="expand-row"><button class="btn-ghost" id="expandAll" type="button">Expand all</button>
+        <button class="btn-ghost" id="collapseAll" type="button">Collapse all</button></div>
+      <div class="timeline" id="docList"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-a" id="appendix"><div class="wrap"><p class="t-overline muted" style="margin-bottom:4px">Appendix</p><h2 class="h2">Project card</h2><div class="md-block" style="margin-top:var(--s-4)"><p>A fixed-scope phase 1 delivery for a retail client, run by an external delivery partner, with a single go-live and a defined acceptance gate.</p>
+<h3>Key roles</h3>
+<table class='md-table'><tr><th>Role</th><th>Who</th><th>Side</th></tr><tr><td>Programme sponsor</td><td>Laura Beckett</td><td>Client</td></tr><tr><td>Test lead</td><td>Priya Shah</td><td>Client</td></tr><tr><td>Data owner</td><td>Mark Ellison</td><td>Client</td></tr><tr><td>Delivery lead</td><td>Anna Kowalski</td><td>Delivery partner</td></tr><tr><td>Technical lead</td><td>Tomasz Wojcik</td><td>Delivery partner</td></tr></table>
+<h3>Delivery shape</h3>
+<ul><li>Phase 1 scope baseline: store inventory, point-of-sale integration, customer profile service.</li><li>Single go-live target of 12 October, with a migration dry-run the week before and a cutover over 10-11 October.</li><li>Acceptance is gated on three measurable criteria agreed up front.</li></ul>
+<h3>Escalation path</h3>
+<p>Open items that cannot be resolved in working correspondence go to the steering committee. Scope changes against the baseline are handled through change control, owned by the sponsor.</p>
+<p>*This is a synthetic demonstration project. All names, organisations, and events are fictional and were created to show the tool working on realistic data.*</p></div></div></section>
+</main>
+
+<aside id="panel" class="panel" hidden aria-live="polite"></aside>
+<div id="tip" class="tip" hidden></div>
+
+<footer class="sec-a">
+  <div class="wrap">
+    <p class="legal">
+      Source: PM Tracker (Model Workspace Protocol), run of 2026-09-23. Verbatim texts are in
+      <code>_outputs/sources/</code>, the database in <code>_kb/</code>, area summaries in <code>_areas/</code>.
+      Links proposed by the model become solid only after the PM confirms them in
+      <code>_flows/pm-tracker/stages/04_relate/output/pending_review.md</code>. This file is local — not published anywhere.
+    </p>
+  </div>
+</footer>
+
+<script id="data" type="application/json">{"areas": [{"code": "STK", "index": 1, "name": "Stakeholders", "description": "Who has a stake in the project and whether they are aligned: the customer, your own organisation's units and executives.", "status": "green", "tone": "green", "conclusion": "The client relationship is engaged and aligned: the sponsor confirmed the project started on 1 September and owns scope decisions through change control.", "count": 1}, {"code": "TEA", "index": 2, "name": "Team", "description": "Who does the work and whether the team has what it needs: roles, capacity and collaboration.", "status": "yellow", "tone": "yellow", "conclusion": "The team is delivering to plan but has no slack: the pending loyalty change cannot be absorbed without an extra developer.", "count": 1}, {"code": "DAL", "index": 3, "name": "Development Approach and Life Cycle", "description": "How the work is delivered: the chosen approach and its stages, such as analysis, pilot and roll-out.", "status": "green", "tone": "green", "conclusion": "Delivery approach for the transition is defined: a controlled cutover over 10-11 October behind a code freeze, with one open scope change to resolve.", "count": 2}, {"code": "PLN", "index": 4, "name": "Planning", "description": "What is planned: scope, schedule, budget and the assumptions the project started with.", "status": "green", "tone": "green", "conclusion": "Scope and schedule for phase 1 are set: the baseline is agreed and a 12 October go-live is proposed, pending steering-committee confirmation.", "count": 2}, {"code": "PWK", "index": 5, "name": "Project Work", "description": "Day-to-day execution: open tasks, blockers and who is responsible for what.", "status": "green", "tone": "green", "conclusion": "Three open actions carry the current work, all owned and moving; the only one without a hard date is the client-side data cleanup.", "count": 3}, {"code": "DEL", "index": 6, "name": "Delivery", "description": "What has actually been handed over to the customer, its quality and whether the customer accepted it.", "status": "green", "tone": "green", "conclusion": "Acceptance for phase 1 is unambiguous: three measurable criteria are fixed and agreed as binding for sign-off.", "count": 1}, {"code": "MEA", "index": 7, "name": "Measurement", "description": "How progress is measured: indicators, reporting and deviations from the plan.", "status": "green", "tone": "green", "conclusion": "Progress is on track against the plan: the latest status confirms the date holds and names one capacity item to watch.", "count": 1}, {"code": "UNC", "index": 8, "name": "Uncertainty", "description": "What could go wrong or is not yet known: risks, doubtful assumptions and information still missing for decisions.", "status": "red", "tone": "red", "conclusion": "The go-live date is exposed by one unresolved critical risk: legacy data quality, which has no owner or resolution date yet.", "count": 2}], "threads": [{"id": "THR-001", "title": "Project kickoff - Atlas rollout", "state": "ended", "awaiting": "—", "days": 0, "stale": false, "tags": [], "messages": ["M-4b1deb986acc"], "first": "Wed 02 Sep 2026, 09:15", "last": "Wed 02 Sep 2026, 09:15"}, {"id": "THR-002", "title": "Go-live scheduling for phase 1", "state": "ended", "awaiting": "—", "days": 0, "stale": false, "tags": [], "messages": ["M-ca2fe6beee78"], "first": "Sat 05 Sep 2026, 13:30", "last": "Sat 05 Sep 2026, 13:30"}, {"id": "THR-003", "title": "Risk - legacy data quality for migration", "state": "awaiting", "awaiting": "Meridian data team", "days": 11, "stale": true, "tags": [], "messages": ["M-b4a989fb8c9d"], "first": "Tue 08 Sep 2026, 16:40", "last": "Tue 08 Sep 2026, 16:40"}, {"id": "THR-004", "title": "Change request - add loyalty module to phase 1", "state": "awaiting", "awaiting": "Northwind", "days": 8, "stale": true, "tags": [], "messages": ["M-b49979d31d26"], "first": "Fri 11 Sep 2026, 10:00", "last": "Fri 11 Sep 2026, 10:00"}, {"id": "THR-005", "title": "UAT scope and acceptance criteria", "state": "ended", "awaiting": "—", "days": 0, "stale": false, "tags": [], "messages": ["M-fdd9576fe8d8", "M-9fb9622e82ab"], "first": "Mon 14 Sep 2026, 15:05", "last": "Tue 15 Sep 2026, 11:20"}, {"id": "THR-006", "title": "Cutover weekend plan and code freeze", "state": "awaiting", "awaiting": "Meridian", "days": 1, "stale": false, "tags": [], "messages": ["M-50d1d554729b"], "first": "Fri 18 Sep 2026, 09:00", "last": "Fri 18 Sep 2026, 09:00"}, {"id": "THR-007", "title": "Weekly status - week 38", "state": "ended", "awaiting": "—", "days": 0, "stale": false, "tags": [], "messages": ["M-e57b5512f2af"], "first": "Sat 19 Sep 2026, 17:00", "last": "Sat 19 Sep 2026, 17:00"}], "messages": [{"key": "M-4b1deb986acc", "thread": "THR-001", "kind": "original", "side": "external", "name": "Laura Beckett", "to": "Anna Kowalski <anna.kowalski@northwind.example>", "day": "2026-09-02", "mod": 555, "label": "Wed 02 Sep 2026, 09:15", "written": "2026-09-02 09:15", "state": "info", "answeredBy": null, "repliesTo": "—", "expects": "no", "closes": false, "awaiting": "—", "preview": "Hi Anna, Thanks for running the kickoff yesterday. On our side we consider the project formally started as of 1 September. We agreed the scope baseline for phase 1: store inventory, point-of-sale integration and the customer profile service. Anything beyond that goes through change control. Laura Be", "events": ["d1b971509f87b6c8-DE-01", "d1b971509f87b6c8-MI-01"], "src": {"label": "Email · Project kickoff - Atlas rollout", "href": "sources/2026-09-02_project-kickoff-atlas-rollout.html#msg-1", "orig": ""}}, {"key": "M-ca2fe6beee78", "thread": "THR-002", "kind": "original", "side": "ours", "name": "Anna Kowalski", "to": "Laura Beckett <laura.beckett@meridian.example>", "day": "2026-09-05", "mod": 810, "label": "Sat 05 Sep 2026, 13:30", "written": "2026-09-05 13:30", "state": "info", "answeredBy": null, "repliesTo": "—", "expects": "no", "closes": false, "awaiting": "—", "preview": "Laura, Proposing 12 October as the phase 1 go-live, with the migration dry-run the week before. That gives us a buffer if the dry-run surfaces issues. This assumes the data cleanup is done in time. I will confirm the date at the next steering committee. Anna", "events": ["c97870dc04247e7a-DE-01"], "src": {"label": "Email · Go-live scheduling for phase 1", "href": "sources/2026-09-05_go-live-scheduling-for-phase-1.html#msg-1", "orig": ""}}, {"key": "M-b4a989fb8c9d", "thread": "THR-003", "kind": "original", "side": "ours", "name": "Anna Kowalski", "to": "Mark Ellison <mark.ellison@meridian.example>", "day": "2026-09-08", "mod": 1000, "label": "Tue 08 Sep 2026, 16:40", "written": "2026-09-08 16:40", "state": "no_reply", "answeredBy": null, "repliesTo": "—", "expects": "yes", "closes": false, "awaiting": "Meridian data team", "preview": "Mark, Flagging a risk before it becomes a blocker. The legacy product catalogue has around 12% of records with missing category codes, and the loyalty export has duplicate customer IDs. If this is not cleaned before the migration dry-run, we cannot guarantee a clean cutover and the go-live date is e", "events": ["9c6de3eb8a4a94ca-AC-01", "9c6de3eb8a4a94ca-RI-01"], "src": {"label": "Email · Risk - legacy data quality for migration", "href": "sources/2026-09-08_risk-legacy-data-quality-for-migration.html#msg-1", "orig": ""}}, {"key": "M-b49979d31d26", "thread": "THR-004", "kind": "original", "side": "external", "name": "Laura Beckett", "to": "Anna Kowalski <anna.kowalski@northwind.example>", "day": "2026-09-11", "mod": 600, "label": "Fri 11 Sep 2026, 10:00", "written": "2026-09-11 10:00", "state": "no_reply", "answeredBy": null, "repliesTo": "—", "expects": "yes", "closes": false, "awaiting": "Northwind", "preview": "Anna, Our board wants the loyalty module included in phase 1 rather than phase 2. I know this is a scope change against the baseline we agreed at kickoff. Can Northwind assess the impact on the timeline and cost, and come back with a recommendation? We would like a view before the next steering comm", "events": ["e0dc729bb2b806e3-AC-01", "e0dc729bb2b806e3-CH-01"], "src": {"label": "Email · Change request - add loyalty module to phase 1", "href": "sources/2026-09-11_change-request-add-loyalty-module-to-phase-1.html#msg-1", "orig": ""}}, {"key": "M-9fb9622e82ab", "thread": "THR-005", "kind": "reply", "side": "ours", "name": "Tomasz Wojcik", "to": "Priya Shah <priya.shah@meridian.example>", "day": "2026-09-15", "mod": 680, "label": "Tue 15 Sep 2026, 11:20", "written": "2026-09-15 11:20", "state": "info", "answeredBy": null, "repliesTo": "M-fdd9576fe8d8", "expects": "no", "closes": false, "awaiting": "—", "preview": "Hi Priya, Agreed. We will treat the three acceptance criteria you listed as binding for phase 1 sign-off: end-to-end sale under 3 seconds, zero data loss on the nightly sync, and a working returns flow. I will prepare the UAT test cases against these and share them by 25 September. Tomasz", "events": ["87b6d229ab8cc443-AC-01", "87b6d229ab8cc443-DE-01"], "src": {"label": "Email · UAT scope and acceptance criteria", "href": "sources/2026-09-15_uat-scope-and-acceptance-criteria.html#msg-1", "orig": ""}}, {"key": "M-fdd9576fe8d8", "thread": "THR-005", "kind": "original", "side": "external", "name": "Priya Shah", "to": "Tomasz Wojcik", "day": "2026-09-14", "mod": 905, "label": "Mon 14 Sep 2026, 15:05", "written": "2026-09-14 15:05", "state": "answered", "answeredBy": "M-9fb9622e82ab", "repliesTo": "—", "expects": "yes", "closes": false, "awaiting": "Tomasz Wojcik", "preview": "Tomasz, Before we lock UAT, can you confirm the acceptance criteria? We need the sale transaction under 3 seconds, no data loss on the nightly sync, and returns working. Please confirm these are the ones you are building test cases for. Priya Shah Test Lead, Meridian Retail", "events": [], "src": {"label": "Email · UAT scope and acceptance criteria", "href": "sources/2026-09-15_uat-scope-and-acceptance-criteria.html#msg-2", "orig": ""}}, {"key": "M-50d1d554729b", "thread": "THR-006", "kind": "original", "side": "ours", "name": "Anna Kowalski", "to": "Laura Beckett <laura.beckett@meridian.example>", "day": "2026-09-18", "mod": 540, "label": "Fri 18 Sep 2026, 09:00", "written": "2026-09-18 09:00", "state": "no_reply", "answeredBy": null, "repliesTo": "—", "expects": "yes", "closes": false, "awaiting": "Meridian", "preview": "Laura, Following the go-live target, here is the cutover plan for the weekend of 10-11 October. We freeze all non-critical changes from 8 October so the environment is stable going into cutover. Decision needed from your side: can Meridian confirm the store network will be in read-only mode during t", "events": ["09293a8baa7b37c0-DE-01", "09293a8baa7b37c0-RI-01"], "src": {"label": "Email · Cutover weekend plan and code freeze", "href": "sources/2026-09-18_cutover-weekend-plan-and-code-freeze.html#msg-1", "orig": ""}}, {"key": "M-e57b5512f2af", "thread": "THR-007", "kind": "original", "side": "ours", "name": "Anna Kowalski", "to": "Laura Beckett <laura.beckett@meridian.example>", "day": "2026-09-19", "mod": 1020, "label": "Sat 19 Sep 2026, 17:00", "written": "2026-09-19 17:00", "state": "info", "answeredBy": null, "repliesTo": "—", "expects": "no", "closes": false, "awaiting": "—", "preview": "Laura, Short weekly update, no action needed. Delivery is broadly on track for the 12 October go-live. Point-of-sale integration passed internal testing this week. The customer profile service is at 80% of planned scope. One watch item: the team is running at full capacity, and the pending loyalty c", "events": ["d1a65d8ee6d02c37-NO-01", "d1a65d8ee6d02c37-RI-01"], "src": {"label": "Email · Weekly status - week 38", "href": "sources/2026-09-19_weekly-status-week-38.html#msg-1", "orig": ""}}], "links": [{"id": "THR-006-continuation-THR-002", "from": "THR-006", "to": "THR-002", "kind": "continuation", "status": "suggested", "confidence": "high", "reason": "The cutover plan is a direct continuation of the go-live scheduling thread, though the subjects differ.", "evidence": "Following the go-live target, here is the cutover plan for the weekend of 10-11 October.", "left": "M-ca2fe6beee78", "right": "M-50d1d554729b"}], "events": [{"id": "d1b971509f87b6c8-MI-01", "msg": "M-4b1deb986acc", "type": "milestone", "area": "STK", "title": "Project formally kicked off (1 September)", "imp": "normal", "status": "—", "owner": "—", "due": "—", "thread": "THR-001", "src": {"label": "Email · Project kickoff - Atlas rollout", "href": "sources/2026-09-02_project-kickoff-atlas-rollout.html#msg-1", "orig": ""}}, {"id": "d1b971509f87b6c8-DE-01", "msg": "M-4b1deb986acc", "type": "decision", "area": "PLN", "title": "Phase 1 scope baseline agreed (inventory, POS, customer profile)", "imp": "high", "status": "closed", "owner": "—", "due": "—", "thread": "THR-001", "src": {"label": "Email · Project kickoff - Atlas rollout", "href": "sources/2026-09-02_project-kickoff-atlas-rollout.html#msg-1", "orig": ""}}, {"id": "9c6de3eb8a4a94ca-RI-01", "msg": "M-b4a989fb8c9d", "type": "risk", "area": "UNC", "title": "Legacy data quality threatens a clean migration and the go-live date", "imp": "critical", "status": "open", "owner": "Meridian data team", "due": "—", "thread": "THR-003", "src": {"label": "Email · Risk - legacy data quality for migration", "href": "sources/2026-09-08_risk-legacy-data-quality-for-migration.html#msg-1", "orig": ""}}, {"id": "9c6de3eb8a4a94ca-AC-01", "msg": "M-b4a989fb8c9d", "type": "action", "area": "PWK", "title": "Confirm owner and deadline for the legacy data cleanup", "imp": "high", "status": "open", "owner": "Mark Ellison", "due": "—", "thread": "THR-003", "src": {"label": "Email · Risk - legacy data quality for migration", "href": "sources/2026-09-08_risk-legacy-data-quality-for-migration.html#msg-1", "orig": ""}}, {"id": "87b6d229ab8cc443-DE-01", "msg": "M-9fb9622e82ab", "type": "decision", "area": "DEL", "title": "Phase 1 acceptance criteria fixed as binding for sign-off", "imp": "high", "status": "closed", "owner": "—", "due": "—", "thread": "THR-005", "src": {"label": "Email · UAT scope and acceptance criteria", "href": "sources/2026-09-15_uat-scope-and-acceptance-criteria.html#msg-1", "orig": ""}}, {"id": "87b6d229ab8cc443-AC-01", "msg": "M-9fb9622e82ab", "type": "action", "area": "PWK", "title": "Prepare UAT test cases against the agreed acceptance criteria", "imp": "high", "status": "open", "owner": "Tomasz Wojcik", "due": "2026-09-25", "thread": "THR-005", "src": {"label": "Email · UAT scope and acceptance criteria", "href": "sources/2026-09-15_uat-scope-and-acceptance-criteria.html#msg-1", "orig": ""}}, {"id": "e0dc729bb2b806e3-CH-01", "msg": "M-b49979d31d26", "type": "change", "area": "DAL", "title": "Client requests moving the loyalty module into phase 1", "imp": "high", "status": "—", "owner": "—", "due": "—", "thread": "THR-004", "src": {"label": "Email · Change request - add loyalty module to phase 1", "href": "sources/2026-09-11_change-request-add-loyalty-module-to-phase-1.html#msg-1", "orig": ""}}, {"id": "e0dc729bb2b806e3-AC-01", "msg": "M-b49979d31d26", "type": "action", "area": "PWK", "title": "Assess timeline and cost impact of the loyalty change and recommend", "imp": "high", "status": "open", "owner": "Anna Kowalski", "due": "—", "thread": "THR-004", "src": {"label": "Email · Change request - add loyalty module to phase 1", "href": "sources/2026-09-11_change-request-add-loyalty-module-to-phase-1.html#msg-1", "orig": ""}}, {"id": "c97870dc04247e7a-DE-01", "msg": "M-ca2fe6beee78", "type": "decision", "area": "PLN", "title": "Proposed 12 October go-live, dry-run the week before", "imp": "high", "status": "open", "owner": "Anna Kowalski", "due": "—", "thread": "THR-002", "src": {"label": "Email · Go-live scheduling for phase 1", "href": "sources/2026-09-05_go-live-scheduling-for-phase-1.html#msg-1", "orig": ""}}, {"id": "09293a8baa7b37c0-DE-01", "msg": "M-50d1d554729b", "type": "decision", "area": "DAL", "title": "Cutover over 10-11 October with a code freeze from 8 October", "imp": "high", "status": "open", "owner": "Anna Kowalski", "due": "—", "thread": "THR-006", "src": {"label": "Email · Cutover weekend plan and code freeze", "href": "sources/2026-09-18_cutover-weekend-plan-and-code-freeze.html#msg-1", "orig": ""}}, {"id": "09293a8baa7b37c0-RI-01", "msg": "M-50d1d554729b", "type": "risk", "area": "UNC", "title": "Data drift risk if the store network is not read-only during cutover", "imp": "high", "status": "open", "owner": "Meridian", "due": "—", "thread": "THR-006", "src": {"label": "Email · Cutover weekend plan and code freeze", "href": "sources/2026-09-18_cutover-weekend-plan-and-code-freeze.html#msg-1", "orig": ""}}, {"id": "d1a65d8ee6d02c37-NO-01", "msg": "M-e57b5512f2af", "type": "note", "area": "MEA", "title": "On track for 12 October: POS integration tested, profile service at 80%", "imp": "normal", "status": "—", "owner": "—", "due": "—", "thread": "THR-007", "src": {"label": "Email · Weekly status - week 38", "href": "sources/2026-09-19_weekly-status-week-38.html#msg-1", "orig": ""}}, {"id": "d1a65d8ee6d02c37-RI-01", "msg": "M-e57b5512f2af", "type": "risk", "area": "TEA", "title": "Team at full capacity; loyalty change needs an extra developer or the date slips", "imp": "high", "status": "open", "owner": "Anna Kowalski", "due": "—", "thread": "THR-007", "src": {"label": "Email · Weekly status - week 38", "href": "sources/2026-09-19_weekly-status-week-38.html#msg-1", "orig": ""}}], "docs": [{"label": "Email · Project kickoff - Atlas rollout", "kind": "Email", "href": "sources/2026-09-02_project-kickoff-atlas-rollout.html", "orig": "", "date": "2026-09-02 09:15", "file": "01_kickoff.txt", "from": ["Laura Beckett"], "to": ["Anna Kowalski"], "thread": "THR-001", "events": [{"id": "d1b971509f87b6c8-DE-01", "msg": "M-4b1deb986acc", "type": "decision", "area": "PLN", "title": "Phase 1 scope baseline agreed (inventory, POS, customer profile)", "imp": "high", "status": "closed", "owner": "—", "due": "—", "thread": "THR-001", "src": {"label": "Email · Project kickoff - Atlas rollout", "href": "sources/2026-09-02_project-kickoff-atlas-rollout.html#msg-1", "orig": ""}}, {"id": "d1b971509f87b6c8-MI-01", "msg": "M-4b1deb986acc", "type": "milestone", "area": "STK", "title": "Project formally kicked off (1 September)", "imp": "normal", "status": "—", "owner": "—", "due": "—", "thread": "THR-001", "src": {"label": "Email · Project kickoff - Atlas rollout", "href": "sources/2026-09-02_project-kickoff-atlas-rollout.html#msg-1", "orig": ""}}], "maxImp": "high", "areas": ["PLN", "STK"]}, {"label": "Email · Go-live scheduling for phase 1", "kind": "Email", "href": "sources/2026-09-05_go-live-scheduling-for-phase-1.html", "orig": "", "date": "2026-09-05 13:30", "file": "05_go-live-schedule.txt", "from": ["Anna Kowalski"], "to": ["Laura Beckett"], "thread": "THR-002", "events": [{"id": "c97870dc04247e7a-DE-01", "msg": "M-ca2fe6beee78", "type": "decision", "area": "PLN", "title": "Proposed 12 October go-live, dry-run the week before", "imp": "high", "status": "open", "owner": "Anna Kowalski", "due": "—", "thread": "THR-002", "src": {"label": "Email · Go-live scheduling for phase 1", "href": "sources/2026-09-05_go-live-scheduling-for-phase-1.html#msg-1", "orig": ""}}], "maxImp": "high", "areas": ["PLN"]}, {"label": "Email · Risk - legacy data quality for migration", "kind": "Email", "href": "sources/2026-09-08_risk-legacy-data-quality-for-migration.html", "orig": "", "date": "2026-09-08 16:40", "file": "02_data-migration-risk.txt", "from": ["Anna Kowalski"], "to": ["Mark Ellison"], "thread": "THR-003", "events": [{"id": "9c6de3eb8a4a94ca-AC-01", "msg": "M-b4a989fb8c9d", "type": "action", "area": "PWK", "title": "Confirm owner and deadline for the legacy data cleanup", "imp": "high", "status": "open", "owner": "Mark Ellison", "due": "—", "thread": "THR-003", "src": {"label": "Email · Risk - legacy data quality for migration", "href": "sources/2026-09-08_risk-legacy-data-quality-for-migration.html#msg-1", "orig": ""}}, {"id": "9c6de3eb8a4a94ca-RI-01", "msg": "M-b4a989fb8c9d", "type": "risk", "area": "UNC", "title": "Legacy data quality threatens a clean migration and the go-live date", "imp": "critical", "status": "open", "owner": "Meridian data team", "due": "—", "thread": "THR-003", "src": {"label": "Email · Risk - legacy data quality for migration", "href": "sources/2026-09-08_risk-legacy-data-quality-for-migration.html#msg-1", "orig": ""}}], "maxImp": "critical", "areas": ["PWK", "UNC"]}, {"label": "Email · Change request - add loyalty module to phase 1", "kind": "Email", "href": "sources/2026-09-11_change-request-add-loyalty-module-to-phase-1.html", "orig": "", "date": "2026-09-11 10:00", "file": "04_change-request.txt", "from": ["Laura Beckett"], "to": ["Anna Kowalski"], "thread": "THR-004", "events": [{"id": "e0dc729bb2b806e3-AC-01", "msg": "M-b49979d31d26", "type": "action", "area": "PWK", "title": "Assess timeline and cost impact of the loyalty change and recommend", "imp": "high", "status": "open", "owner": "Anna Kowalski", "due": "—", "thread": "THR-004", "src": {"label": "Email · Change request - add loyalty module to phase 1", "href": "sources/2026-09-11_change-request-add-loyalty-module-to-phase-1.html#msg-1", "orig": ""}}, {"id": "e0dc729bb2b806e3-CH-01", "msg": "M-b49979d31d26", "type": "change", "area": "DAL", "title": "Client requests moving the loyalty module into phase 1", "imp": "high", "status": "—", "owner": "—", "due": "—", "thread": "THR-004", "src": {"label": "Email · Change request - add loyalty module to phase 1", "href": "sources/2026-09-11_change-request-add-loyalty-module-to-phase-1.html#msg-1", "orig": ""}}], "maxImp": "high", "areas": ["DAL", "PWK"]}, {"label": "Email · UAT scope and acceptance criteria", "kind": "Email", "href": "sources/2026-09-15_uat-scope-and-acceptance-criteria.html", "orig": "", "date": "2026-09-15 11:20", "file": "03_uat-scope.txt", "from": ["Tomasz Wojcik"], "to": ["Priya Shah"], "thread": "THR-005", "events": [{"id": "87b6d229ab8cc443-AC-01", "msg": "M-9fb9622e82ab", "type": "action", "area": "PWK", "title": "Prepare UAT test cases against the agreed acceptance criteria", "imp": "high", "status": "open", "owner": "Tomasz Wojcik", "due": "2026-09-25", "thread": "THR-005", "src": {"label": "Email · UAT scope and acceptance criteria", "href": "sources/2026-09-15_uat-scope-and-acceptance-criteria.html#msg-1", "orig": ""}}, {"id": "87b6d229ab8cc443-DE-01", "msg": "M-9fb9622e82ab", "type": "decision", "area": "DEL", "title": "Phase 1 acceptance criteria fixed as binding for sign-off", "imp": "high", "status": "closed", "owner": "—", "due": "—", "thread": "THR-005", "src": {"label": "Email · UAT scope and acceptance criteria", "href": "sources/2026-09-15_uat-scope-and-acceptance-criteria.html#msg-1", "orig": ""}}], "maxImp": "high", "areas": ["DEL", "PWK"]}, {"label": "Email · Cutover weekend plan and code freeze", "kind": "Email", "href": "sources/2026-09-18_cutover-weekend-plan-and-code-freeze.html", "orig": "", "date": "2026-09-18 09:00", "file": "06_cutover-plan.txt", "from": ["Anna Kowalski"], "to": ["Laura Beckett"], "thread": "THR-006", "events": [{"id": "09293a8baa7b37c0-DE-01", "msg": "M-50d1d554729b", "type": "decision", "area": "DAL", "title": "Cutover over 10-11 October with a code freeze from 8 October", "imp": "high", "status": "open", "owner": "Anna Kowalski", "due": "—", "thread": "THR-006", "src": {"label": "Email · Cutover weekend plan and code freeze", "href": "sources/2026-09-18_cutover-weekend-plan-and-code-freeze.html#msg-1", "orig": ""}}, {"id": "09293a8baa7b37c0-RI-01", "msg": "M-50d1d554729b", "type": "risk", "area": "UNC", "title": "Data drift risk if the store network is not read-only during cutover", "imp": "high", "status": "open", "owner": "Meridian", "due": "—", "thread": "THR-006", "src": {"label": "Email · Cutover weekend plan and code freeze", "href": "sources/2026-09-18_cutover-weekend-plan-and-code-freeze.html#msg-1", "orig": ""}}], "maxImp": "high", "areas": ["DAL", "UNC"]}, {"label": "Email · Weekly status - week 38", "kind": "Email", "href": "sources/2026-09-19_weekly-status-week-38.html", "orig": "", "date": "2026-09-19 17:00", "file": "07_status-report.txt", "from": ["Anna Kowalski"], "to": ["Laura Beckett"], "thread": "THR-007", "events": [{"id": "d1a65d8ee6d02c37-NO-01", "msg": "M-e57b5512f2af", "type": "note", "area": "MEA", "title": "On track for 12 October: POS integration tested, profile service at 80%", "imp": "normal", "status": "—", "owner": "—", "due": "—", "thread": "THR-007", "src": {"label": "Email · Weekly status - week 38", "href": "sources/2026-09-19_weekly-status-week-38.html#msg-1", "orig": ""}}, {"id": "d1a65d8ee6d02c37-RI-01", "msg": "M-e57b5512f2af", "type": "risk", "area": "TEA", "title": "Team at full capacity; loyalty change needs an extra developer or the date slips", "imp": "high", "status": "open", "owner": "Anna Kowalski", "due": "—", "thread": "THR-007", "src": {"label": "Email · Weekly status - week 38", "href": "sources/2026-09-19_weekly-status-week-38.html#msg-1", "orig": ""}}], "maxImp": "high", "areas": ["MEA", "TEA"]}], "statusRules": [{"tone": "red", "text": "An open critical risk or issue with no resolution date."}, {"tone": "yellow", "text": "An open high-importance risk or issue."}, {"tone": "green", "text": "Nothing critical or high-importance is open."}, {"tone": "gray", "text": "No events recorded for this area yet."}], "typeLabel": {"decision": "decision", "action": "action", "risk": "risk", "issue": "issue", "change": "change", "milestone": "milestone", "meeting": "meeting", "note": "note"}, "zone": "UTC+02:00", "asOf": "Sat 19 Sep 2026, 17:00", "asOfDay": "2026-09-19", "asOfMod": 1020, "staleAfterDays": 3, "stats": {"docs": 7, "messages": 8, "threads": 7, "events": 13, "open": 8, "awaiting": 3, "stale": 2}}</script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var NS = "http://www.w3.org/2000/svg";
+  var IMP = { normal: 0, high: 1, critical: 2 };
+  var LINK_TEXT = { continuation: "continues", attachment_of: "attachment of", related: "related" };
+  var KIND_TEXT = { original: "Original", reply: "Reply", forward: "Forward", file: "File" };
+  var TYPE_ORDER = ["decision", "action", "risk", "issue", "change", "milestone", "meeting", "note"];
+  var AXIS = 34, LH = 74;
+
+  var MSG = {}, THR = {}, AREA = {}, EVBYMSG = {};
+  D.messages.forEach(function (m) { MSG[m.key] = m; });
+  D.threads.forEach(function (t) { THR[t.id] = t; });
+  D.areas.forEach(function (a) { AREA[a.code] = a; });
+  D.events.forEach(function (e) { if (e.msg) (EVBYMSG[e.msg] = EVBYMSG[e.msg] || []).push(e); });
+  Object.keys(EVBYMSG).forEach(function (k) {
+    EVBYMSG[k].sort(function (a, b) { return IMP[b.imp] - IMP[a.imp]; });
+  });
+
+  var state = { tags: {}, area: "all", imp: "all", st: "all", q: "", compress: true, suggested: true,
+                zoom: 1, sel: null, view: null };
+
+  /* ------------------------------------------------------------ helpers */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function sv(tag, attrs, text) {
+    var n = document.createElementNS(NS, tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function clear(n) { while (n.firstChild) n.removeChild(n.firstChild); }
+  function dayNum(d) { var p = d.split("-"); return Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / 86400000); }
+  function dayLabel(d) {
+    var p = d.split("-");
+    return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])).toLocaleDateString("en-GB",
+      { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+  }
+  function abs(m) { return dayNum(m.day) * 1440 + m.mod; }
+  function daysBetween(m) {
+    return Math.max(0, Math.floor(((dayNum(D.asOfDay) * 1440 + D.asOfMod) - abs(m)) / 1440));
+  }
+  function trunc(s, n) { s = s || ""; return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : s; }
+  function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+
+  function srcLink(src, cls) {
+    var w = el("span", "src " + (cls || ""));
+    var a = el("a", "", src.label); a.href = src.href; a.title = "Open the verbatim text";
+    w.appendChild(a);
+    if (src.orig) { var o = el("a", "orig", "original"); o.href = src.orig; o.title = "Open the original file"; w.appendChild(o); }
+    return w;
+  }
+
+  /* ------------------------------------------------------------ glyphs (shape carries the identity) */
+  function glyph(type, s) {
+    var g = sv("g", { style: "fill:var(--t-" + type + ");stroke:none" });
+    var a = s * 0.9;
+    if (type === "decision") g.appendChild(sv("polygon", { points: [0, -s, a, 0, 0, s, -a, 0].join(",") }));
+    else if (type === "action") g.appendChild(sv("polygon", { points: [-a * .8, -s, a, 0, -a * .8, s].join(",") }));
+    else if (type === "risk") g.appendChild(sv("polygon", { points: [0, -s, s, s * .85, -s, s * .85].join(",") }));
+    else if (type === "issue") {
+      g.appendChild(sv("circle", { r: s }));
+      g.appendChild(sv("rect", { x: -s * .12, y: -s * .55, width: s * .24, height: s * .65, style: "fill:var(--card)" }));
+      g.appendChild(sv("rect", { x: -s * .12, y: s * .3, width: s * .24, height: s * .24, style: "fill:var(--card)" }));
+    }
+    else if (type === "change") g.appendChild(sv("rect", { x: -a * .85, y: -a * .85, width: a * 1.7, height: a * 1.7, rx: 1 }));
+    else if (type === "milestone") {
+      var pts = [];
+      for (var i = 0; i < 10; i++) {
+        var r = i % 2 ? s * .45 : s * 1.1, ang = -Math.PI / 2 + i * Math.PI / 5;
+        pts.push((r * Math.cos(ang)).toFixed(2) + "," + (r * Math.sin(ang)).toFixed(2));
+      }
+      g.appendChild(sv("polygon", { points: pts.join(" ") }));
+    }
+    else if (type === "meeting") g.appendChild(sv("circle", { r: s * .8, style: "fill:none;stroke:var(--t-meeting);stroke-width:2" }));
+    else g.appendChild(sv("rect", { x: -s, y: -s * .35, width: s * 2, height: s * .7, rx: 1 }));
+    return g;
+  }
+  function glyphIcon(type, size) {
+    var s = sv("svg", { width: size, height: size, viewBox: "-8 -8 16 16" });
+    s.appendChild(glyph(type, 6));
+    return s;
+  }
+
+  /* ------------------------------------------------------------ thread state, filters */
+  function stateText(t, short) {
+    if (t.state === "awaiting" && short) return (t.stale ? "⚠ " : "⏳ ") + "waiting · " + t.days + " d";
+    if (t.state === "awaiting") return (t.stale ? "⚠ Overdue: " : "⏳ ") + "waiting for " + (t.awaiting === "—" ? "a reply" : t.awaiting) +
+      " · " + plural(t.days, "day");
+    return { closed: "✓ Closed", ended: "Nothing expected", continued: "→ Continued elsewhere", unclear: "Unclear" }[t.state] || t.state;
+  }
+  function statePill(t, short) {
+    var p = el("span", "state", stateText(t, short));
+    if (short) p.title = stateText(t);
+    p.setAttribute("data-s", t.state);
+    if (t.stale) p.setAttribute("data-stale", "1");
+    return p;
+  }
+  function evMatches(e) {
+    if (state.area !== "all" && e.area !== state.area) return false;
+    if (state.imp === "high" && IMP[e.imp] < 1) return false;
+    if (state.imp === "critical" && IMP[e.imp] < 2) return false;
+    return true;
+  }
+  function filtersOnEvents() { return state.area !== "all" || state.imp !== "all"; }
+  function threadEvents(t) {
+    var out = [];
+    t.messages.forEach(function (k) { (EVBYMSG[k] || []).forEach(function (e) { out.push(e); }); });
+    return out;
+  }
+  function threadText(t) {
+    var s = [t.title, t.tags.join(" ")];
+    t.messages.forEach(function (k) { var m = MSG[k]; s.push(m.name, m.preview, m.src.label); });
+    threadEvents(t).forEach(function (e) { s.push(e.title, e.owner); });
+    return s.join(" ").toLowerCase();
+  }
+  function threadVisible(t) {
+    if (state.st === "awaiting" && t.state !== "awaiting") return false;
+    if (state.st === "done" && t.state === "awaiting") return false;
+    var wanted = Object.keys(state.tags).filter(function (k) { return state.tags[k]; });
+    if (wanted.length && !wanted.some(function (x) { return t.tags.indexOf(x) >= 0; })) return false;
+    if (filtersOnEvents() && !threadEvents(t).some(evMatches)) return false;
+    if (state.q && threadText(t).indexOf(state.q) < 0) return false;
+    return true;
+  }
+  function visibleThreads() { return D.threads.filter(threadVisible); }
+
+  /* ------------------------------------------------------------ overview */
+  function renderStats() {
+    var host = $("#stats"), s = D.stats;
+    [[s.docs, "source files"], [s.messages, "messages"], [s.threads, "conversations"],
+     [s.events, "events extracted"], [s.open, "open items"], [s.awaiting, "waiting for a reply"], [s.stale, "overdue replies"]]
+      .forEach(function (p) {
+        var b = el("div"); b.appendChild(el("div", "stat", String(p[0]))); b.appendChild(el("div", "stat-lbl", p[1]));
+        if (p[1] === "overdue replies" && p[0] > 0) b.firstChild.style.color = "var(--red)";
+        host.appendChild(b);
+      });
+  }
+  var TONE_TEXT = { red: "▲ Red", yellow: "◆ Yellow", green: "● Green", gray: "○ No data" };
+  function renderAreas() {
+    var host = $("#areaGrid");
+    D.areas.forEach(function (a) {
+      var c = el("div", "card area-tile"); c.setAttribute("data-tone", a.tone);
+      var head = el("div", "area-head");
+      head.appendChild(el("span", "area-num", String(a.index)));
+      head.appendChild(el("div", "area-name", a.name));
+      c.appendChild(head);
+      var p = el("span", "pill", TONE_TEXT[a.tone]); p.setAttribute("data-tone", a.tone); c.appendChild(p);
+      c.appendChild(el("div", "area-desc", a.description));
+      c.appendChild(el("div", "area-divider"));
+      c.appendChild(el("div", "area-conclusion", a.conclusion));
+      c.appendChild(el("div", "area-count", plural(a.count, "event") + " in the database"));
+      host.appendChild(c);
+    });
+    var lg = $("#statusLegend");
+    D.statusRules.forEach(function (r) {
+      var li = el("li"); var p = el("span", "pill", TONE_TEXT[r.tone]); p.setAttribute("data-tone", r.tone);
+      li.appendChild(p); li.appendChild(el("span", "", r.text)); lg.appendChild(li);
+    });
+  }
+  function renderAttention() {
+    var w = $("#waitingList"), waiting = D.threads.filter(function (t) { return t.state === "awaiting"; })
+      .sort(function (a, b) { return b.days - a.days; });
+    $("#waitingNote").textContent = "A message that asks for something and has no later answer. Counted up to the newest message in the data (" +
+      D.asOf + ", " + D.zone + "); overdue after " + plural(D.staleAfterDays, "day") + ".";
+    if (!waiting.length) w.appendChild(el("div", "empty-note", "No conversation is waiting for a reply."));
+    waiting.forEach(function (t) {
+      var r = el("div", "row"); r.setAttribute("data-tone", t.stale ? "red" : "yellow");
+      var b = el("div", "row-body");
+      var title = el("a", "row-title", t.title); title.href = "#thr-" + t.id;
+      title.addEventListener("click", function (ev) { ev.preventDefault(); gotoThread(t.id); });
+      b.appendChild(title);
+      var meta = el("div", "row-meta"); meta.appendChild(statePill(t));
+      var pend = null;
+      t.messages.forEach(function (k) { if (MSG[k].state === "no_reply") pend = MSG[k]; });
+      if (pend) { meta.appendChild(el("span", "", "asked by " + pend.name + ", " + pend.label)); meta.appendChild(srcLink(pend.src)); }
+      b.appendChild(meta); r.appendChild(b); w.appendChild(r);
+    });
+    var rl = $("#riskList"), risks = D.events.filter(function (e) { return (e.type === "risk" || e.type === "issue") && e.status === "open"; })
+      .sort(function (a, b) { return IMP[b.imp] - IMP[a.imp]; });
+    if (!risks.length) rl.appendChild(el("div", "empty-note", "No open risks or issues."));
+    risks.forEach(function (e) {
+      var r = el("div", "row"); r.setAttribute("data-tone", e.imp === "critical" ? "red" : e.imp === "high" ? "yellow" : "gray");
+      r.appendChild(glyphIcon(e.type, 18));
+      var b = el("div", "row-body"); b.appendChild(el("div", "row-title", e.title));
+      var meta = el("div", "row-meta");
+      meta.appendChild(el("span", "", (e.imp === "critical" ? "Critical " : e.imp === "high" ? "High " : "") + e.type));
+      meta.appendChild(el("span", "", "Area: " + (AREA[e.area] ? AREA[e.area].name : e.area)));
+      if (e.owner !== "—") meta.appendChild(el("span", "", "Owner: " + e.owner));
+      if (e.due !== "—") meta.appendChild(el("span", "", "Due: " + e.due));
+      meta.appendChild(srcLink(e.src));
+      b.appendChild(meta); r.appendChild(b); rl.appendChild(r);
+    });
+  }
+
+  /* ------------------------------------------------------------ filters bar */
+  function initFilters() {
+    var sel = $("#fArea"); var o = el("option", "", "all areas"); o.value = "all"; sel.appendChild(o);
+    D.areas.forEach(function (a) { var x = el("option", "", a.name); x.value = a.code; sel.appendChild(x); });
+    var tags = {}; D.threads.forEach(function (t) { t.tags.forEach(function (g) { tags[g] = (tags[g] || 0) + 1; }); });
+    var row = $("#tagRow");
+    Object.keys(tags).sort().forEach(function (g) {
+      var c = el("button", "chip", g + " (" + tags[g] + ")"); c.type = "button";
+      c.addEventListener("click", function () { state.tags[g] = !state.tags[g]; c.classList.toggle("is-on", !!state.tags[g]); renderCorr(); });
+      row.appendChild(c);
+    });
+    $("#q").addEventListener("input", function (e) { state.q = e.target.value.trim().toLowerCase(); renderCorr(); });
+    sel.addEventListener("change", function (e) { state.area = e.target.value; renderCorr(); });
+    $("#fImp").addEventListener("change", function (e) { state.imp = e.target.value; renderCorr(); });
+    $("#fState").addEventListener("change", function (e) { state.st = e.target.value; renderCorr(); });
+    $("#cCompress").addEventListener("change", function (e) { state.compress = e.target.checked; renderTimeline(); });
+    $("#cSuggested").addEventListener("change", function (e) { state.suggested = e.target.checked; renderTimeline(); });
+    $("#zoomIn").addEventListener("click", function () { state.zoom = Math.min(4, state.zoom * 1.35); renderTimeline(); });
+    $("#zoomOut").addEventListener("click", function () { state.zoom = Math.max(.4, state.zoom / 1.35); renderTimeline(); });
+    $("#zoneNote").textContent = "Times are shown in " + D.zone + ". Where a message quotes a clock time in another zone, the order of the reply chain wins.";
+  }
+
+  /* ------------------------------------------------------------ timeline */
+  function renderLegend() {
+    var host = $("#tlLegend"); clear(host);
+    function item(icon, text) { var li = el("li"); li.appendChild(icon); li.appendChild(el("span", "", text)); host.appendChild(li); }
+    function mini(build) { var s = sv("svg", { width: 34, height: 16, viewBox: "0 0 34 16" }); build(s); return s; }
+    item(mini(function (s) { s.appendChild(sv("circle", { cx: 17, cy: 8, r: 6, style: "fill:var(--accent)" })); }), "written by us");
+    item(mini(function (s) { s.appendChild(sv("circle", { cx: 17, cy: 8, r: 5, style: "fill:var(--card);stroke:var(--text-2);stroke-width:2" })); }), "written by the other side");
+    item(mini(function (s) { s.appendChild(sv("rect", { x: 11, y: 2, width: 12, height: 12, rx: 2, style: "fill:var(--text-3)" })); }), "file (Word, presentation)");
+    item(mini(function (s) { s.appendChild(sv("line", { x1: 2, y1: 8, x2: 32, y2: 8, style: "stroke:var(--text-3);stroke-width:1.5" })); }), "reply to the message before it");
+    item(mini(function (s) { s.appendChild(sv("path", { d: "M2,12 C14,12 20,4 32,4", style: "fill:none;stroke:var(--accent);stroke-width:2" })); }), "link between conversations, confirmed");
+    item(mini(function (s) { s.appendChild(sv("path", { d: "M2,12 C14,12 20,4 32,4", style: "fill:none;stroke:var(--accent);stroke-width:1.8;stroke-dasharray:6 4" })); }), "link proposed by the model, waiting for your decision");
+    item(mini(function (s) { s.appendChild(sv("line", { x1: 2, y1: 8, x2: 32, y2: 8, style: "stroke:var(--yellow);stroke-width:1.8;stroke-dasharray:3 3" })); }), "no reply yet");
+    TYPE_ORDER.forEach(function (t) { item(glyphIcon(t, 16), D.typeLabel[t] || t); });
+  }
+
+  function layout(msgs) {
+    var days = {}; msgs.forEach(function (m) { days[m.day] = 1; }); days[D.asOfDay] = 1;
+    var list = Object.keys(days).sort(), x0 = 14, DW = 190 * state.zoom, GAP = 54, PPD = 64 * state.zoom;
+    // a busy day (many messages in one conversation) gets more room so the dots do not pile up
+    var cnt = {}, need = {};
+    msgs.forEach(function (m) { var k = m.day + "|" + m.thread; cnt[k] = (cnt[k] || 0) + 1; });
+    Object.keys(cnt).forEach(function (k) { var d = k.split("|")[0]; need[d] = Math.max(need[d] || 0, cnt[k]); });
+    var base = {}, wd = {}, gaps = [], cursor = x0;
+    if (state.compress) {
+      list.forEach(function (d, i) {
+        base[d] = cursor; wd[d] = Math.max(DW, (need[d] || 0) * 34 * state.zoom + 70); cursor += wd[d];
+        if (i < list.length - 1) {
+          var g = dayNum(list[i + 1]) - dayNum(d) - 1;
+          if (g > 0) { gaps.push({ x: cursor, w: GAP, n: g }); cursor += GAP; }
+        }
+      });
+    } else {
+      cursor = x0 + (dayNum(list[list.length - 1]) - dayNum(list[0]) + 1) * PPD;
+    }
+    return {
+      days: list, gaps: gaps, width: cursor + 90,
+      x: function (day, mod) {
+        return state.compress ? base[day] + mod / 1440 * wd[day] : x0 + (dayNum(day) - dayNum(list[0])) * PPD + mod / 1440 * PPD;
+      }
+    };
+  }
+
+  function renderTimeline() {
+    var TS = visibleThreads(), labels = $("#tlLabels"), svg = $("#tlSvg");
+    clear(labels); clear(svg); renderLegend();
+    if (!TS.length) {
+      labels.appendChild(el("p", "empty-note", "No conversation matches the filters."));
+      svg.setAttribute("width", 10); svg.setAttribute("height", 10); return;
+    }
+    var msgs = [];
+    TS.forEach(function (t) {
+      var fallback = null;
+      t.messages.forEach(function (k) { var m = MSG[k]; if (m.mod >= 0) { fallback = fallback || m; msgs.push(m); } });
+    });
+    var L = layout(msgs), H = AXIS + TS.length * LH + 16, pos = {}, laneOf = {};
+    svg.setAttribute("width", L.width); svg.setAttribute("height", H); svg.setAttribute("viewBox", "0 0 " + L.width + " " + H);
+
+    // lane bands and labels
+    TS.forEach(function (t, i) {
+      laneOf[t.id] = i;
+      if (i % 2 === 0) svg.appendChild(sv("rect", { x: 0, y: AXIS + i * LH, width: L.width, height: LH, style: "fill:var(--lane)" }));
+      svg.appendChild(sv("line", { x1: 0, x2: L.width, y1: AXIS + (i + 1) * LH, y2: AXIS + (i + 1) * LH, style: "stroke:var(--rule)" }));
+      var lab = el("div", "tl-label"); lab.title = "Open this conversation";
+      lab.appendChild(el("div", "t", t.title));
+      var s = el("div", "s"); s.appendChild(statePill(t, true));
+      t.tags.slice(0, 2).forEach(function (g) { s.appendChild(el("span", "tag", g)); });
+      lab.appendChild(s);
+      lab.addEventListener("click", function () { gotoThread(t.id); });
+      labels.appendChild(lab);
+    });
+    // day columns, idle-day gaps, "data up to" line
+    L.days.forEach(function (d) {
+      var x = L.x(d, 0);
+      svg.appendChild(sv("line", { x1: x, x2: x, y1: AXIS - 6, y2: H, style: "stroke:var(--rule)" }));
+      svg.appendChild(sv("text", { x: x + 4, y: 20, "font-size": 11, "font-weight": 600 }, dayLabel(d)));
+    });
+    L.gaps.forEach(function (g) {
+      svg.appendChild(sv("rect", { x: g.x, y: AXIS, width: g.w, height: H - AXIS, style: "fill:var(--rule);opacity:.35" }));
+      svg.appendChild(sv("text", { x: g.x + g.w / 2, y: AXIS + 14, "text-anchor": "middle", "font-size": 10 }, "⋯ " + plural(g.n, "idle day")));
+    });
+    var xa = L.x(D.asOfDay, D.asOfMod);
+    svg.appendChild(sv("line", { x1: xa, x2: xa, y1: AXIS - 6, y2: H, style: "stroke:var(--text-3);stroke-dasharray:2 3" }));
+    svg.appendChild(sv("text", { x: xa + 4, y: 8, "font-size": 9.5 }, "newest message in the data"));
+
+    // positions (with a small nudge so nodes in one lane never overlap)
+    TS.forEach(function (t, i) {
+      var y = AXIS + i * LH + 46, prev = -1e9;
+      t.messages.map(function (k) { return MSG[k]; }).filter(function (m) { return m.mod >= 0; })
+        .sort(function (a, b) { return L.x(a.day, a.mod) - L.x(b.day, b.mod); })
+        .forEach(function (m) {
+          var x = Math.max(L.x(m.day, m.mod), prev + 16); prev = x; pos[m.key] = { x: x, y: y, m: m, lane: i };
+        });
+    });
+    var kids = {};
+    // reply edges (a reply is joined to the message it answers)
+    Object.keys(pos).forEach(function (k) {
+      var p = pos[k], parent = pos[p.m.repliesTo];
+      if (!parent || THR[p.m.thread] !== THR[parent.m.thread]) return;
+      var n = kids[p.m.repliesTo] = (kids[p.m.repliesTo] || 0) + 1;
+      var d = n === 1 ? "M" + parent.x + "," + parent.y + " L" + p.x + "," + p.y :
+        "M" + parent.x + "," + parent.y + " Q" + (parent.x + p.x) / 2 + "," + (parent.y - 8 - 7 * n) + " " + p.x + "," + p.y;
+      svg.appendChild(sv("path", { d: d, style: "fill:none;stroke:var(--text-3);stroke-width:1.5" }));
+    });
+    // unanswered messages: dashed tail up to the newest message in the data
+    Object.keys(pos).forEach(function (k) {
+      var p = pos[k], m = p.m;
+      if (m.state !== "no_reply" || THR[m.thread].state === "continued") return;
+      var days = daysBetween(m), stale = days >= D.staleAfterDays, col = stale ? "var(--red)" : "var(--yellow)";
+      var end = Math.max(xa, p.x + 56);
+      svg.appendChild(sv("line", { x1: p.x + 8, x2: end, y1: p.y, y2: p.y, style: "stroke:" + col + ";stroke-width:1.8;stroke-dasharray:3 3" }));
+      svg.appendChild(sv("text", { x: p.x + 10, y: p.y + 17, "font-size": 10.5, style: "fill:" + col + " !important;font-weight:700" },
+        (stale ? "⚠ " : "⏳ ") + "no reply · " + plural(days, "day")));
+    });
+    // closed conversations get an end mark after the last message
+    TS.forEach(function (t) {
+      if (t.state !== "closed") return;
+      var last = pos[t.messages[t.messages.length - 1]]; if (!last) return;
+      svg.appendChild(sv("text", { x: last.x + 11, y: last.y + 4, "font-size": 11, "font-weight": 700, style: "fill:var(--green) !important" }, "✓ closed"));
+    });
+
+    // links between conversations: solid = confirmed, dashed = proposed by the model
+    D.links.forEach(function (lk) {
+      if (lk.status === "rejected" || (lk.status === "suggested" && !state.suggested)) return;
+      var a = pos[lk.left], b = pos[lk.right]; if (!a || !b) return;
+      var dx = Math.max(40, Math.abs(b.x - a.x) / 2);
+      var d = "M" + a.x + "," + a.y + " C" + (a.x + dx) + "," + a.y + " " + (b.x - dx) + "," + b.y + " " + b.x + "," + b.y;
+      var g = sv("g", { class: "lk", tabindex: 0, role: "button", "aria-label": LINK_TEXT[lk.kind] + " link, " + lk.status });
+      g.appendChild(sv("path", { d: d, style: "fill:none;stroke:transparent;stroke-width:14;cursor:pointer" }));
+      var col = lk.kind === "related" && lk.status === "confirmed" ? "var(--text-3)" : "var(--accent)";
+      var vis = sv("path", { d: d, style: "fill:none;stroke:" + col + ";stroke-width:" + (lk.status === "confirmed" ? 2.2 : 1.8) +
+        (lk.status === "suggested" ? ";stroke-dasharray:6 4" : "") });
+      g.appendChild(vis);
+      var mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      g.appendChild(sv("text", { x: mid.x, y: mid.y - 5, "text-anchor": "middle", "font-size": 10.5, "font-weight": 700,
+        style: "fill:" + col + " !important;paint-order:stroke;stroke:var(--card);stroke-width:3px" },
+        LINK_TEXT[lk.kind] + (lk.status === "suggested" ? " · to decide" : "")));
+      g.addEventListener("click", function () { openLink(lk); });
+      g.addEventListener("keydown", function (e) { if (e.key === "Enter") openLink(lk); });
+      g.addEventListener("mouseenter", function () { vis.style.strokeWidth = "3.4"; });
+      g.addEventListener("mouseleave", function () { vis.style.strokeWidth = lk.status === "confirmed" ? "2.2" : "1.8"; });
+      svg.appendChild(g);
+    });
+
+    // nodes and event glyphs
+    Object.keys(pos).forEach(function (k) {
+      var p = pos[k], m = p.m, stale = m.state === "no_reply" && daysBetween(m) >= D.staleAfterDays;
+      var g = sv("g", { class: "node", tabindex: 0, role: "button", "aria-label": m.name + ", " + m.label });
+      if (m.state === "no_reply" && THR[m.thread].state !== "continued")
+        g.appendChild(sv("circle", { cx: p.x, cy: p.y, r: 10, style: "fill:none;stroke:" + (stale ? "var(--red)" : "var(--yellow)") + ";stroke-width:1.6" }));
+      if (state.sel === k) g.appendChild(sv("circle", { cx: p.x, cy: p.y, r: 11, style: "fill:none;stroke:var(--text);stroke-width:2" }));
+      if (m.kind === "file") g.appendChild(sv("rect", { x: p.x - 6, y: p.y - 6, width: 12, height: 12, rx: 2, style: "fill:var(--text-3)" }));
+      else if (m.side === "ours") g.appendChild(sv("circle", { cx: p.x, cy: p.y, r: 6, style: "fill:var(--accent)" }));
+      else g.appendChild(sv("circle", { cx: p.x, cy: p.y, r: 5, style: "fill:var(--card);stroke:var(--text-2);stroke-width:2" }));
+      g.appendChild(sv("circle", { cx: p.x, cy: p.y, r: 12, style: "fill:transparent;cursor:pointer" }));
+      var evs = EVBYMSG[k] || [];
+      evs.slice(0, 3).forEach(function (e, i) {
+        var gl = glyph(e.type, 5); gl.setAttribute("transform", "translate(" + p.x + "," + (p.y - 17 - i * 12) + ")");
+        if (filtersOnEvents() && !evMatches(e)) gl.setAttribute("opacity", ".25");
+        g.appendChild(gl);
+      });
+      if (evs.length > 3) g.appendChild(sv("text", { x: p.x + 8, y: p.y - 44, "font-size": 9.5, "font-weight": 700 }, "+" + (evs.length - 3)));
+      g.addEventListener("click", function () { state.sel = k; openMessage(k); });
+      g.addEventListener("keydown", function (e) { if (e.key === "Enter") { state.sel = k; openMessage(k); } });
+      g.addEventListener("mousemove", function (e) { showTip(m.name + " · " + m.label + "\n" + THR[m.thread].title +
+        (evs.length ? "\n" + plural(evs.length, "event") : ""), e); });
+      g.addEventListener("mouseleave", hideTip);
+      svg.appendChild(g);
+    });
+  }
+
+  /* ------------------------------------------------------------ side panel, tooltip */
+  function showTip(text, e) {
+    var t = $("#tip"); t.hidden = false; t.style.whiteSpace = "pre-line"; t.textContent = text;
+    t.style.left = Math.min(e.clientX + 14, window.innerWidth - 340) + "px"; t.style.top = (e.clientY + 14) + "px";
+  }
+  function hideTip() { $("#tip").hidden = true; }
+  function openPanel(build) {
+    var p = $("#panel"); clear(p); hideTip();
+    var x = el("button", "x", "×"); x.type = "button"; x.setAttribute("aria-label", "Close"); x.addEventListener("click", closePanel);
+    p.appendChild(x); build(p); p.hidden = false;
+  }
+  function closePanel() { $("#panel").hidden = true; state.sel = null; renderTimeline(); }
+  function kv(p, k, v) { var d = el("div", "kv"); d.appendChild(el("b", "", k + ": ")); d.appendChild(document.createTextNode(v)); p.appendChild(d); }
+  function openMessage(k) {
+    var m = MSG[k], t = THR[m.thread];
+    openPanel(function (p) {
+      p.appendChild(el("div", "t-overline muted", KIND_TEXT[m.kind] + " · " + (m.side === "ours" ? "written by us" : m.side === "external" ? "written by the other side" : "author unknown")));
+      p.appendChild(el("h3", "", m.name));
+      kv(p, "When", m.label + " (" + D.zone + ")");
+      if (m.written && m.written !== "—") kv(p, "As written in the source", m.written);
+      if (m.to && m.to !== "—") kv(p, "To", m.to);
+      var c = el("div", "kv"); c.appendChild(el("b", "", "Conversation: "));
+      var a = el("a", "", t.title); a.href = "#thr-" + t.id; a.addEventListener("click", function (ev) { ev.preventDefault(); gotoThread(t.id); });
+      c.appendChild(a); p.appendChild(c);
+      p.appendChild(statePillWrap(t));
+      var rs = { answered: "Answered by " + (MSG[m.answeredBy] ? MSG[m.answeredBy].name : "a later message"),
+                 no_reply: "No reply yet" + (m.awaiting !== "—" ? " (asked of " + m.awaiting + ")" : "") + " · " + plural(daysBetween(m), "day"),
+                 info: "Nothing was asked of the reader" }[m.state];
+      kv(p, "Reply state", rs);
+      if (m.repliesTo !== "—" && MSG[m.repliesTo]) kv(p, "Replies to", MSG[m.repliesTo].name + ", " + MSG[m.repliesTo].label);
+      if (m.preview) p.appendChild(el("div", "quote", trunc(m.preview, 320)));
+      (EVBYMSG[k] || []).forEach(function (e) {
+        var r = el("div", "ev"); r.appendChild(glyphIcon(e.type, 16));
+        var b = el("div", "ev-body"); b.appendChild(el("div", "ev-title", e.title));
+        var f = el("div", "ev-foot"); f.appendChild(el("span", "", (D.typeLabel[e.type] || e.type) + " · " + (AREA[e.area] ? AREA[e.area].name : e.area)));
+        if (e.owner !== "—") f.appendChild(el("span", "", "Owner: " + e.owner));
+        if (e.due !== "—") f.appendChild(el("span", "", "Due: " + e.due));
+        if (e.status !== "—") f.appendChild(el("span", "", "Status: " + e.status));
+        b.appendChild(f); r.appendChild(b); p.appendChild(r);
+      });
+      var s = el("div", "kv"); s.appendChild(el("b", "", "Source: ")); s.appendChild(srcLink(m.src)); p.appendChild(s);
+    });
+    renderTimeline();
+  }
+  function statePillWrap(t) { var d = el("div", "kv"); d.appendChild(statePill(t)); return d; }
+  function openLink(lk) {
+    var a = THR[lk.from], b = THR[lk.to];
+    openPanel(function (p) {
+      p.appendChild(el("div", "t-overline muted", "Link between conversations"));
+      p.appendChild(el("h3", "", "“" + a.title + "” " + LINK_TEXT[lk.kind] + " “" + b.title + "”"));
+      kv(p, "Status", lk.status === "confirmed" ? "Confirmed by the PM" : "Proposed by the model — waiting for your decision");
+      kv(p, "Model's confidence", lk.confidence);
+      p.appendChild(el("div", "why", lk.reason));
+      p.appendChild(el("div", "quote", lk.evidence));
+      if (lk.status !== "confirmed")
+        p.appendChild(el("p", "muted t-caption", "To decide: open _flows/pm-tracker/stages/04_relate/output/pending_review.md, write yes or no under this link and run review.py --apply."));
+    });
+  }
+
+  /* ------------------------------------------------------------ conversations view */
+  function renderThreads() {
+    var host = $("#threadList"); clear(host);
+    var TS = visibleThreads();
+    if (!TS.length) host.appendChild(el("div", "empty-note", "No conversation matches the filters."));
+    TS.forEach(function (t) {
+      var d = el("details", "thr"); d.id = "thr-" + t.id; if (t.state === "awaiting") d.open = true;
+      var s = el("summary"); s.appendChild(el("span", "ttl", t.title)); s.appendChild(statePill(t));
+      t.tags.forEach(function (g) { s.appendChild(el("span", "tag", g)); });
+      s.appendChild(el("span", "cnt", plural(t.messages.length, "message") + " · " + t.first + (t.messages.length > 1 ? " → " + t.last : "")));
+      d.appendChild(s);
+      var body = el("div", "thr-body");
+      var lr = el("div", "links-row");
+      D.links.forEach(function (lk) {
+        if (lk.status === "rejected" || (lk.from !== t.id && lk.to !== t.id)) return;
+        var other = THR[lk.from === t.id ? lk.to : lk.from];
+        var txt = lk.from === t.id ? LINK_TEXT[lk.kind] + " → " + other.title : "← " + other.title + " " + LINK_TEXT[lk.kind] + " this";
+        var b = el("button", "lnk" + (lk.status === "suggested" ? " suggested" : ""), (lk.status === "suggested" ? "(to decide) " : "") + trunc(txt, 90));
+        b.type = "button"; b.addEventListener("click", function () { openLink(lk); }); lr.appendChild(b);
+      });
+      if (lr.childNodes.length) body.appendChild(lr);
+      var lad = el("div", "ladder");
+      t.messages.forEach(function (k) {
+        var m = MSG[k], b = el("div", "bub " + m.side); b.id = "m-" + k;
+        var h = el("div", "h"); h.appendChild(el("b", "", m.name)); h.appendChild(el("span", "muted", m.label));
+        h.appendChild(el("span", "k", KIND_TEXT[m.kind]));
+        if (m.state === "no_reply" && t.state !== "continued") {
+          var st = daysBetween(m) >= D.staleAfterDays, bd = el("span", "state", (st ? "⚠ " : "⏳ ") + "no reply · " + plural(daysBetween(m), "day"));
+          bd.setAttribute("data-s", "awaiting"); if (st) bd.setAttribute("data-stale", "1"); h.appendChild(bd);
+        } else if (m.state === "answered") h.appendChild(el("span", "k", "✓ answered"));
+        b.appendChild(h);
+        if (m.repliesTo !== "—" && MSG[m.repliesTo]) b.appendChild(el("div", "reply-to", "↩ reply to " + MSG[m.repliesTo].name));
+        if (m.preview) b.appendChild(el("div", "p", m.preview));
+        var evs = EVBYMSG[k] || [];
+        if (evs.length) {
+          var ch = el("div", "chips");
+          evs.forEach(function (e) {
+            var c = el("span", "ev-chip"); c.appendChild(glyphIcon(e.type, 12)); c.appendChild(document.createTextNode(trunc(e.title, 70)));
+            c.title = (D.typeLabel[e.type] || e.type) + ": " + e.title; ch.appendChild(c);
+          });
+          b.appendChild(ch);
+        }
+        var f = el("div", "foot"); f.appendChild(srcLink(m.src)); b.appendChild(f);
+        lad.appendChild(b);
+      });
+      lad.appendChild(el("div", "endnote", stateText(t)));
+      body.appendChild(lad); d.appendChild(body); host.appendChild(d);
+    });
+  }
+  function gotoThread(id) {
+    setView("threads");
+    var t = THR[id];
+    if (!threadVisible(t)) { state.q = ""; state.st = "all"; state.area = "all"; state.imp = "all"; state.tags = {}; syncFilterControls(); renderCorr(); }
+    var d = document.getElementById("thr-" + id);
+    if (d) { d.open = true; d.scrollIntoView({ behavior: "smooth", block: "start" }); }
+  }
+  function syncFilterControls() {
+    $("#q").value = ""; $("#fArea").value = "all"; $("#fImp").value = "all"; $("#fState").value = "all";
+    Array.prototype.forEach.call(document.querySelectorAll("#tagRow .chip"), function (c) { c.classList.remove("is-on"); });
+  }
+
+  /* ------------------------------------------------------------ files (list) view */
+  function renderList() {
+    var host = $("#docList"); clear(host);
+    D.docs.forEach(function (d) {
+      var evs = d.events.filter(function (e) { return evMatches(e); });
+      var text = (d.label + " " + d.file + " " + d.from.join(" ") + " " + d.events.map(function (e) { return e.title; }).join(" ")).toLowerCase();
+      if (filtersOnEvents() && !evs.length) return;
+      if (state.q && text.indexOf(state.q) < 0) return;
+      var det = el("details", "doc");
+      var s = el("summary");
+      s.appendChild(el("span", "doc-date", d.date)); s.appendChild(el("span", "doc-kind", d.kind));
+      var sub = el("span", "doc-subject"); var a = el("a", "", d.label.replace(/^[^·]*· /, "")); a.href = d.href; sub.appendChild(a); s.appendChild(sub);
+      var th = THR[d.thread]; if (th) { var tb = el("button", "lnk", trunc(th.title, 40)); tb.type = "button"; tb.title = "Open the conversation";
+        tb.addEventListener("click", function (ev) { ev.preventDefault(); gotoThread(th.id); }); s.appendChild(tb); }
+      d.areas.forEach(function (c) { s.appendChild(el("span", "tag", AREA[c] ? AREA[c].name : c)); });
+      s.appendChild(el("span", "cnt", plural(d.events.length, "event")));
+      det.appendChild(s);
+      var body = el("div", "doc-body"), meta = el("div", "doc-meta");
+      [["From", d.from], ["To", d.to.length ? d.to : ["— (a document, not an e-mail)"]]].forEach(function (p) {
+        var b = el("div"); b.appendChild(el("div", "k", p[0])); var v = el("div", "v");
+        p[1].forEach(function (x) { v.appendChild(el("span", "", x)); }); b.appendChild(v); meta.appendChild(b);
+      });
+      var fb = el("div"); fb.appendChild(el("div", "k", "Files")); var fv = el("div", "v");
+      fv.appendChild(srcLink({ label: d.label, href: d.href, orig: d.orig })); fb.appendChild(fv); meta.appendChild(fb);
+      body.appendChild(meta);
+      if (!d.events.length) body.appendChild(el("div", "no-events", "No new events — this file only repeats content captured elsewhere."));
+      d.events.forEach(function (e) {
+        var r = el("div", "ev"); r.appendChild(glyphIcon(e.type, 16));
+        var b = el("div", "ev-body"); b.appendChild(el("div", "ev-title", e.title));
+        var f = el("div", "ev-foot"); f.appendChild(el("span", "", (D.typeLabel[e.type] || e.type) + " · " + (AREA[e.area] ? AREA[e.area].name : e.area)));
+        if (e.imp !== "normal") f.appendChild(el("span", "", "Importance: " + e.imp));
+        if (e.owner !== "—") f.appendChild(el("span", "", "Owner: " + e.owner));
+        if (e.due !== "—") f.appendChild(el("span", "", "Due: " + e.due));
+        if (e.status !== "—") f.appendChild(el("span", "", "Status: " + e.status));
+        b.appendChild(f); r.appendChild(b); body.appendChild(r);
+      });
+      det.appendChild(body); host.appendChild(det);
+    });
+    if (!host.childNodes.length) host.appendChild(el("div", "empty-note", "No file matches the filters."));
+  }
+
+  /* ------------------------------------------------------------ views, theme, start */
+  function renderCorr() { renderTimeline(); renderThreads(); renderList(); }
+  function setView(v) {
+    state.view = v;
+    ["timeline", "threads", "list"].forEach(function (n) { $("#view-" + n).hidden = n !== v; });
+    Array.prototype.forEach.call(document.querySelectorAll("#viewTabs button"), function (b) {
+      b.setAttribute("aria-selected", b.getAttribute("data-view") === v ? "true" : "false");
+    });
+    try { localStorage.setItem("pm-dashboard-view", v); } catch (e) {}
+  }
+  function initTheme() {
+    var root = document.documentElement, btn = $("#themeToggle"), stored = null;
+    try { stored = localStorage.getItem("pm-dashboard-theme"); } catch (e) {}
+    if (stored === "dark" || stored === "light") root.setAttribute("data-theme", stored);
+    function isDark() { var s = root.getAttribute("data-theme"); return s ? s === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches; }
+    function sync() { btn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    btn.addEventListener("click", function () {
+      var next = isDark() ? "light" : "dark"; root.setAttribute("data-theme", next);
+      try { localStorage.setItem("pm-dashboard-theme", next); } catch (e) {}
+      sync();
+    });
+    sync();
+  }
+  function initPan() {
+    var sc = $("#tlScroll"), down = false, sx = 0, sl = 0;
+    sc.addEventListener("pointerdown", function (e) { if (e.target.closest(".node,.lk")) return; down = true; sx = e.clientX; sl = sc.scrollLeft; sc.classList.add("drag"); });
+    window.addEventListener("pointermove", function (e) { if (down) sc.scrollLeft = sl - (e.clientX - sx); });
+    window.addEventListener("pointerup", function () { down = false; sc.classList.remove("drag"); });
+  }
+
+  renderStats(); renderAreas(); renderAttention(); initFilters(); initTheme(); initPan();
+  Array.prototype.forEach.call(document.querySelectorAll("#viewTabs button"), function (b) {
+    b.addEventListener("click", function () { setView(b.getAttribute("data-view")); });
+  });
+  $("#expandAll").addEventListener("click", function () { Array.prototype.forEach.call(document.querySelectorAll(".doc"), function (d) { d.open = true; }); });
+  $("#collapseAll").addEventListener("click", function () { Array.prototype.forEach.call(document.querySelectorAll(".doc"), function (d) { d.open = false; }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("#panel").hidden) closePanel(); });
+  var saved = null; try { saved = localStorage.getItem("pm-dashboard-view"); } catch (e) {}
+  setView(window.innerWidth < 760 ? "threads" : (saved === "threads" || saved === "list" || saved === "timeline" ? saved : "timeline"));
+  renderCorr();
+})();
+
+</script>
+</body>
+</html>

@@ -6,6 +6,21 @@ PM Helper reads a project's correspondence and documents, breaks email chains in
 
 > The version in [`project/`](./project/) is the empty workspace template — no project data of any kind. Everything here is my own work; no confidential employer, client, or partner material is included.
 
+## See it working (synthetic demo)
+
+Below is a dashboard the tool generated from a fully synthetic project: seven emails from a fictional retail rollout, run through the whole pipeline. Every name, company, and event is invented for this demo.
+
+![PM Helper dashboard generated from synthetic project data](./assets/dashboard-demo.png)
+
+What the screenshot shows the tool doing on its own, from raw correspondence:
+
+- **A traffic-light read across all eight PMBOK 7 domains** — here Uncertainty is red (an open critical data-quality risk with no resolution date) and Team is amber (capacity), while the rest are green. The colour is derived from the events, not asserted.
+- **A "waiting for a reply" queue** with how many days each request has gone unanswered, and which are overdue against the 3-day threshold.
+- **A timeline** where a dashed blue line marks a link the model *proposed but a PM has not yet confirmed* (the cutover thread continuing the go-live thread), and dotted red marks a message with no reply. Approved fact and pending suggestion sit on one picture.
+- **An executive summary and project card** written in plain language, no identifiers or area codes in the running text.
+
+To explore it interactively, open [`demo/dashboard.html`](./demo/dashboard.html) in any browser — it is a single self-contained file, no server or internet needed. The [`demo/sources/`](./demo/sources/) pages show the verbatim source text of each email, split into messages, with the evidence for every extracted event highlighted. A plain-text version is in [`demo/timeline_report.md`](./demo/timeline_report.md).
+
 ## The problem
 
 On a real programme the source of truth is fragmented. A single `.msg` file is usually a whole thread; the same message shows up in three people's exports; a decision taken in one conversation quietly closes an action in another. Manually reconciling that is where PM attention leaks. I wanted a tool that ingests the raw material and gives me a governed, auditable status view without inventing facts or hiding how it got there.

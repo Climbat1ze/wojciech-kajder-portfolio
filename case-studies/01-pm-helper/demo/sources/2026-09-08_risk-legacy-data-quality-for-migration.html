@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Email · Risk - legacy data quality for migration</title><style>:root{--bg:#fff;--card:#f5f5f7;--text:#1d1d1f;--muted:#6b6b70;--rule:rgba(0,0,0,.1);--accent:#0066cc;--ev:rgba(255,204,0,.35);--warn:#b25000;--ok:#1a8917}
+@media (prefers-color-scheme: dark){:root{--bg:#1c1c1e;--card:#2a2a2c;--text:#fff;--muted:#a0a0a4;--rule:rgba(255,255,255,.12);--accent:#2997ff;--ev:rgba(255,214,10,.25);--warn:#ffd60a;--ok:#30d158}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "SamsungOne","Inter",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:24px;margin:8px 0 6px;line-height:1.2}
+a{color:var(--accent)} .muted{color:var(--muted)} .back{margin:0}
+.orig{margin-left:6px;font-size:13px}
+.msg{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px 14px;margin:14px 0}
+.mh{font-size:14px;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.chip{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--rule)}
+.badge{font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid currentColor;margin-left:6px}
+.badge.warn{color:var(--warn)} .badge.ok{color:var(--ok)}
+pre{margin:0;white-space:pre-wrap;word-break:break-word;font:13px/1.55 ui-monospace,Consolas,monospace}
+pre span{display:block;min-height:1.2em}
+pre span.ev{background:var(--ev);border-radius:3px}
+:target{outline:2px solid var(--accent);outline-offset:2px}
+</style></head><body><main class="wrap"><p class="back"><a href="../dashboard.html">← Dashboard</a></p><h1>Email · Risk - legacy data quality for migration</h1><p class="muted">Verbatim text of <b>02_data-migration-risk.txt</b>, split into messages. Highlighted lines are the evidence of extracted events.  The original file is not stored in this repository.</p><section class="msg" id="msg-1"><div class="mh"><b>Anna Kowalski</b> → Mark Ellison &lt;mark.ellison@meridian.example&gt; <span class="muted">· Tue 08 Sep 2026, 16:40 (UTC+02:00)</span> <span class="badge warn">⚠ no reply yet</span></div><div class="chips"><span class="chip t-risk">risk: Legacy data quality threatens a clean migration and the go-live date</span><span class="chip t-action">action: Confirm owner and deadline for the legacy data cleanup</span></div><pre><span>Mark,</span>
+<span></span>
+<span class="ev" title="risk: Legacy data quality threatens a clean migration and the go-live date">Flagging a risk before it becomes a blocker. The legacy product catalogue has around 12% of records with missing category codes, and the loyalty export has duplicate customer IDs.</span>
+<span></span>
+<span>If this is not cleaned before the migration dry-run, we cannot guarantee a clean cutover and the go-live date is exposed.</span>
+<span></span>
+<span class="ev" title="action: Confirm owner and deadline for the legacy data cleanup">Can you confirm who on the Meridian data team owns the cleanup, and by when? I need this to hold the schedule.</span>
+<span></span>
+<span>Anna</span></pre></section></main></body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Email · Cutover weekend plan and code freeze</title><style>:root{--bg:#fff;--card:#f5f5f7;--text:#1d1d1f;--muted:#6b6b70;--rule:rgba(0,0,0,.1);--accent:#0066cc;--ev:rgba(255,204,0,.35);--warn:#b25000;--ok:#1a8917}
+@media (prefers-color-scheme: dark){:root{--bg:#1c1c1e;--card:#2a2a2c;--text:#fff;--muted:#a0a0a4;--rule:rgba(255,255,255,.12);--accent:#2997ff;--ev:rgba(255,214,10,.25);--warn:#ffd60a;--ok:#30d158}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "SamsungOne","Inter",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:24px;margin:8px 0 6px;line-height:1.2}
+a{color:var(--accent)} .muted{color:var(--muted)} .back{margin:0}
+.orig{margin-left:6px;font-size:13px}
+.msg{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px 14px;margin:14px 0}
+.mh{font-size:14px;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.chip{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--rule)}
+.badge{font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid currentColor;margin-left:6px}
+.badge.warn{color:var(--warn)} .badge.ok{color:var(--ok)}
+pre{margin:0;white-space:pre-wrap;word-break:break-word;font:13px/1.55 ui-monospace,Consolas,monospace}
+pre span{display:block;min-height:1.2em}
+pre span.ev{background:var(--ev);border-radius:3px}
+:target{outline:2px solid var(--accent);outline-offset:2px}
+</style></head><body><main class="wrap"><p class="back"><a href="../dashboard.html">← Dashboard</a></p><h1>Email · Cutover weekend plan and code freeze</h1><p class="muted">Verbatim text of <b>06_cutover-plan.txt</b>, split into messages. Highlighted lines are the evidence of extracted events.  The original file is not stored in this repository.</p><section class="msg" id="msg-1"><div class="mh"><b>Anna Kowalski</b> → Laura Beckett &lt;laura.beckett@meridian.example&gt; <span class="muted">· Fri 18 Sep 2026, 09:00 (UTC+02:00)</span> <span class="badge warn">⚠ no reply yet</span></div><div class="chips"><span class="chip t-decision">decision: Cutover over 10-11 October with a code freeze from 8 October</span><span class="chip t-risk">risk: Data drift risk if the store network is not read-only during cutover</span></div><pre><span>Laura,</span>
+<span></span>
+<span class="ev" title="decision: Cutover over 10-11 October with a code freeze from 8 October">Following the go-live target, here is the cutover plan for the weekend of 10-11 October. We freeze all non-critical changes from 8 October so the environment is stable going into cutover.</span>
+<span></span>
+<span class="ev" title="risk: Data drift risk if the store network is not read-only during cutover">Decision needed from your side: can Meridian confirm the store network will be in read-only mode during the cutover window? Without that we risk data drift between the old and new systems.</span>
+<span></span>
+<span>Please confirm by end of week so I can brief the team.</span>
+<span></span>
+<span>Anna</span></pre></section></main></body></html>
