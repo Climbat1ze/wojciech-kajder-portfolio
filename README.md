@@ -14,6 +14,10 @@ This repository is a curated selection of professional work: programme case stud
 
 Each case study lives in [`case-studies/`](./case-studies/) as its own folder with a short write-up (context → challenge → approach → result) and any supporting artefacts.
 
+## Reference materials
+
+The [`reference/`](./reference/) folder holds the communication and method playbooks I actually work from — condensed, prompt-ready rule sets for structuring decks, emails, reports, and AI workflows: the Minto Pyramid, the PwC eight-step presentation approach, C-level communication, a weekly-report standard, and the Model Workspace Protocol paper behind the PM Helper case study. All examples are anonymised; methods are credited to their authors.
+
 ## How I work
 
 - **Programme governance** — stage-gate delivery, RAID management, portfolio-level reporting.
