@@ -179,7 +179,7 @@ Jeśli z całego pliku ma zostać jedno zdanie - to jest to zdanie.
 - `_context/99_method_Minto_Pyramid.md` - fundament logiczny (SCQA, MECE, struktura piramidy)
 - `CONTEXT.md` - reguły routingu decyzyjnego w organizacji
 - `_context/99_source_paper_VanClief_2026_EN.md` - metoda organizacji kontekstu (MWP/ICM)
-- `_context/2026-04-22_RTAM_governance.md`, sekcja „Prezentacje dla sponsorów i decydentów” - reguła programu od 2026-09-15: prezentację dla sponsorów w Aurora HQ i decydentów akceptuje Part Leader, a na spotkaniu mówimy krótko, od konkluzji
+- `_context/2026-04-22_Fieldcraft_governance.md`, sekcja „Prezentacje dla sponsorów i decydentów” - reguła programu od 2026-09-15: prezentację dla sponsorów w Aurora HQ i decydentów akceptuje Part Leader, a na spotkaniu mówimy krótko, od konkluzji
 
 ---
 
@@ -384,7 +384,7 @@ If only one sentence survives from this file, it is that one.
 - `_context/99_method_Minto_Pyramid.md` - logical foundation (SCQA, MECE, pyramid structure)
 - `CONTEXT.md` - decision routing rules in the organization
 - `_context/99_source_paper_VanClief_2026_EN.md` - context organization method (MWP/ICM)
-- `_context/2026-04-22_RTAM_governance.md`, section "Presentations to sponsors and decision-makers" - programme rule since 2026-09-15: a presentation to sponsors in Aurora HQ and decision-makers is approved by the Part Leader, and in the meeting we are brief, conclusion first
+- `_context/2026-04-22_Fieldcraft_governance.md`, section "Presentations to sponsors and decision-makers" - programme rule since 2026-09-15: a presentation to sponsors in Aurora HQ and decision-makers is approved by the Part Leader, and in the meeting we are brief, conclusion first
 
 ---
 

@@ -270,7 +270,7 @@ Próba nie jest luksusem na koniec, tylko krokiem, który wyłapuje błędy niew
 - [ ] Każda wizualizacja jest przypisana do konkretnej tezy.
 - [ ] Lista antycypowanych pytań istnieje i ma odpowiedzi.
 - [ ] Prezentacja została przećwiczona na głos i zmieszczona w czasie.
-- [ ] Prezentacja dla sponsorów lub decydentów, prowadzona przez członka zespołu RTAM, ma akceptację jego Part Leadera (reguła programu od 2026-09-15, `_context/2026-04-22_RTAM_governance.md`).
+- [ ] Prezentacja dla sponsorów lub decydentów, prowadzona przez członka zespołu Fieldcraft, ma akceptację jego Part Leadera (reguła programu od 2026-09-15, `_context/2026-04-22_Fieldcraft_governance.md`).
 - [ ] Po spotkaniu notatka poszła do uczestników, a do Part Leadera także wtedy, gdy nie był na spotkaniu.
 
 ---
@@ -300,7 +300,7 @@ Próba nie jest luksusem na koniec, tylko krokiem, który wyłapuje błędy niew
   Osiem kroków PwC porządkuje **proces**: od odbiorcy do próby. Warstwy się uzupełniają, nie zastępują.
 - `CONTEXT.md` - reguła routingu decyzyjnego: **propozycje jednowariantowe nie są przyjmowane**.
   W prezentacji decyzyjnej (krok 2, typ "przekonać") oznacza to obowiązek pokazania wariantów w zamknięciu.
-- `_context/2026-04-22_RTAM_governance.md`, sekcja „Prezentacje dla sponsorów i decydentów” - reguła programu
+- `_context/2026-04-22_Fieldcraft_governance.md`, sekcja „Prezentacje dla sponsorów i decydentów” - reguła programu
   od 2026-09-15: akceptacja Part Leadera jako minimum, pięć punktów przygotowania, notatka po spotkaniu.
 - `_context/99_source_paper_VanClief_2026_EN.md` - metoda organizacji kontekstu (MWP/ICM),
   czyli porządek **plików i etapów pracy**. Niezależna od obu powyższych.
@@ -547,7 +547,7 @@ Rehearsal is not an optional last flourish. It catches the errors that are invis
 - [ ] Every visual is mapped to a specific message.
 - [ ] A list of anticipated questions exists, with answers.
 - [ ] The presentation has been rehearsed aloud and fits the time slot.
-- [ ] A presentation to sponsors or decision-makers led by an RTAM team member is approved by that member's Part Leader (programme rule since 2026-09-15, `_context/2026-04-22_RTAM_governance.md`).
+- [ ] A presentation to sponsors or decision-makers led by an Fieldcraft team member is approved by that member's Part Leader (programme rule since 2026-09-15, `_context/2026-04-22_Fieldcraft_governance.md`).
 - [ ] After the meeting, a note went to the participants, and to the Part Leader if they did not attend.
 
 ---
@@ -578,7 +578,7 @@ Rehearsal is not an optional last flourish. It catches the errors that are invis
   The layers complement each other; neither replaces the other.
 - `CONTEXT.md` - the decision routing rule: **single-option proposals are not accepted**. In a decision-oriented
   presentation (step 2, "persuade" type) this means options must appear in the close.
-- `_context/2026-04-22_RTAM_governance.md`, section "Presentations to sponsors and decision-makers" - programme
+- `_context/2026-04-22_Fieldcraft_governance.md`, section "Presentations to sponsors and decision-makers" - programme
   rule since 2026-09-15: Part Leader approval as a minimum, five preparation points, a note after the meeting.
 - `_context/99_source_paper_VanClief_2026_EN.md` - the context organisation method (MWP/ICM), which orders
   **files and work stages**. Independent of both of the above.
@@ -586,4 +586,4 @@ Rehearsal is not an optional last flourish. It catches the errors that are invis
 ---
 
 **Last updated:** 2026-09-15 (checklist and related material: sponsor presentation rule / checklista i powiązania: reguła prezentacji dla sponsorów)
-**Source:** PwC training material (2017). Applied, not authored, by RTAM.
+**Source:** PwC training material (2017). Applied, not authored, by Fieldcraft.

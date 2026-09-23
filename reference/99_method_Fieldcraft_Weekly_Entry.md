@@ -1,18 +1,18 @@
-# Wpis do raportu tygodniowego RTAM - standard / RTAM weekly report entry - the standard
+# Wpis do raportu tygodniowego Fieldcraft - standard / Fieldcraft weekly report entry - the standard
 
 > **Reference material (Layer 3 - "fabryka", stabilne między uruchomieniami).**
-> **Metoda:** Piramida Minto (Barbara Minto) zastosowana do jednego wpisu raportu tygodniowego RTAM.
+> **Metoda:** Piramida Minto (Barbara Minto) zastosowana do jednego wpisu raportu tygodniowego Fieldcraft.
 > Minto jest autorem piramidy i MECE - my je stosujemy. Standard wpisu to własne opracowanie na podstawie korpusu raportów 2025-2026.
 > Ten plik nie jest opisem raportu - to zestaw reguł operacyjnych, gotowy do wstrzyknięcia w prompt.
 >
-> **Dla kogo:** RTAM-owcy (Pre-Sales, PM, Architekci) i LLM, który buduje wpis z surowego inputu pracownika.
+> **Dla kogo:** Fieldcraft-owcy (Pre-Sales, PM, Architekci) i LLM, który buduje wpis z surowego inputu pracownika.
 >
 > **Plik jest dwujęzyczny.** Część polska: sekcje 0-9. Część angielska: sekcje EN 0-9, lustrzane,
 > od nagłówka "PART II - ENGLISH". Numer sekcji znaczy to samo w obu językach. **Sam wpis jest zawsze po angielsku.**
 >
 > **Jak się powoływać w prompcie / how to invoke:**
-> `Zbuduj wpis do raportu tygodniowego z poniższego inputu, zachowując standard z _context/99_method_RTAM_Weekly_Entry.md`
-> `Build a weekly report entry from the input below, following the standard in _context/99_method_RTAM_Weekly_Entry.md`
+> `Zbuduj wpis do raportu tygodniowego z poniższego inputu, zachowując standard z _context/99_method_Fieldcraft_Weekly_Entry.md`
+> `Build a weekly report entry from the input below, following the standard in _context/99_method_Fieldcraft_Weekly_Entry.md`
 >
 > **Działa razem z:** `_context/99_method_Minto_Pyramid.md` (logika) i `_context/99_method_C-Level_KR_Communication.md` (styl, lista pustosłowia).
 >
@@ -33,7 +33,7 @@ Jeśli z całego pliku ma zostać jedno zdanie - to jest to zdanie.
 
 ## 1. Odbiorca i pięć wymiarów wartości
 
-Raport tygodniowy sygnalizuje highlighty VLE (zespołu RTAM), które przynoszą wartość odbiorcy.
+Raport tygodniowy sygnalizuje highlighty VLE (zespołu Fieldcraft), które przynoszą wartość odbiorcy.
 Odbiorcy: sponsor z Aurora HQ (HQ), PM-owie, HQ leadership. Czytają kilkadziesiąt wpisów naraz i decydują po pierwszej linii.
 
 | Kod | Wymiar | Pytanie odbiorcy | Twardy konkret we wpisie |
@@ -50,7 +50,7 @@ Odbiorcy: sponsor z Aurora HQ (HQ), PM-owie, HQ leadership. Czytają kilkadziesi
 
 **Oznaczenia wewnętrzne VLE zostają poza wpisem.** Raport czyta Aurora HQ, więc w treści wpisu nie ma core KPI,
 numerów deliverables (Dxx) ani kodów V1-V5 i typów A-E. Zamiast oznaczenia pisz fakt biznesowy: "new CarePlus customer",
-nie "new CarePlus customer, core KPI 7". Mapowanie na core KPI (`_projects/RTAM Weekly Reports/_config/kpiDefinitions.md`)
+nie "new CarePlus customer, core KPI 7". Mapowanie na core KPI (`_projects/Fieldcraft Weekly Reports/_config/kpiDefinitions.md`)
 może trafić do metadanych roboczych pod wpisem.
 
 ---
@@ -82,7 +82,7 @@ Next steps:
 • [action] – [owner] – [MM/DD]
 ```
 
-**Kolejność etykiet jest twarda.** Parser raportu (`_projects/RTAM Weekly Reports/_flows/msg_to_md/stages/02_stage_02/_scripts/parse_sections.py`)
+**Kolejność etykiet jest twarda.** Parser raportu (`_projects/Fieldcraft Weekly Reports/_flows/msg_to_md/stages/02_stage_02/_scripts/parse_sections.py`)
 tnie wpis w kolejności tytuł → `Deal:` → `Use case:` → `VLE support:`, a wszystko po `VLE support:` trafia do tego pola. Z tego wynika:
 - `Outcome:` i `Next steps:` zawsze stoją po `VLE support:`;
 - żadna z etykiet nie pojawia się w tytule;
@@ -95,7 +95,7 @@ Vertical, Typ i Value służą autorowi do samokontroli i nie są drukowane w tr
 
 ## 3. Typy wpisów i sekcja raportu
 
-Typologia pochodzi z `_projects/RTAM Weekly Reports/_prompts/2026-07-15_RTAM_Weekly_Report_Prompt_v0.3.md`.
+Typologia pochodzi z `_projects/Fieldcraft Weekly Reports/_prompts/2026-07-15_Fieldcraft_Weekly_Report_Prompt_v0.3.md`.
 Typ decyduje o sekcji raportu i o tym, które pole jest twarde.
 
 | Typ | Kiedy | Sekcja | Pole twarde |
@@ -129,8 +129,8 @@ W sekcji Product Management nie ma etykiety `Outcome:` - wynik wpisuje się jako
 | Data | `MM/DD`, dwucyfrowo; tylko przy spotkaniu, warsztacie, evencie | 8 września → `09/08` |
 | `Deal:` | deal ID z systemu albo `to be registered`; wartość w $ albo w urządzeniach | `Deal: DEAL-2026-0190 – 7,000 tablets` |
 | Brak danych | `[TBC]` dokładnie w miejscu braku; nigdy puste pole i nigdy liczba zgadnięta | `Deal: to be registered – [TBC]` |
-| Subs | kod z `_context/2026-08-29_RTAM_subsidiary_codes.md` | `VL-PL`, nie `Poland` |
-| Vertical | wartość z `_context/2026-08-29_RTAM_verticals.md`; wątpliwość = `TBD` | `Finance` |
+| Subs | kod z `_context/2026-08-29_Fieldcraft_subsidiary_codes.md` | `VL-PL`, nie `Poland` |
+| Vertical | wartość z `_context/2026-08-29_Fieldcraft_verticals.md`; wątpliwość = `TBD` | `Finance` |
 | Język | wpis zawsze po angielsku; input może być w dowolnym języku | - |
 | Punkty | znak `•`; jeden punkt = jedno zdanie | - |
 
@@ -248,10 +248,10 @@ Wycięte jako poziom 3: hasło eventu, venue, lista innych prelegentów (Rivera 
 
 - `_context/99_method_Minto_Pyramid.md` - fundament: teza najpierw, MECE, grupowanie pod pojęciem wyższego rzędu.
 - `_context/99_method_C-Level_KR_Communication.md` - styl i lista pustosłowia; odbiorca raportu to C-level z Aurora HQ.
-- `_projects/RTAM Weekly Reports/_prompts/2026-07-15_RTAM_Weekly_Report_Prompt_v0.3.md` - interaktywny prompt zbierający dane; typy A-E.
-- `_projects/RTAM Weekly Reports/_flows/msg_to_md/stages/02_stage_02/_scripts/parse_sections.py` - parser, który wymusza kolejność etykiet.
-- `_projects/RTAM Weekly Reports/_context/10_schemat_wiersza.md` - wpis trafia do bazy wiedzy; pole `activity` jest przepisywane 1:1, więc jakość wpisu to jakość bazy.
-- `_context/2026-08-29_RTAM_subsidiary_codes.md`, `_context/2026-08-29_RTAM_verticals.md` - kanony kodów jednostek i wertykałów.
+- `_projects/Fieldcraft Weekly Reports/_prompts/2026-07-15_Fieldcraft_Weekly_Report_Prompt_v0.3.md` - interaktywny prompt zbierający dane; typy A-E.
+- `_projects/Fieldcraft Weekly Reports/_flows/msg_to_md/stages/02_stage_02/_scripts/parse_sections.py` - parser, który wymusza kolejność etykiet.
+- `_projects/Fieldcraft Weekly Reports/_context/10_schemat_wiersza.md` - wpis trafia do bazy wiedzy; pole `activity` jest przepisywane 1:1, więc jakość wpisu to jakość bazy.
+- `_context/2026-08-29_Fieldcraft_subsidiary_codes.md`, `_context/2026-08-29_Fieldcraft_verticals.md` - kanony kodów jednostek i wertykałów.
 
 ---
 ---
@@ -268,7 +268,7 @@ If only one sentence survives from this file, it is that one.
 
 ## EN 1. The reader and the five value dimensions
 
-The weekly report signals VLE (RTAM team) highlights that bring value to the reader.
+The weekly report signals VLE (Fieldcraft team) highlights that bring value to the reader.
 Readers: the sponsor in Aurora HQ (HQ), the PMs, HQ leadership. They read dozens of entries at once and decide on the first line.
 
 | Code | Dimension | Reader question | Hard fact in the entry |
@@ -285,7 +285,7 @@ Readers: the sponsor in Aurora HQ (HQ), the PMs, HQ leadership. They read dozens
 
 **VLE-internal labels stay out of the entry.** The report is read in Aurora HQ, so the entry text carries no core KPIs,
 deliverable numbers (Dxx), V1-V5 codes or A-E types. Instead of a label, state the business fact: "new CarePlus customer",
-not "new CarePlus customer, core KPI 7". A core KPI mapping (`_projects/RTAM Weekly Reports/_config/kpiDefinitions.md`)
+not "new CarePlus customer, core KPI 7". A core KPI mapping (`_projects/Fieldcraft Weekly Reports/_config/kpiDefinitions.md`)
 may go into the working metadata below the entry.
 
 ---
@@ -317,7 +317,7 @@ Next steps:
 • [action] – [owner] – [MM/DD]
 ```
 
-**The label order is fixed.** The report parser (`_projects/RTAM Weekly Reports/_flows/msg_to_md/stages/02_stage_02/_scripts/parse_sections.py`)
+**The label order is fixed.** The report parser (`_projects/Fieldcraft Weekly Reports/_flows/msg_to_md/stages/02_stage_02/_scripts/parse_sections.py`)
 splits the entry in the order title → `Deal:` → `Use case:` → `VLE support:`, and everything after `VLE support:` lands in that field. Therefore:
 - `Outcome:` and `Next steps:` always come after `VLE support:`;
 - none of the labels appears in the title;
@@ -330,7 +330,7 @@ Vertical, Type and Value are for the author's self-check and are not printed in 
 
 ## EN 3. Entry types and report section
 
-The typology comes from `_projects/RTAM Weekly Reports/_prompts/2026-07-15_RTAM_Weekly_Report_Prompt_v0.3.md`.
+The typology comes from `_projects/Fieldcraft Weekly Reports/_prompts/2026-07-15_Fieldcraft_Weekly_Report_Prompt_v0.3.md`.
 The type decides the report section and which field is mandatory.
 
 | Type | When | Section | Mandatory field |
@@ -364,8 +364,8 @@ The Product Management section has no `Outcome:` label - the result goes in as a
 | Date | `MM/DD`, two digits; only for a meeting, workshop or event | 8 September → `09/08` |
 | `Deal:` | deal ID from the system or `to be registered`; value in $ or in devices | `Deal: DEAL-2026-0190 – 7,000 tablets` |
 | Missing data | `[TBC]` exactly where the gap is; never an empty field and never a guessed number | `Deal: to be registered – [TBC]` |
-| Subs | code from `_context/2026-08-29_RTAM_subsidiary_codes.md` | `VL-PL`, not `Poland` |
-| Vertical | value from `_context/2026-08-29_RTAM_verticals.md`; when in doubt `TBD` | `Finance` |
+| Subs | code from `_context/2026-08-29_Fieldcraft_subsidiary_codes.md` | `VL-PL`, not `Poland` |
+| Vertical | value from `_context/2026-08-29_Fieldcraft_verticals.md`; when in doubt `TBD` | `Finance` |
 | Language | the entry is always in English; the input may be in any language | - |
 | Bullets | the `•` character; one bullet = one sentence | - |
 
@@ -483,12 +483,12 @@ Cut as level 3: event slogan, venue, list of other speakers (Rivera Bank, Aldrid
 
 - `_context/99_method_Minto_Pyramid.md` - the foundation: thesis first, MECE, grouping under a higher-order concept.
 - `_context/99_method_C-Level_KR_Communication.md` - style and the filler-word list; the report's reader is C-level in Aurora HQ.
-- `_projects/RTAM Weekly Reports/_prompts/2026-07-15_RTAM_Weekly_Report_Prompt_v0.3.md` - interactive prompt that collects the data; types A-E.
-- `_projects/RTAM Weekly Reports/_flows/msg_to_md/stages/02_stage_02/_scripts/parse_sections.py` - the parser that enforces the label order.
-- `_projects/RTAM Weekly Reports/_context/10_schemat_wiersza.md` - the entry lands in the knowledge base; the `activity` field is copied 1:1, so entry quality is knowledge-base quality.
-- `_context/2026-08-29_RTAM_subsidiary_codes.md`, `_context/2026-08-29_RTAM_verticals.md` - the unit-code and vertical canons.
+- `_projects/Fieldcraft Weekly Reports/_prompts/2026-07-15_Fieldcraft_Weekly_Report_Prompt_v0.3.md` - interactive prompt that collects the data; types A-E.
+- `_projects/Fieldcraft Weekly Reports/_flows/msg_to_md/stages/02_stage_02/_scripts/parse_sections.py` - the parser that enforces the label order.
+- `_projects/Fieldcraft Weekly Reports/_context/10_schemat_wiersza.md` - the entry lands in the knowledge base; the `activity` field is copied 1:1, so entry quality is knowledge-base quality.
+- `_context/2026-08-29_Fieldcraft_subsidiary_codes.md`, `_context/2026-08-29_Fieldcraft_verticals.md` - the unit-code and vertical canons.
 
 ---
 
 **Last updated:** 2026-09-11
-**Metoda / Method:** Piramida Minto (Barbara Minto) zastosowana do wpisu raportu tygodniowego RTAM. Minto is the author of the pyramid; we apply it. Standard wpisu: własne opracowanie / entry standard: original compilation.
+**Metoda / Method:** Piramida Minto (Barbara Minto) zastosowana do wpisu raportu tygodniowego Fieldcraft. Minto is the author of the pyramid; we apply it. Standard wpisu: własne opracowanie / entry standard: original compilation.
