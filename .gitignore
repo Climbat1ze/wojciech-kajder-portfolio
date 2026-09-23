@@ -1,0 +1,11 @@
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+*.tmp
+~$*
+
+# Local drafts not meant for the public portfolio
+_drafts/
+*.private.*
