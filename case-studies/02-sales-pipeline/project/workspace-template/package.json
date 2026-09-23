@@ -1,0 +1,16 @@
+{
+  "name": "sales-pipeline-reference",
+  "version": "1.0.0",
+  "description": "Reference implementation: sales pipeline spreadsheet -> staged reports, via filesystem-as-orchestration.",
+  "main": "_scripts/run_pipeline.js",
+  "scripts": {
+    "pipeline": "node _scripts/run_pipeline.js",
+    "convert": "node _scripts/stage_01_convert.js",
+    "process": "node _scripts/stage_02_process.js",
+    "report": "node _scripts/stage_03_report.js"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  },
+  "license": "MIT"
+}
