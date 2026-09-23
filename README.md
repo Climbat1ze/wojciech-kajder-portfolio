@@ -22,8 +22,8 @@ Each case study lives in [`case-studies/`](./case-studies/) as its own folder wi
 
 ## Contact
 
-- LinkedIn: _add link_
-- Email: _add professional email_
+- LinkedIn: [wojciechkajder](https://www.linkedin.com/in/wojciechkajder/)
+- Email: w.kajder@gmail.com
 
 ---
 
