@@ -19,7 +19,9 @@ What the screenshot shows the tool doing on its own, from raw correspondence:
 - **A timeline** where a dashed blue line marks a link the model *proposed but a PM has not yet confirmed* (the cutover thread continuing the go-live thread), and dotted red marks a message with no reply. Approved fact and pending suggestion sit on one picture.
 - **An executive summary and project card** written in plain language, no identifiers or area codes in the running text.
 
-To explore it interactively, open [`demo/dashboard.html`](./demo/dashboard.html) in any browser — it is a single self-contained file, no server or internet needed. The [`demo/sources/`](./demo/sources/) pages show the verbatim source text of each email, split into messages, with the evidence for every extracted event highlighted. A plain-text version is in [`demo/timeline_report.md`](./demo/timeline_report.md).
+**Open the live dashboard: https://climbat1ze.github.io/wojciech-kajder-portfolio/case-studies/01-pm-helper/demo/dashboard.html**
+
+It is a single self-contained page, no server or internet needed. The [`demo/sources/`](./demo/sources/) pages show the verbatim source text of each email, split into messages, with the evidence for every extracted event highlighted. A plain-text version is in [`demo/timeline_report.md`](./demo/timeline_report.md).
 
 ## The problem
 
