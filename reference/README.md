@@ -19,3 +19,7 @@ These are the operational playbooks I actually work from: not book summaries, bu
 Minto orders the **content** of a message; the PwC eight steps order the **process** of preparing it; the C-level and weekly-report files apply both to specific formats. The Van Clief paper is a different layer — it orders the **files and stages** of an AI workflow, and it is the method behind the [PM Helper case study](../case-studies/01-pm-helper/) in this portfolio. Minto is the summarisation discipline that same tool uses to write its area summaries.
 
 Together these show how I turn recognised methods into repeatable operating standards, rather than treating them as one-off reading.
+
+## Team operating model
+
+The [`team-operating-model/`](./team-operating-model/) subfolder holds the operating system around AI-assisted delivery: onboarding, source-control governance for non-developers, project-creation criteria, the rules the AI assistant itself must follow, and workflow governance. It is the scaffolding that lets a team, not just one power user, run this way of working. Anonymised, same as the playbooks above.

@@ -222,7 +222,7 @@ ocena wartości dopiero w czwartej sekcji; lista innych prelegentów i hasło ev
 
 ```
 Vela Business Summit 2026 (Warsaw, 09/10) – VLE presented the Pro Edition + GuardSuite + CarePlus offering to ~200 key Polish enterprise accounts; 3 follow-up opportunities opened
-Deal: 3 opportunities to be registered – Nordbank (HerdManager migration), Granite Services (CarePlus), Vermillion (S23 → S26 fleet refresh); sizes [TBC]
+Deal: 3 opportunities to be registered – Nordbank (HerdManager migration), Granite Services (CarePlus), Vermillion (F23 → F26 fleet refresh); sizes [TBC]
 Use case: Vela's flagship annual B2B event in Poland, opened by Iga Malinowska, President of Vela Poland, gathered decision-makers from the largest enterprise accounts in one room.
 VLE support:
 • Speaker session for ~200 enterprise decision-makers on the Vela B2B mobility portfolio
@@ -231,11 +231,11 @@ VLE support:
 Outcome:
 • Nordbank – evaluating a move from Contoso Manage to HerdManager, driven by dissatisfaction with Contoso Manage in their environment; strongest strategic case, as it would anchor HerdManager in a high-profile public institution
 • Granite Services – concrete interest in buying CarePlus, scope and commercial terms discussed; nearest-term deal and a new CarePlus customer if closed
-• Vermillion – fleet refresh from Galaxy S23 to S26, upgrade path and commercial framework discussed; volume hardware opportunity tied to the S26 cycle
+• Vermillion – fleet refresh from Vela F23 to F26, upgrade path and commercial framework discussed; volume hardware opportunity tied to the F26 cycle
 Next steps:
 • Granite Services – CarePlus proposal and pricing – [owner TBC] – [TBC]
 • Nordbank – HerdManager migration assessment, incl. comparison with the current Contoso Manage setup – [owner TBC] – [TBC]
-• Vermillion – fleet refresh quote S23 → S26, incl. trade-in and rollout options – [owner TBC] – [TBC]
+• Vermillion – fleet refresh quote F23 → F26, incl. trade-in and rollout options – [owner TBC] – [TBC]
 ```
 
 Metadane: Subs `VL-PL` · PIC `[TBC]` · Vertical `Finance` (Nordbank, Vermillion), `TBD` (Granite Services) · Typ A · Value V2 (V1 po rejestracji deal) · core KPI 7 (Granite Services, jeśli deal się zamknie).
@@ -457,7 +457,7 @@ the value assessment only in the fourth section; the list of other speakers and 
 
 ```
 Vela Business Summit 2026 (Warsaw, 09/10) – VLE presented the Pro Edition + GuardSuite + CarePlus offering to ~200 key Polish enterprise accounts; 3 follow-up opportunities opened
-Deal: 3 opportunities to be registered – Nordbank (HerdManager migration), Granite Services (CarePlus), Vermillion (S23 → S26 fleet refresh); sizes [TBC]
+Deal: 3 opportunities to be registered – Nordbank (HerdManager migration), Granite Services (CarePlus), Vermillion (F23 → F26 fleet refresh); sizes [TBC]
 Use case: Vela's flagship annual B2B event in Poland, opened by Iga Malinowska, President of Vela Poland, gathered decision-makers from the largest enterprise accounts in one room.
 VLE support:
 • Speaker session for ~200 enterprise decision-makers on the Vela B2B mobility portfolio
@@ -466,11 +466,11 @@ VLE support:
 Outcome:
 • Nordbank – evaluating a move from Contoso Manage to HerdManager, driven by dissatisfaction with Contoso Manage in their environment; strongest strategic case, as it would anchor HerdManager in a high-profile public institution
 • Granite Services – concrete interest in buying CarePlus, scope and commercial terms discussed; nearest-term deal and a new CarePlus customer if closed
-• Vermillion – fleet refresh from Galaxy S23 to S26, upgrade path and commercial framework discussed; volume hardware opportunity tied to the S26 cycle
+• Vermillion – fleet refresh from Vela F23 to F26, upgrade path and commercial framework discussed; volume hardware opportunity tied to the F26 cycle
 Next steps:
 • Granite Services – CarePlus proposal and pricing – [owner TBC] – [TBC]
 • Nordbank – HerdManager migration assessment, incl. comparison with the current Contoso Manage setup – [owner TBC] – [TBC]
-• Vermillion – fleet refresh quote S23 → S26, incl. trade-in and rollout options – [owner TBC] – [TBC]
+• Vermillion – fleet refresh quote F23 → F26, incl. trade-in and rollout options – [owner TBC] – [TBC]
 ```
 
 Metadata: Subs `VL-PL` · PIC `[TBC]` · Vertical `Finance` (Nordbank, Vermillion), `TBD` (Granite Services) · Type A · Value V2 (V1 once deals are registered) · core KPI 7 (Granite Services, if the deal closes).
