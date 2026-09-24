@@ -9,3 +9,6 @@ Desktop.ini
 # Local drafts not meant for the public portfolio
 _drafts/
 *.private.*
+
+# C-Level KR method — kept local only, not published
+reference/99_method_C-Level_KR_Communication.md
