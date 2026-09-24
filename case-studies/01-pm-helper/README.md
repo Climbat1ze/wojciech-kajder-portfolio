@@ -4,7 +4,7 @@ A working tool I designed and built to solve a problem every programme manager k
 
 PM Helper reads a project's correspondence and documents, breaks email chains into individual messages, flags what is waiting on a reply, proposes how conversations link together, and maintains a live status dashboard across the eight PMBOK 7 performance domains. The design principle throughout: **the AI reads and proposes, deterministic scripts verify, the project manager decides.**
 
-> The version in [`project/`](./project/) is the empty workspace template — no project data of any kind. Everything here is my own work; no confidential employer, client, or partner material is included.
+> [`project/workspace-template/`](./project/workspace-template/) is the empty engine (no project data of any kind); [`project/_demo/`](./project/_demo/) is that same engine run end to end on the synthetic project shown below. Everything here is my own work; no confidential employer, client, or partner material is included.
 
 ## See it working (synthetic demo)
 
@@ -19,9 +19,9 @@ What the screenshot shows the tool doing on its own, from raw correspondence:
 - **A timeline** where a dashed blue line marks a link the model *proposed but a PM has not yet confirmed* (the cutover thread continuing the go-live thread), and dotted red marks a message with no reply. Approved fact and pending suggestion sit on one picture.
 - **An executive summary and project card** written in plain language, no identifiers or area codes in the running text.
 
-**Open the live dashboard: https://climbat1ze.github.io/wojciech-kajder-portfolio/case-studies/01-pm-helper/demo/dashboard.html**
+**Open the live dashboard: https://climbat1ze.github.io/wojciech-kajder-portfolio/case-studies/01-pm-helper/project/_demo/_outputs/dashboard.html**
 
-It is a single self-contained page, no server or internet needed. The [`demo/sources/`](./demo/sources/) pages show the verbatim source text of each email, split into messages, with the evidence for every extracted event highlighted. A plain-text version is in [`demo/timeline_report.md`](./demo/timeline_report.md).
+It is a single self-contained page, no server or internet needed. The [`project/_demo/_outputs/sources/`](./project/_demo/_outputs/sources/) pages show the verbatim source text of each email, split into messages, with the evidence for every extracted event highlighted. A plain-text version is in [`project/_demo/_outputs/timeline_report.md`](./project/_demo/_outputs/timeline_report.md).
 
 ## The problem
 
@@ -54,10 +54,11 @@ This is the clearest artefact I have of my operating style as a programme manage
 
 ## Explore the tool
 
-- [`project/README.md`](./project/README.md) — how to run it (in Polish; the tool's working language).
-- [`project/CLAUDE.md`](./project/CLAUDE.md) — the workspace identity and structure.
-- [`project/_context/00_method.md`](./project/_context/00_method.md) — the eleven binding rules of the method.
-- [`project/_flows/`](./project/_flows/) — the two flows and their staged pipelines.
+- [`project/workspace-template/README.md`](./project/workspace-template/README.md) — how to run it (in Polish; the tool's working language).
+- [`project/workspace-template/CLAUDE.md`](./project/workspace-template/CLAUDE.md) — the workspace identity and structure.
+- [`project/workspace-template/_context/00_method.md`](./project/workspace-template/_context/00_method.md) — the eleven binding rules of the method.
+- [`project/workspace-template/_flows/`](./project/workspace-template/_flows/) — the two flows and their staged pipelines.
+- [`project/_demo/`](./project/_demo/) — the same engine run on synthetic data, with the generated knowledge base and dashboard.
 
 ---
 

@@ -1,0 +1,44 @@
+[
+  {
+    "doc_key": "d1b971509f87b6c8",
+    "source_file": "01_kickoff.txt",
+    "source_type": "txt",
+    "content_sha256": "a66d286ad278d83a4f2aa5a12bac2dd9ca09cdd6da26251fb87ef41492278dca"
+  },
+  {
+    "doc_key": "9c6de3eb8a4a94ca",
+    "source_file": "02_data-migration-risk.txt",
+    "source_type": "txt",
+    "content_sha256": "e5478ea964a3a57a917dccea25f358684f42cc78118792daef27d3c3a611f6ac"
+  },
+  {
+    "doc_key": "87b6d229ab8cc443",
+    "source_file": "03_uat-scope.txt",
+    "source_type": "txt",
+    "content_sha256": "ba63b27c8c288e86ff50202a8e9d259d00e732ddbe91233e4170c631ad498e6d"
+  },
+  {
+    "doc_key": "e0dc729bb2b806e3",
+    "source_file": "04_change-request.txt",
+    "source_type": "txt",
+    "content_sha256": "e07203163de1752a3c1be9c8a6ea1a0120ec83d1c7465e4d3295a2dbc7632d8e"
+  },
+  {
+    "doc_key": "c97870dc04247e7a",
+    "source_file": "05_go-live-schedule.txt",
+    "source_type": "txt",
+    "content_sha256": "bf2baae8dccddcd51defb8d66fcb64a35ffad8223ed0268f5db6570f14e57981"
+  },
+  {
+    "doc_key": "09293a8baa7b37c0",
+    "source_file": "06_cutover-plan.txt",
+    "source_type": "txt",
+    "content_sha256": "8c206a5446e9e9c5cf36b3de10ec8e4e3d65c9fb6f682f33d2c846971adf63e3"
+  },
+  {
+    "doc_key": "d1a65d8ee6d02c37",
+    "source_file": "07_status-report.txt",
+    "source_type": "txt",
+    "content_sha256": "c8ce52925a6d5161bdeb0fe0ffd47440dcd605f12bb5cab3592dd1a7507bc6b0"
+  }
+]

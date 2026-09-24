@@ -1,0 +1,7 @@
+# Biblioteki Pythona potrzebne do czytania plików wejściowych (etap 01_extract).
+# Instalacja: python -m pip install -r requirements.txt
+# Sam rdzeń (kontrole, wątki, indeks, dashboard) używa tylko biblioteki standardowej Pythona.
+extract-msg        # pliki .msg z Outlooka
+beautifulsoup4     # treść maili w HTML
+python-docx        # dokumenty Word (.docx)
+python-pptx        # prezentacje (.pptx)

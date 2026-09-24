@@ -1,0 +1,107 @@
+[
+  {
+    "doc_key": "d1b971509f87b6c8",
+    "source_file": "01_kickoff.txt",
+    "source_type": "txt",
+    "content_sha256": "a66d286ad278d83a4f2aa5a12bac2dd9ca09cdd6da26251fb87ef41492278dca",
+    "metadata": {
+      "from": "Laura Beckett <laura.beckett@meridian.example>",
+      "to": "Anna Kowalski <anna.kowalski@northwind.example>",
+      "subject": "Project kickoff - Atlas rollout",
+      "date": "2026-09-02 09:15",
+      "message_id": "<msg-kickoff-01@meridian.example>",
+      "in_reply_to": "—"
+    },
+    "text": "Hi Anna,\n\nThanks for running the kickoff yesterday. On our side we consider the project formally started as of 1 September.\n\nWe agreed the scope baseline for phase 1: store inventory, point-of-sale integration and the customer profile service. Anything beyond that goes through change control.\n\nLaura Beckett\nProgramme Sponsor, Meridian Retail\n"
+  },
+  {
+    "doc_key": "9c6de3eb8a4a94ca",
+    "source_file": "02_data-migration-risk.txt",
+    "source_type": "txt",
+    "content_sha256": "e5478ea964a3a57a917dccea25f358684f42cc78118792daef27d3c3a611f6ac",
+    "metadata": {
+      "from": "Anna Kowalski <anna.kowalski@northwind.example>",
+      "to": "Mark Ellison <mark.ellison@meridian.example>",
+      "subject": "Risk - legacy data quality for migration",
+      "date": "2026-09-08 16:40",
+      "message_id": "<msg-risk-02@northwind.example>",
+      "in_reply_to": "—"
+    },
+    "text": "Mark,\n\nFlagging a risk before it becomes a blocker. The legacy product catalogue has around 12% of records with missing category codes, and the loyalty export has duplicate customer IDs.\n\nIf this is not cleaned before the migration dry-run, we cannot guarantee a clean cutover and the go-live date is exposed.\n\nCan you confirm who on the Meridian data team owns the cleanup, and by when? I need this to hold the schedule.\n\nAnna\n"
+  },
+  {
+    "doc_key": "87b6d229ab8cc443",
+    "source_file": "03_uat-scope.txt",
+    "source_type": "txt",
+    "content_sha256": "ba63b27c8c288e86ff50202a8e9d259d00e732ddbe91233e4170c631ad498e6d",
+    "metadata": {
+      "from": "Tomasz Wojcik <tomasz.wojcik@northwind.example>",
+      "to": "Priya Shah <priya.shah@meridian.example>",
+      "subject": "UAT scope and acceptance criteria",
+      "date": "2026-09-15 11:20",
+      "message_id": "<msg-uat-03b@northwind.example>",
+      "in_reply_to": "<msg-uat-03a@meridian.example>"
+    },
+    "text": "Hi Priya,\n\nAgreed. We will treat the three acceptance criteria you listed as binding for phase 1 sign-off: end-to-end sale under 3 seconds, zero data loss on the nightly sync, and a working returns flow.\n\nI will prepare the UAT test cases against these and share them by 25 September.\n\nTomasz\n\n-----Original Message-----\nFrom: Priya Shah <priya.shah@meridian.example>\nSent: 14 September 2026 15:05\nTo: Tomasz Wojcik <tomasz.wojcik@northwind.example>\nSubject: UAT scope and acceptance criteria\n\nTomasz,\n\nBefore we lock UAT, can you confirm the acceptance criteria? We need the sale transaction under 3 seconds, no data loss on the nightly sync, and returns working. Please confirm these are the ones you are building test cases for.\n\nPriya Shah\nTest Lead, Meridian Retail\n"
+  },
+  {
+    "doc_key": "e0dc729bb2b806e3",
+    "source_file": "04_change-request.txt",
+    "source_type": "txt",
+    "content_sha256": "e07203163de1752a3c1be9c8a6ea1a0120ec83d1c7465e4d3295a2dbc7632d8e",
+    "metadata": {
+      "from": "Laura Beckett <laura.beckett@meridian.example>",
+      "to": "Anna Kowalski <anna.kowalski@northwind.example>",
+      "subject": "Change request - add loyalty module to phase 1",
+      "date": "2026-09-11 10:00",
+      "message_id": "<msg-change-04@meridian.example>",
+      "in_reply_to": "—"
+    },
+    "text": "Anna,\n\nOur board wants the loyalty module included in phase 1 rather than phase 2. I know this is a scope change against the baseline we agreed at kickoff.\n\nCan Northwind assess the impact on the timeline and cost, and come back with a recommendation? We would like a view before the next steering committee.\n\nLaura\n"
+  },
+  {
+    "doc_key": "c97870dc04247e7a",
+    "source_file": "05_go-live-schedule.txt",
+    "source_type": "txt",
+    "content_sha256": "bf2baae8dccddcd51defb8d66fcb64a35ffad8223ed0268f5db6570f14e57981",
+    "metadata": {
+      "from": "Anna Kowalski <anna.kowalski@northwind.example>",
+      "to": "Laura Beckett <laura.beckett@meridian.example>",
+      "subject": "Go-live scheduling for phase 1",
+      "date": "2026-09-05 13:30",
+      "message_id": "<msg-golive-05@northwind.example>",
+      "in_reply_to": "—"
+    },
+    "text": "Laura,\n\nProposing 12 October as the phase 1 go-live, with the migration dry-run the week before. That gives us a buffer if the dry-run surfaces issues.\n\nThis assumes the data cleanup is done in time. I will confirm the date at the next steering committee.\n\nAnna\n"
+  },
+  {
+    "doc_key": "09293a8baa7b37c0",
+    "source_file": "06_cutover-plan.txt",
+    "source_type": "txt",
+    "content_sha256": "8c206a5446e9e9c5cf36b3de10ec8e4e3d65c9fb6f682f33d2c846971adf63e3",
+    "metadata": {
+      "from": "Anna Kowalski <anna.kowalski@northwind.example>",
+      "to": "Laura Beckett <laura.beckett@meridian.example>",
+      "subject": "Cutover weekend plan and code freeze",
+      "date": "2026-09-18 09:00",
+      "message_id": "<msg-cutover-06@northwind.example>",
+      "in_reply_to": "—"
+    },
+    "text": "Laura,\n\nFollowing the go-live target, here is the cutover plan for the weekend of 10-11 October. We freeze all non-critical changes from 8 October so the environment is stable going into cutover.\n\nDecision needed from your side: can Meridian confirm the store network will be in read-only mode during the cutover window? Without that we risk data drift between the old and new systems.\n\nPlease confirm by end of week so I can brief the team.\n\nAnna\n"
+  },
+  {
+    "doc_key": "d1a65d8ee6d02c37",
+    "source_file": "07_status-report.txt",
+    "source_type": "txt",
+    "content_sha256": "c8ce52925a6d5161bdeb0fe0ffd47440dcd605f12bb5cab3592dd1a7507bc6b0",
+    "metadata": {
+      "from": "Anna Kowalski <anna.kowalski@northwind.example>",
+      "to": "Laura Beckett <laura.beckett@meridian.example>",
+      "subject": "Weekly status - week 38",
+      "date": "2026-09-19 17:00",
+      "message_id": "<msg-status-07@northwind.example>",
+      "in_reply_to": "—"
+    },
+    "text": "Laura,\n\nShort weekly update, no action needed.\n\nDelivery is broadly on track for the 12 October go-live. Point-of-sale integration passed internal testing this week. The customer profile service is at 80% of planned scope.\n\nOne watch item: the team is running at full capacity, and the pending loyalty change request would need an extra developer to avoid slipping the date. I will bring options to the steering committee.\n\nAnna\n"
+  }
+]

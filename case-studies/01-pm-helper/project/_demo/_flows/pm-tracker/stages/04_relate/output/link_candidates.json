@@ -1,0 +1,61 @@
+[
+  {
+    "from": "THR-002",
+    "to": "THR-006",
+    "signals": [
+      "shared people: Anna Kowalski, anna.kowalski@northwind.example",
+      "starts 12.8 days after the other one ends"
+    ],
+    "score": 1.5,
+    "from_title": "Go-live scheduling for phase 1",
+    "from_span": "2026-09-05 13:30 → 2026-09-05 13:30",
+    "from_starts_with": "Laura, Proposing 12 October as the phase 1 go-live, with the migration dry-run the week before. That gives us a buffer if the dry-run surfaces issues. This assumes the data cleanup is done in time. I ",
+    "to_title": "Cutover weekend plan and code freeze",
+    "to_span": "2026-09-18 09:00 → 2026-09-18 09:00",
+    "to_starts_with": "Laura, Following the go-live target, here is the cutover plan for the weekend of 10-11 October. We freeze all non-critical changes from 8 October so the environment is stable going into cutover. Decis"
+  },
+  {
+    "from": "THR-003",
+    "to": "THR-006",
+    "signals": [
+      "shared people: Anna Kowalski, anna.kowalski@northwind.example",
+      "starts 9.7 days after the other one ends"
+    ],
+    "score": 1.5,
+    "from_title": "Risk - legacy data quality for migration",
+    "from_span": "2026-09-08 16:40 → 2026-09-08 16:40",
+    "from_starts_with": "Mark, Flagging a risk before it becomes a blocker. The legacy product catalogue has around 12% of records with missing category codes, and the loyalty export has duplicate customer IDs. If this is not",
+    "to_title": "Cutover weekend plan and code freeze",
+    "to_span": "2026-09-18 09:00 → 2026-09-18 09:00",
+    "to_starts_with": "Laura, Following the go-live target, here is the cutover plan for the weekend of 10-11 October. We freeze all non-critical changes from 8 October so the environment is stable going into cutover. Decis"
+  },
+  {
+    "from": "THR-006",
+    "to": "THR-007",
+    "signals": [
+      "shared people: Anna Kowalski, anna.kowalski@northwind.example",
+      "starts 1.3 days after the other one ends"
+    ],
+    "score": 1.5,
+    "from_title": "Cutover weekend plan and code freeze",
+    "from_span": "2026-09-18 09:00 → 2026-09-18 09:00",
+    "from_starts_with": "Laura, Following the go-live target, here is the cutover plan for the weekend of 10-11 October. We freeze all non-critical changes from 8 October so the environment is stable going into cutover. Decis",
+    "to_title": "Weekly status - week 38",
+    "to_span": "2026-09-19 17:00 → 2026-09-19 17:00",
+    "to_starts_with": "Laura, Short weekly update, no action needed. Delivery is broadly on track for the 12 October go-live. Point-of-sale integration passed internal testing this week. The customer profile service is at 8"
+  },
+  {
+    "from": "THR-002",
+    "to": "THR-007",
+    "signals": [
+      "shared people: Anna Kowalski, anna.kowalski@northwind.example"
+    ],
+    "score": 0.5,
+    "from_title": "Go-live scheduling for phase 1",
+    "from_span": "2026-09-05 13:30 → 2026-09-05 13:30",
+    "from_starts_with": "Laura, Proposing 12 October as the phase 1 go-live, with the migration dry-run the week before. That gives us a buffer if the dry-run surfaces issues. This assumes the data cleanup is done in time. I ",
+    "to_title": "Weekly status - week 38",
+    "to_span": "2026-09-19 17:00 → 2026-09-19 17:00",
+    "to_starts_with": "Laura, Short weekly update, no action needed. Delivery is broadly on track for the 12 October go-live. Point-of-sale integration passed internal testing this week. The customer profile service is at 8"
+  }
+]

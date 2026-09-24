@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>%%TITLE%% — project status</title>
+<style>
+%%CSS%%
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="topbar-title">%%TITLE%% — project status</span>
+  <div class="controls">
+    <a class="btn-ghost" href="#summary">Summary</a>
+    <a class="btn-ghost" href="#areas">Areas</a>
+    <a class="btn-ghost" href="#attention">Needs attention</a>
+    <a class="btn-ghost" href="#corr">Correspondence</a>
+    <a class="btn-ghost" href="#appendix">Appendix</a>
+    <button class="btn-ghost" id="themeToggle" type="button">Dark mode</button>
+  </div>
+</div>
+
+<main>
+<section class="sec sec-a">
+  <div class="wrap">
+    <p class="t-overline" style="color:var(--accent);margin-bottom:8px">PM Tracker — run of %%RUN_DATE%%</p>
+    <h1 class="t-hero">%%TITLE%% — status from correspondence</h1>
+    <p class="muted t-caption" style="margin-top:10px;max-width:800px">
+      Built from the project's e-mails and documents. Each e-mail chain is split into single messages, so the
+      page shows who wrote to whom, which messages are still waiting for a reply, and which conversations
+      continue one another.
+    </p>
+    <div class="stat-strip" id="stats"></div>
+  </div>
+</section>
+
+%%EXEC_SUMMARY%%
+
+<section class="sec sec-b" id="areas">
+  <div class="wrap">
+    <p class="t-overline muted" style="margin-bottom:4px">Project health</p>
+    <h2 class="h2">Eight areas of project management (PMBOK 7)</h2>
+    <p class="muted t-caption" style="margin:6px 0 var(--s-4);max-width:800px">
+      PMBOK 7 is the project-management standard of the Project Management Institute. Each tile is one
+      area: what it covers, its current status and what the correspondence says about it.
+    </p>
+    <div class="grid-areas" id="areaGrid"></div>
+    <ul class="status-legend" id="statusLegend"></ul>
+  </div>
+</section>
+
+<section class="sec sec-a" id="attention">
+  <div class="wrap">
+    <p class="t-overline muted" style="margin-bottom:4px">Needs attention</p>
+    <h2 class="h2">Conversations waiting for a reply and open risks</h2>
+    <div class="two-col">
+      <div>
+        <h3 class="h3">Waiting for a reply</h3>
+        <p class="muted t-caption" id="waitingNote"></p>
+        <div class="list" id="waitingList"></div>
+      </div>
+      <div>
+        <h3 class="h3">Open risks and issues</h3>
+        <p class="muted t-caption">Most important first. These push an area to yellow or red.</p>
+        <div class="list" id="riskList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-b" id="corr">
+  <div class="wrap">
+    <p class="t-overline muted" style="margin-bottom:4px">Correspondence</p>
+    <h2 class="h2">What happened, in order</h2>
+    <div class="view-tabs" id="viewTabs" role="tablist">
+      <button type="button" role="tab" data-view="timeline">Timeline</button>
+      <button type="button" role="tab" data-view="threads">Conversations</button>
+      <button type="button" role="tab" data-view="list">Files</button>
+    </div>
+
+    <div class="filters" id="filters">
+      <input type="search" id="q" placeholder="Search people, subjects, events…" aria-label="Search">
+      <label class="sel"><span>Area</span><select id="fArea"></select></label>
+      <label class="sel"><span>Importance</span>
+        <select id="fImp"><option value="all">all</option><option value="high">high and critical</option><option value="critical">critical only</option></select></label>
+      <label class="sel"><span>State</span>
+        <select id="fState"><option value="all">all</option><option value="awaiting">waiting for a reply</option><option value="done">closed or nothing expected</option></select></label>
+      <div class="tagrow" id="tagRow"></div>
+    </div>
+
+    <div id="view-timeline" class="view">
+      <div class="tl-controls">
+        <button class="btn-ghost" id="zoomOut" type="button" aria-label="Zoom out">−</button>
+        <button class="btn-ghost" id="zoomIn" type="button" aria-label="Zoom in">+</button>
+        <label class="chk"><input type="checkbox" id="cCompress" checked> Shorten idle days</label>
+        <label class="chk"><input type="checkbox" id="cSuggested" checked> Show links proposed by the model (dashed)</label>
+        <span class="muted t-caption" id="zoneNote"></span>
+      </div>
+      <ul class="tl-legend" id="tlLegend"></ul>
+      <div class="tl-wrap" id="tlWrap">
+        <div class="tl-labels" id="tlLabels"></div>
+        <div class="tl-scroll" id="tlScroll"><svg id="tlSvg" role="img" aria-label="Timeline of conversations"></svg></div>
+      </div>
+      <p class="muted t-caption tl-narrow-note">The timeline needs a wider screen — the Conversations tab shows the same content as a list.</p>
+    </div>
+    <div id="view-threads" class="view" hidden><div class="thread-list" id="threadList"></div></div>
+    <div id="view-list" class="view" hidden>
+      <div class="expand-row"><button class="btn-ghost" id="expandAll" type="button">Expand all</button>
+        <button class="btn-ghost" id="collapseAll" type="button">Collapse all</button></div>
+      <div class="timeline" id="docList"></div>
+    </div>
+  </div>
+</section>
+
+%%APPENDIX%%
+</main>
+
+<aside id="panel" class="panel" hidden aria-live="polite"></aside>
+<div id="tip" class="tip" hidden></div>
+
+<footer class="sec-a">
+  <div class="wrap">
+    <p class="legal">
+      Source: PM Tracker (Model Workspace Protocol), run of %%RUN_DATE%%. Verbatim texts are in
+      <code>_outputs/sources/</code>, the database in <code>_kb/</code>, area summaries in <code>_areas/</code>.
+      Links proposed by the model become solid only after the PM confirms them in
+      <code>_flows/pm-tracker/stages/04_relate/output/pending_review.md</code>. This file is local — not published anywhere.
+    </p>
+  </div>
+</footer>
+
+<script id="data" type="application/json">%%DATA%%</script>
+<script>
+%%JS%%
+</script>
+</body>
+</html>

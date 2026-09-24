@@ -1,0 +1,14 @@
+[
+  {
+    "from": "THR-006",
+    "to": "THR-002",
+    "kind": "continuation",
+    "confidence": "high",
+    "reason": "The cutover plan is a direct continuation of the go-live scheduling thread, though the subjects differ.",
+    "evidence": "Following the go-live target, here is the cutover plan for the weekend of 10-11 October.",
+    "quotes": [
+      "Proposing 12 October as the phase 1 go-live, with the migration dry-run the week before.",
+      "Following the go-live target, here is the cutover plan for the weekend of 10-11 October."
+    ]
+  }
+]

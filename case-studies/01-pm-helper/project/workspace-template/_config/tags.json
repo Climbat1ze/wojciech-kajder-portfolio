@@ -1,0 +1,9 @@
+{
+  "_comment": "Tagi wątków i plików — edytujesz ręcznie. Model podpowiada tagi w _flows/pm-tracker/stages/04_relate/output/pending_review.md; wchodzą tu dopiero po Twojej decyzji. Klucze: numer wątku (THR-001) albo nazwa pliku z _input/originals/.",
+  "vocabulary": {
+    "przykladowy-tag": "Jedno zdanie: czego dotyczy ten tag."
+  },
+  "threads": {},
+  "sources": {},
+  "thread_titles": {}
+}

@@ -1,0 +1,4 @@
+PM Helper — paczka do wysyłki
+Data budowy: 2026-09-23
+Zbudowano z commitu: 8fba681  (UWAGA: w folderze workspace-template są niezatwierdzone zmiany)
+Źródło: _projects/PM Helper/workspace-template

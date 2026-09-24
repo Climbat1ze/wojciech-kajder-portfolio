@@ -1,0 +1,26 @@
+{
+  "docs": {
+    "d1b971509f87b6c8": "THR-001",
+    "9c6de3eb8a4a94ca": "THR-003",
+    "87b6d229ab8cc443": "THR-005",
+    "e0dc729bb2b806e3": "THR-004",
+    "c97870dc04247e7a": "THR-002",
+    "09293a8baa7b37c0": "THR-006",
+    "d1a65d8ee6d02c37": "THR-007"
+  },
+  "nodes": {
+    "M-4b1deb986acc": "THR-001",
+    "M-ca2fe6beee78": "THR-002",
+    "M-b4a989fb8c9d": "THR-003",
+    "M-b49979d31d26": "THR-004",
+    "M-9fb9622e82ab": "THR-005",
+    "M-fdd9576fe8d8": "THR-005",
+    "M-50d1d554729b": "THR-006",
+    "M-e57b5512f2af": "THR-007"
+  },
+  "replies_to": {
+    "M-9fb9622e82ab": "M-fdd9576fe8d8"
+  },
+  "warnings": [],
+  "as_of": "2026-09-19T17:00:00+02:00"
+}

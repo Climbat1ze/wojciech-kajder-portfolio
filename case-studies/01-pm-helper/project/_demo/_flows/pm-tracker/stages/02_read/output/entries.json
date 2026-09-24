@@ -1,0 +1,79 @@
+[
+  {
+    "doc_key": "d1b971509f87b6c8",
+    "messages": [
+      {"n": 1, "kind": "original", "from": "metadata", "to": "metadata", "sent_at": "metadata", "lines": {"start": 1, "end": 8}, "body_from": 1, "expects_reply": "no", "closes_thread": false, "awaiting": "—"}
+    ],
+    "entries": [
+      {"type": "milestone", "pmbok_area": "STK", "title": "Project formally kicked off (1 September)", "evidence_lines": {"start": 3, "end": 3}, "owner": "—", "due": "—", "importance": "normal"},
+      {"type": "decision", "pmbok_area": "PLN", "title": "Phase 1 scope baseline agreed (inventory, POS, customer profile)", "evidence_lines": {"start": 5, "end": 5}, "owner": "—", "due": "—", "importance": "high", "status": "closed"}
+    ],
+    "quality_control": "2 events; informational kickoff confirmation, no open request."
+  },
+  {
+    "doc_key": "9c6de3eb8a4a94ca",
+    "messages": [
+      {"n": 1, "kind": "original", "from": "metadata", "to": "metadata", "sent_at": "metadata", "lines": {"start": 1, "end": 9}, "body_from": 1, "expects_reply": "yes", "closes_thread": false, "awaiting": "Meridian data team"}
+    ],
+    "entries": [
+      {"type": "risk", "pmbok_area": "UNC", "title": "Legacy data quality threatens a clean migration and the go-live date", "evidence_lines": {"start": 3, "end": 3}, "owner": "Meridian data team", "due": "—", "importance": "critical", "status": "open"},
+      {"type": "action", "pmbok_area": "PWK", "title": "Confirm owner and deadline for the legacy data cleanup", "evidence_lines": {"start": 7, "end": 7}, "owner": "Mark Ellison", "due": "—", "importance": "high", "status": "open"}
+    ],
+    "quality_control": "2 events; open request awaiting the client data team."
+  },
+  {
+    "doc_key": "87b6d229ab8cc443",
+    "messages": [
+      {"n": 1, "kind": "reply", "from": "metadata", "to": "metadata", "sent_at": "metadata", "lines": {"start": 1, "end": 8}, "body_from": 1, "expects_reply": "no", "closes_thread": false, "awaiting": "—"},
+      {"n": 2, "kind": "original", "from": "Priya Shah <priya.shah@meridian.example>", "to": "Tomasz Wojcik", "sent_at": "2026-09-14 15:05", "lines": {"start": 9, "end": 20}, "body_from": 15, "expects_reply": "yes", "closes_thread": false, "awaiting": "Tomasz Wojcik"}
+    ],
+    "entries": [
+      {"type": "decision", "pmbok_area": "DEL", "title": "Phase 1 acceptance criteria fixed as binding for sign-off", "evidence_lines": {"start": 3, "end": 3}, "owner": "—", "due": "—", "importance": "high", "status": "closed"},
+      {"type": "action", "pmbok_area": "PWK", "title": "Prepare UAT test cases against the agreed acceptance criteria", "evidence_lines": {"start": 5, "end": 5}, "owner": "Tomasz Wojcik", "due": "2026-09-25", "importance": "high", "status": "open"}
+    ],
+    "quality_control": "2 events; a reply that answers the earlier request to confirm criteria."
+  },
+  {
+    "doc_key": "e0dc729bb2b806e3",
+    "messages": [
+      {"n": 1, "kind": "original", "from": "metadata", "to": "metadata", "sent_at": "metadata", "lines": {"start": 1, "end": 7}, "body_from": 1, "expects_reply": "yes", "closes_thread": false, "awaiting": "Northwind"}
+    ],
+    "entries": [
+      {"type": "change", "pmbok_area": "DAL", "title": "Client requests moving the loyalty module into phase 1", "evidence_lines": {"start": 3, "end": 3}, "owner": "—", "due": "—", "importance": "high"},
+      {"type": "action", "pmbok_area": "PWK", "title": "Assess timeline and cost impact of the loyalty change and recommend", "evidence_lines": {"start": 5, "end": 5}, "owner": "Anna Kowalski", "due": "—", "importance": "high", "status": "open"}
+    ],
+    "quality_control": "2 events; scope change with an open request for an impact assessment."
+  },
+  {
+    "doc_key": "c97870dc04247e7a",
+    "messages": [
+      {"n": 1, "kind": "original", "from": "metadata", "to": "metadata", "sent_at": "metadata", "lines": {"start": 1, "end": 7}, "body_from": 1, "expects_reply": "no", "closes_thread": false, "awaiting": "—"}
+    ],
+    "entries": [
+      {"type": "decision", "pmbok_area": "PLN", "title": "Proposed 12 October go-live, dry-run the week before", "evidence_lines": {"start": 3, "end": 3}, "owner": "Anna Kowalski", "due": "—", "importance": "high", "status": "open"}
+    ],
+    "quality_control": "1 event; schedule proposal to be confirmed at steering committee."
+  },
+  {
+    "doc_key": "09293a8baa7b37c0",
+    "messages": [
+      {"n": 1, "kind": "original", "from": "metadata", "to": "metadata", "sent_at": "metadata", "lines": {"start": 1, "end": 9}, "body_from": 1, "expects_reply": "yes", "closes_thread": false, "awaiting": "Meridian"}
+    ],
+    "entries": [
+      {"type": "decision", "pmbok_area": "DAL", "title": "Cutover over 10-11 October with a code freeze from 8 October", "evidence_lines": {"start": 3, "end": 3}, "owner": "Anna Kowalski", "due": "—", "importance": "high", "status": "open"},
+      {"type": "risk", "pmbok_area": "UNC", "title": "Data drift risk if the store network is not read-only during cutover", "evidence_lines": {"start": 5, "end": 5}, "owner": "Meridian", "due": "—", "importance": "high", "status": "open"}
+    ],
+    "quality_control": "2 events; cutover decision plus a request to confirm read-only window."
+  },
+  {
+    "doc_key": "d1a65d8ee6d02c37",
+    "messages": [
+      {"n": 1, "kind": "original", "from": "metadata", "to": "metadata", "sent_at": "metadata", "lines": {"start": 1, "end": 9}, "body_from": 1, "expects_reply": "no", "closes_thread": false, "awaiting": "—"}
+    ],
+    "entries": [
+      {"type": "note", "pmbok_area": "MEA", "title": "On track for 12 October: POS integration tested, profile service at 80%", "evidence_lines": {"start": 5, "end": 5}, "owner": "—", "due": "—", "importance": "normal"},
+      {"type": "risk", "pmbok_area": "TEA", "title": "Team at full capacity; loyalty change needs an extra developer or the date slips", "evidence_lines": {"start": 7, "end": 7}, "owner": "Anna Kowalski", "due": "—", "importance": "high", "status": "open"}
+    ],
+    "quality_control": "2 events; informational status with one team-capacity watch item."
+  }
+]

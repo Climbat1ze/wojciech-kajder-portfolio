@@ -1,0 +1,8 @@
+{
+  "_comment": "Demo settings. our_domains / our_names: who is 'our side'. stale_after_days: overdue threshold. default_utc_offset: zone for dates without one.",
+  "our_domains": ["northwind.example"],
+  "our_names": ["Anna Kowalski", "Tomasz Wojcik"],
+  "stale_after_days": 3,
+  "default_utc_offset": "+02:00",
+  "originals_base_url": ""
+}
