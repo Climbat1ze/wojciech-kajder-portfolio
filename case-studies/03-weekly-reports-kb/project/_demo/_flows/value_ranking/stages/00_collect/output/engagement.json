@@ -1,0 +1,120 @@
+[
+  {
+    "client": "Bracken Manufacturing Co.",
+    "category": "Manufacturing",
+    "subcategory": "Discrete Manufacturing",
+    "entries": 3,
+    "periods": 3,
+    "period_list": [
+      "2025-02-",
+      "2025-W06",
+      "2025-W07"
+    ],
+    "units": 1,
+    "unit_list": [
+      "MSEU"
+    ],
+    "sections": 2,
+    "section_list": [
+      "business_unit",
+      "case_study"
+    ],
+    "entry_ids": [
+      "2025-02-20-bracken-manufacturing-case-study-CS-01",
+      "2025-W06-BU-04",
+      "2025-W07-BU-02"
+    ]
+  },
+  {
+    "client": "Trailhead Logistics Inc.",
+    "category": "Logistics & Transportation",
+    "subcategory": "Freight & Trucking",
+    "entries": 3,
+    "periods": 3,
+    "period_list": [
+      "2025-W05",
+      "2025-W06",
+      "2025-W07"
+    ],
+    "units": 1,
+    "unit_list": [
+      "MSNA"
+    ],
+    "sections": 1,
+    "section_list": [
+      "business_unit"
+    ],
+    "entry_ids": [
+      "2025-W05-BU-01",
+      "2025-W06-BU-01",
+      "2025-W07-BU-01"
+    ]
+  },
+  {
+    "client": "Civic Metro Transit Authority",
+    "category": "Public Sector",
+    "subcategory": "Transit Authority",
+    "entries": 3,
+    "periods": 2,
+    "period_list": [
+      "2025-W06",
+      "2025-W07"
+    ],
+    "units": 1,
+    "unit_list": [
+      "MSAP"
+    ],
+    "sections": 2,
+    "section_list": [
+      "business_unit",
+      "product"
+    ],
+    "entry_ids": [
+      "2025-W06-BU-03",
+      "2025-W06-PM-01",
+      "2025-W07-BU-03"
+    ]
+  },
+  {
+    "client": "Fenwick & Cole",
+    "category": "TBD",
+    "subcategory": null,
+    "entries": 1,
+    "periods": 1,
+    "period_list": [
+      "2025-W06"
+    ],
+    "units": 1,
+    "unit_list": [
+      "MSNA"
+    ],
+    "sections": 1,
+    "section_list": [
+      "business_unit"
+    ],
+    "entry_ids": [
+      "2025-W06-BU-02"
+    ]
+  },
+  {
+    "client": "Solara Retail Group",
+    "category": "Retail & Consumer",
+    "subcategory": "Grocery & Supermarket",
+    "entries": 1,
+    "periods": 1,
+    "period_list": [
+      "2025-W05"
+    ],
+    "units": 1,
+    "unit_list": [
+      "MSEU"
+    ],
+    "sections": 1,
+    "section_list": [
+      "business_unit"
+    ],
+    "entry_ids": [
+      "2025-W05-BU-02"
+    ]
+  }
+]

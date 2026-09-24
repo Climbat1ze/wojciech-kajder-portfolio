@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "candidates": 8,
+    "rejected_aggregates": {
+      "count": 3,
+      "indicators": ["2025-W05-FI-01", "2025-W06-FI-01", "2025-W07-FI-01"],
+      "reason": "Each is a region-wide, cumulative engagement-pipeline snapshot for the quarter to date, not an individual engagement — the deals that make it up (including Trailhead Logistics's own) are already represented by their own business_unit rows. Counting these as deals would double-count."
+    },
+    "rejected_false_positives": {
+      "count": 0,
+      "items": []
+    },
+    "note_on_totals": "The three finance-section pipeline figures are overlapping, cumulative snapshots of the same regional pipeline over time, not three separate amounts — summing them would overcount by roughly a factor of three. Coverage for this range is also only 4 of 9 periods (44.4%, see coverage.json), so no total is computed here regardless of that."
+  },
+  "deals": [
+    {
+      "client": "Trailhead Logistics Inc.",
+      "category": "Logistics & Transportation",
+      "status": "won",
+      "amount": "$410K",
+      "volume": null,
+      "role": "led",
+      "entry_ids": ["2025-W05-BU-01", "2025-W06-BU-01", "2025-W07-BU-01"]
+    },
+    {
+      "client": "Bracken Manufacturing Co.",
+      "category": "Manufacturing",
+      "status": "potential",
+      "amount": null,
+      "volume": "3,800 units",
+      "role": "supported",
+      "entry_ids": ["2025-W07-BU-02"]
+    },
+    {
+      "client": "Civic Metro Transit Authority",
+      "category": "Public Sector",
+      "status": "potential",
+      "amount": null,
+      "volume": "220 devices",
+      "role": "led",
+      "entry_ids": ["2025-W07-BU-03"]
+    }
+  ]
+}

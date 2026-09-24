@@ -1,0 +1,149 @@
+[
+  {
+    "entry_id": "2025-W05-BU-01",
+    "report_date": "2025-01-31",
+    "section": "business_unit",
+    "object_name": "MSNA",
+    "client": "Trailhead Logistics Inc.",
+    "category": "Logistics & Transportation",
+    "subcategory": "Freight & Trucking",
+    "bo": "OP2025010042",
+    "aggregate": false,
+    "signals": {
+      "opportunity_ids": [
+        "OP2025010042"
+      ]
+    },
+    "activity": "Trailhead Logistics – Fleet Console pilot. Rolled out enrollment profile to 40 handheld scanners across the Denver depot; two devices failed enrollment due to an expired certificate, reissued and reprocessed same day.",
+    "raw_ref": "_kb/md/2025-W05.md#2025-W05-BU-01"
+  },
+  {
+    "entry_id": "2025-W05-FI-01",
+    "report_date": "2025-01-31",
+    "section": "finance",
+    "object_name": "Engagement Pipeline",
+    "client": null,
+    "category": null,
+    "subcategory": null,
+    "bo": null,
+    "aggregate": true,
+    "signals": {
+      "amounts": [
+        "$2.4M"
+      ]
+    },
+    "activity": "New engagement pipeline value across the region (quarter to date): $2.4M across 6 active opportunities.",
+    "raw_ref": "_kb/md/2025-W05.md#2025-W05-FI-01"
+  },
+  {
+    "entry_id": "2025-W06-BU-01",
+    "report_date": "2025-02-07",
+    "section": "business_unit",
+    "object_name": "MSNA",
+    "client": "Trailhead Logistics Inc.",
+    "category": "Logistics & Transportation",
+    "subcategory": "Freight & Trucking",
+    "bo": "OP2025010042",
+    "aggregate": false,
+    "signals": {
+      "opportunity_ids": [
+        "OP2025010042"
+      ]
+    },
+    "activity": "Trailhead Logistics – Fleet Console pilot expanded to the Denver and Phoenix depots (96 handheld scanners total); client operations lead confirmed pilot success criteria, targeting a 300-unit full rollout in March.",
+    "raw_ref": "_kb/md/2025-W06.md#2025-W06-BU-01"
+  },
+  {
+    "entry_id": "2025-W06-FI-01",
+    "report_date": "2025-02-07",
+    "section": "finance",
+    "object_name": "Engagement Pipeline",
+    "client": null,
+    "category": null,
+    "subcategory": null,
+    "bo": null,
+    "aggregate": true,
+    "signals": {
+      "amounts": [
+        "$2.9M"
+      ]
+    },
+    "activity": "New engagement pipeline value across the region (quarter to date): $2.9M across 7 active opportunities.",
+    "raw_ref": "_kb/md/2025-W06.md#2025-W06-FI-01"
+  },
+  {
+    "entry_id": "2025-W07-BU-01",
+    "report_date": "2025-02-14",
+    "section": "business_unit",
+    "object_name": "MSNA",
+    "client": "Trailhead Logistics Inc.",
+    "category": "Logistics & Transportation",
+    "subcategory": "Freight & Trucking",
+    "bo": "OP2025010042",
+    "aggregate": false,
+    "signals": {
+      "amounts": [
+        "$410K"
+      ],
+      "opportunity_ids": [
+        "OP2025010042"
+      ]
+    },
+    "activity": "Trailhead Logistics – full 300-unit Fleet Console rollout confirmed across the Denver, Phoenix and Salt Lake City depots; contract signed at $410K.",
+    "raw_ref": "_kb/md/2025-W07.md#2025-W07-BU-01"
+  },
+  {
+    "entry_id": "2025-W07-BU-02",
+    "report_date": "2025-02-14",
+    "section": "business_unit",
+    "object_name": "MSEU",
+    "client": "Bracken Manufacturing Co.",
+    "category": "Manufacturing",
+    "subcategory": "Discrete Manufacturing",
+    "bo": null,
+    "aggregate": false,
+    "signals": {
+      "volumes": [
+        "3,800 units"
+      ]
+    },
+    "activity": "Bracken Manufacturing Co. – technical deep-dive completed for Meridian Access Platform; client is comparing a 3,800 units shop-floor tablet rollout against one remaining competitor, decision expected end of March.",
+    "raw_ref": "_kb/md/2025-W07.md#2025-W07-BU-02"
+  },
+  {
+    "entry_id": "2025-W07-BU-03",
+    "report_date": "2025-02-14",
+    "section": "business_unit",
+    "object_name": "MSAP",
+    "client": "Civic Metro Transit Authority",
+    "category": "Public Sector",
+    "subcategory": "Transit Authority",
+    "bo": null,
+    "aggregate": false,
+    "signals": {
+      "volumes": [
+        "220 devices"
+      ]
+    },
+    "activity": "Civic Metro Transit Authority – security review completed; client confirmed budget approval for a 220 devices pilot on fare-inspection handhelds in Q2, formal opportunity to follow.",
+    "raw_ref": "_kb/md/2025-W07.md#2025-W07-BU-03"
+  },
+  {
+    "entry_id": "2025-W07-FI-01",
+    "report_date": "2025-02-14",
+    "section": "finance",
+    "object_name": "Engagement Pipeline",
+    "client": null,
+    "category": null,
+    "subcategory": null,
+    "bo": null,
+    "aggregate": true,
+    "signals": {
+      "amounts": [
+        "$3.6M"
+      ]
+    },
+    "activity": "New engagement pipeline value across the region (quarter to date): $3.6M across 9 active opportunities; the Trailhead Logistics full-rollout opportunity moved to contracting this week.",
+    "raw_ref": "_kb/md/2025-W07.md#2025-W07-FI-01"
+  }
+]

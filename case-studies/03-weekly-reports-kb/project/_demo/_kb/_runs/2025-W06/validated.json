@@ -1,0 +1,101 @@
+{
+  "stage": "03_validate",
+  "validated_at": "2026-09-23T00:00:00+00:00",
+  "doc_key": "2025-W06",
+  "entry_count": 6,
+  "issues": [],
+  "entries": [
+    {
+      "entry_id": "2025-W06-FI-01",
+      "source_file": "W06_Lighthouse_Program_Weekly_Note.msg",
+      "source_type": "msg",
+      "report_date": "2025-02-07",
+      "section": "finance",
+      "object_name": "Engagement Pipeline",
+      "pic": [],
+      "client": "—",
+      "bo": "—",
+      "activity": "New engagement pipeline value across the region (quarter to date): $2.9M across 7 active opportunities.",
+      "activity_sha256": "c2536b91c59f7aabab0264eda708ee3550a0d59d2a571da43b61a1ff96c8b5f0",
+      "raw_ref": "_kb/md/2025-W06.md#2025-W06-FI-01"
+    },
+    {
+      "entry_id": "2025-W06-BU-01",
+      "source_file": "W06_Lighthouse_Program_Weekly_Note.msg",
+      "source_type": "msg",
+      "report_date": "2025-02-07",
+      "section": "business_unit",
+      "object_name": "MSNA",
+      "pic": [
+        "Sam Okafor"
+      ],
+      "client": "Trailhead Logistics Inc.",
+      "bo": "OP2025010042",
+      "activity": "Trailhead Logistics – Fleet Console pilot expanded to the Denver and Phoenix depots (96 handheld scanners total); client operations lead confirmed pilot success criteria, targeting a 300-unit full rollout in March.",
+      "activity_sha256": "c367f22d327483fca14ea8428d8758867cb269b7a7bcab8fabb452865b4d41bd",
+      "raw_ref": "_kb/md/2025-W06.md#2025-W06-BU-01"
+    },
+    {
+      "entry_id": "2025-W06-BU-02",
+      "source_file": "W06_Lighthouse_Program_Weekly_Note.msg",
+      "source_type": "msg",
+      "report_date": "2025-02-07",
+      "section": "business_unit",
+      "object_name": "MSNA",
+      "pic": [],
+      "client": "Fenwick & Cole",
+      "bo": "—",
+      "activity": "Fenwick & Cole – inbound inquiry via the website about Fleet Console pricing; no discovery call scheduled yet, insufficient detail to confirm industry or opportunity size.",
+      "activity_sha256": "6ccdfe718a0875722b1db7de91133d246cb505d210130b13afcfbe2d87f5fb34",
+      "raw_ref": "_kb/md/2025-W06.md#2025-W06-BU-02"
+    },
+    {
+      "entry_id": "2025-W06-BU-03",
+      "source_file": "W06_Lighthouse_Program_Weekly_Note.msg",
+      "source_type": "msg",
+      "report_date": "2025-02-07",
+      "section": "business_unit",
+      "object_name": "MSAP",
+      "pic": [
+        "Jonas Berg"
+      ],
+      "client": "Civic Metro Transit Authority",
+      "bo": "—",
+      "activity": "Civic Metro Transit Authority – initial discovery call on Device Enrollment Service for fare-inspection handhelds; client requested a security review before proceeding, no committed volume yet.",
+      "activity_sha256": "fc8f217f8dfd82fe9738edddca727b101d31191f04c1081c8873985400e130ac",
+      "raw_ref": "_kb/md/2025-W06.md#2025-W06-BU-03"
+    },
+    {
+      "entry_id": "2025-W06-BU-04",
+      "source_file": "W06_Lighthouse_Program_Weekly_Note.msg",
+      "source_type": "msg",
+      "report_date": "2025-02-07",
+      "section": "business_unit",
+      "object_name": "MSEU",
+      "pic": [
+        "Elena Rossi"
+      ],
+      "client": "Bracken Manufacturing Co.",
+      "bo": "—",
+      "activity": "Bracken Manufacturing Co. – renewed interest in Meridian Access Platform for shop-floor tablets after a competitor pilot stalled; scheduling a technical deep-dive for next week.",
+      "activity_sha256": "8413297d84a47b54a257e249895185b14a1d27438cc1532ced54a7e3e5cb3ae9",
+      "raw_ref": "_kb/md/2025-W06.md#2025-W06-BU-04"
+    },
+    {
+      "entry_id": "2025-W06-PM-01",
+      "source_file": "W06_Lighthouse_Program_Weekly_Note.msg",
+      "source_type": "msg",
+      "report_date": "2025-02-07",
+      "section": "product",
+      "object_name": "Meridian Access Platform",
+      "pic": [
+        "Marcus Chen"
+      ],
+      "client": "Civic Metro Transit Authority",
+      "bo": "—",
+      "activity": "Meridian Access Platform – security review package prepared for Civic Metro Transit Authority's public-sector procurement checklist.",
+      "activity_sha256": "034744b645b47e7b677403845cb475f804bd8747f2f9c742ef45f03b7d166dce",
+      "raw_ref": "_kb/md/2025-W06.md#2025-W06-PM-01"
+    }
+  ]
+}

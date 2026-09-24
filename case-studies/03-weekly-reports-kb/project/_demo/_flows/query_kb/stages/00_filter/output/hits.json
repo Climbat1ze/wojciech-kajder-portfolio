@@ -1,0 +1,69 @@
+{
+  "question": "",
+  "conditions": {
+    "category": "Manufacturing"
+  },
+  "rows_in_index": 18,
+  "hits": 3,
+  "tbd_rows_in_whole_index": 1,
+  "rows": [
+    {
+      "entry_id": "2025-02-20-bracken-manufacturing-case-study-CS-01",
+      "source_file": "2025-02-20_Bracken_Manufacturing_Case_Study.docx",
+      "source_type": "docx",
+      "report_date": "2025-02-20",
+      "section": "case_study",
+      "object_name": "Bracken Manufacturing Shop-Floor Rollout",
+      "pic": [
+        "Elena Rossi",
+        "Priya Patel"
+      ],
+      "client": "Bracken Manufacturing Co.",
+      "bo": "—",
+      "activity": "Bracken Manufacturing Co. piloted Meridian Access Platform on 400 shop-floor tablets at its Denver plant during a six-week evaluation completed in Q1 2025; device provisioning time dropped from 42 minutes to 6 minutes per unit, attributed to the bulk certificate renewal feature shipped in Device Enrollment Service v1.4. These results directly informed the company-wide 3,800-unit rollout proposal that remained under review as of late February 2025.",
+      "activity_sha256": "17e78e72bc022462d44b3bc6e4e94a8c61a8ee1e08cba68dfe8543974fcc8d84",
+      "raw_ref": "_kb/md/2025-02-20-bracken-manufacturing-case-study.md#2025-02-20-bracken-manufacturing-case-study-CS-01",
+      "category": "Manufacturing",
+      "subcategory": "Discrete Manufacturing",
+      "category_conf": "stated/high"
+    },
+    {
+      "entry_id": "2025-W06-BU-04",
+      "source_file": "W06_Lighthouse_Program_Weekly_Note.msg",
+      "source_type": "msg",
+      "report_date": "2025-02-07",
+      "section": "business_unit",
+      "object_name": "MSEU",
+      "pic": [
+        "Elena Rossi"
+      ],
+      "client": "Bracken Manufacturing Co.",
+      "bo": "—",
+      "activity": "Bracken Manufacturing Co. – renewed interest in Meridian Access Platform for shop-floor tablets after a competitor pilot stalled; scheduling a technical deep-dive for next week.",
+      "activity_sha256": "8413297d84a47b54a257e249895185b14a1d27438cc1532ced54a7e3e5cb3ae9",
+      "raw_ref": "_kb/md/2025-W06.md#2025-W06-BU-04",
+      "category": "Manufacturing",
+      "subcategory": "Discrete Manufacturing",
+      "category_conf": "stated/high"
+    },
+    {
+      "entry_id": "2025-W07-BU-02",
+      "source_file": "W07_Lighthouse_Program_Weekly_Note.msg",
+      "source_type": "msg",
+      "report_date": "2025-02-14",
+      "section": "business_unit",
+      "object_name": "MSEU",
+      "pic": [
+        "Elena Rossi"
+      ],
+      "client": "Bracken Manufacturing Co.",
+      "bo": "—",
+      "activity": "Bracken Manufacturing Co. – technical deep-dive completed for Meridian Access Platform; client is comparing a 3,800 units shop-floor tablet rollout against one remaining competitor, decision expected end of March.",
+      "activity_sha256": "0701a56441c43cb1ed2e20808c4f7b6cbb1094536cd147656dfe3390c1d36078",
+      "raw_ref": "_kb/md/2025-W07.md#2025-W07-BU-02",
+      "category": "Manufacturing",
+      "subcategory": "Discrete Manufacturing",
+      "category_conf": "stated/high"
+    }
+  ]
+}

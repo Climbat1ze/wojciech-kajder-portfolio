@@ -1,0 +1,26 @@
+{
+  "stage": "03_validate",
+  "validated_at": "2026-09-23T00:00:00+00:00",
+  "doc_key": "2025-02-20-bracken-manufacturing-case-study",
+  "entry_count": 1,
+  "issues": [],
+  "entries": [
+    {
+      "entry_id": "2025-02-20-bracken-manufacturing-case-study-CS-01",
+      "source_file": "2025-02-20_Bracken_Manufacturing_Case_Study.docx",
+      "source_type": "docx",
+      "report_date": "2025-02-20",
+      "section": "case_study",
+      "object_name": "Bracken Manufacturing Shop-Floor Rollout",
+      "pic": [
+        "Elena Rossi",
+        "Priya Patel"
+      ],
+      "client": "Bracken Manufacturing Co.",
+      "bo": "—",
+      "activity": "Bracken Manufacturing Co. piloted Meridian Access Platform on 400 shop-floor tablets at its Denver plant during a six-week evaluation completed in Q1 2025; device provisioning time dropped from 42 minutes to 6 minutes per unit, attributed to the bulk certificate renewal feature shipped in Device Enrollment Service v1.4. These results directly informed the company-wide 3,800-unit rollout proposal that remained under review as of late February 2025.",
+      "activity_sha256": "17e78e72bc022462d44b3bc6e4e94a8c61a8ee1e08cba68dfe8543974fcc8d84",
+      "raw_ref": "_kb/md/2025-02-20-bracken-manufacturing-case-study.md#2025-02-20-bracken-manufacturing-case-study-CS-01"
+    }
+  ]
+}

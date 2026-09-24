@@ -1,0 +1,46 @@
+[
+  {
+    "entity": "Bracken Manufacturing Co.",
+    "canonical_name": "Bracken Manufacturing Co.",
+    "aliases": [
+      "Bracken Manufacturing"
+    ],
+    "category": "Manufacturing",
+    "subcategory": "Discrete Manufacturing",
+    "category_conf": "stated/high"
+  },
+  {
+    "entity": "Trailhead Logistics Inc.",
+    "canonical_name": "Trailhead Logistics Inc.",
+    "aliases": [
+      "Trailhead Logistics"
+    ],
+    "category": "Logistics & Transportation",
+    "subcategory": "Freight & Trucking",
+    "category_conf": "stated/high"
+  },
+  {
+    "entity": "Solara Retail Group",
+    "canonical_name": "Solara Retail Group",
+    "aliases": [],
+    "category": "Retail & Consumer",
+    "subcategory": "Grocery & Supermarket",
+    "category_conf": "stated/high"
+  },
+  {
+    "entity": "Fenwick & Cole",
+    "canonical_name": "Fenwick & Cole",
+    "aliases": [],
+    "category": "TBD",
+    "subcategory": "",
+    "category_conf": "to_confirm/low"
+  },
+  {
+    "entity": "Civic Metro Transit Authority",
+    "canonical_name": "Civic Metro Transit Authority",
+    "aliases": [],
+    "category": "Public Sector",
+    "subcategory": "Transit Authority",
+    "category_conf": "stated/high"
+  }
+]
