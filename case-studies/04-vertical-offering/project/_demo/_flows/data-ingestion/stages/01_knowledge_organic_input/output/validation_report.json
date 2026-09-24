@@ -1,0 +1,28 @@
+{
+  "stage": "01",
+  "stage_name": "Knowledge Organic Input",
+  "status": "ok",
+  "timestamp": "2026-09-23T21:48:25.512Z",
+  "config": null,
+  "inputs": [
+    {
+      "path": "_data/features",
+      "note": "feature catalogues"
+    },
+    {
+      "path": "_data/sources.md",
+      "note": "source registry"
+    }
+  ],
+  "outputs": [],
+  "counts": {
+    "features_checked": 6,
+    "features_ok": 6,
+    "duplicate_ids": 0
+  },
+  "validation": {
+    "errors": [],
+    "warnings": []
+  },
+  "data": null
+}

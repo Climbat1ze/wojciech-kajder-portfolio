@@ -1,0 +1,58 @@
+{
+  "stage": "03",
+  "stage_name": "Render Slide Deck",
+  "status": "ok",
+  "timestamp": "2026-09-23T21:47:06.192Z",
+  "config": {
+    "vertical": "V01 (Warehousing & Logistics)",
+    "relevance_threshold": "M",
+    "mode": "internal",
+    "include_hardware": true,
+    "language": "EN",
+    "sources": {
+      "relevance_threshold": "config",
+      "mode": "cli",
+      "include_hardware": "config",
+      "language": "config",
+      "feature_files": "config",
+      "vertical": "cli"
+    }
+  },
+  "inputs": [
+    {
+      "path": "vertical_offering.config.md",
+      "note": "run configuration"
+    },
+    {
+      "path": "_data",
+      "note": "reference tables"
+    },
+    {
+      "path": "_state/vertical_offering_state.md",
+      "note": "Active Blocks"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "_flows/report-generation/stages/03_render_slidedeck/output/filtered_data.json",
+      "note": "resolved scope — the audit point"
+    },
+    {
+      "path": "_flows/report-generation/stages/03_render_slidedeck/output/draft_deck.md",
+      "note": "slide-Markdown deck"
+    }
+  ],
+  "counts": {
+    "pains_in_scope": 5,
+    "features": 5,
+    "hardware_attributes": 3,
+    "removed_by_blocks": 0,
+    "annex_items": 0,
+    "data_gaps": 0
+  },
+  "validation": {
+    "errors": [],
+    "warnings": []
+  },
+  "data": null
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warehousing &amp; Logistics — Vertical Offering</title>
+<style>
+:root {
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --ink: #1a1a1f;
+  --ink-muted: #5b5b66;
+  --canvas: #ffffff;
+  --panel: #f5f6fa;
+  --hairline: rgba(0,0,0,.10);
+  --success: #1a8917;
+  --warning: #b25000;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #f2f2f5;
+    --ink-muted: #a9a9b3;
+    --canvas: #16161a;
+    --panel: #1e1e24;
+    --hairline: rgba(255,255,255,.12);
+    --accent: #5b9bff;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: #f2f2f5;
+  --ink-muted: #a9a9b3;
+  --canvas: #16161a;
+  --panel: #1e1e24;
+  --hairline: rgba(255,255,255,.12);
+  --accent: #5b9bff;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, "Segoe UI", Arial, sans-serif; background: var(--canvas); color: var(--ink); line-height: 1.5; }
+.wrap { max-width: 880px; margin: 0 auto; padding: var(--s-6) var(--s-5); }
+header { background: var(--panel); border-bottom: 1px solid var(--hairline); }
+h1 { font-size: 32px; margin: 0 0 var(--s-2); }
+h3 { font-size: 20px; margin: 0 0 var(--s-2); }
+h4 { font-size: 15px; margin: var(--s-4) 0 var(--s-2); }
+.overline { text-transform: uppercase; font-size: 12px; letter-spacing: .06em; color: var(--ink-muted); margin: 0 0 var(--s-2); }
+.muted { color: var(--ink-muted); }
+.fine { font-size: 12px; color: var(--ink-muted); }
+.pain { padding: var(--s-6) 0; border-bottom: 1px solid var(--hairline); }
+.card { background: var(--panel); border-radius: var(--r-md); padding: var(--s-4); margin: var(--s-3) 0; }
+.card-title { font-weight: 600; margin: 0 0 var(--s-2); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: var(--s-3) 0; }
+th, td { text-align: left; padding: var(--s-2) var(--s-3); border-bottom: 1px solid var(--hairline); }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+.badge-verified { background: color-mix(in srgb, var(--success) 18%, transparent); color: var(--success); }
+.badge-tbc { background: color-mix(in srgb, var(--warning) 18%, transparent); color: var(--warning); }
+.badge-proposed { background: var(--hairline); color: var(--ink-muted); }
+nav.toc ul { padding-left: var(--s-5); }
+footer { padding: var(--s-6) var(--s-5); color: var(--ink-muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="overline">Vertical Offering Report &middot; internal mode</p>
+    <h1>Warehousing &amp; Logistics</h1>
+    <p class="muted"></p>
+  </div>
+</header>
+<div class="wrap">
+  <nav class="toc">
+    <h4>Contents</h4>
+    <ul><li><a href="#P01">P01: Device operation in cold-storage and outdoor conditions</a></li>
+<li><a href="#P02">P02: Unauthorized use of company devices</a></li>
+<li><a href="#P03">P03: Slow, error-prone manual data entry</a></li>
+<li><a href="#P05">P05: Long onboarding time for seasonal staff</a></li>
+<li><a href="#P06">P06: Network dead zones in large facilities</a></li></ul>
+  </nav>
+  
+    <section class="pain" id="P01">
+      <p class="overline">Environmental &middot; Relevance H</p>
+      <h3>P01: Device operation in cold-storage and outdoor conditions</h3>
+      <p>Devices must work reliably from -20C to 45C in warehouse yards and cold-storage aisles</p>
+      <p class="muted">No features in scope for this pain point yet.</p>
+      
+      <h4>Hardware</h4>
+      <table>
+        <thead><tr><th>Attribute</th><th>Value</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Operating Temperature</td><td>-20C to 45C</td><td><span class="badge badge-verified">VERIFIED</span></td></tr>
+<tr><td>Display Brightness</td><td>900 nits, sunlight readable</td><td><span class="badge badge-verified">VERIFIED</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="pain" id="P02">
+      <p class="overline">Security &middot; Relevance M</p>
+      <h3>P02: Unauthorized use of company devices</h3>
+      <p>Shared devices get used for non-work apps, risking data leakage and support overhead</p>
+      
+      <div class="card">
+        <p class="card-title">Kiosk Lockdown Mode <span class="badge badge-verified">VERIFIED</span></p>
+        <p class="muted">Aster Device Manager</p>
+        <p>Locks the device to approved work apps only, preventing unauthorized use on shared devices</p>
+        <p class="fine">Source: S01</p>
+      </div>
+      
+    </section>
+
+    <section class="pain" id="P03">
+      <p class="overline">Operations &middot; Relevance H</p>
+      <h3>P03: Slow, error-prone manual data entry</h3>
+      <p>Manual entry of item codes causes picking errors and slows fulfillment</p>
+      
+      <div class="card">
+        <p class="card-title">High-Speed Barcode Engine <span class="badge badge-verified">VERIFIED</span></p>
+        <p class="muted">Aster Scan Suite</p>
+        <p>High-speed scan engine reduces mis-scans and speeds up pick-and-pack</p>
+        <p class="fine">Source: S03</p>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Scan Analytics Dashboard <span class="badge badge-verified">VERIFIED</span> <span class="badge badge-proposed">mapping: PROPOSED</span> <span class="badge badge-proposed">Pilot feature — limited field data so far</span></p>
+        <p class="muted">Aster Scan Suite</p>
+        <p>Per-shift, per-device error-rate visibility lets a supervisor spot and correct mis-scan patterns instead of discovering them later</p>
+        <p class="fine">Source: S05</p>
+      </div>
+      
+    </section>
+
+    <section class="pain" id="P05">
+      <p class="overline">Operations &middot; Relevance M</p>
+      <h3>P05: Long onboarding time for seasonal staff</h3>
+      <p>Seasonal hires need devices configured and ready within hours, not days</p>
+      
+      <div class="card">
+        <p class="card-title">Zero-Touch Enrollment <span class="badge badge-verified">VERIFIED</span></p>
+        <p class="muted">Aster Device Manager</p>
+        <p>Automated zero-touch enrollment gets a new hire's device ready in minutes, not days</p>
+        <p class="fine">Source: S02</p>
+      </div>
+      
+      <h4>Hardware</h4>
+      <table>
+        <thead><tr><th>Attribute</th><th>Value</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Battery</td><td>Hot-swappable, 8500mAh</td><td><span class="badge badge-verified">VERIFIED</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="pain" id="P06">
+      <p class="overline">Network &middot; Relevance M</p>
+      <h3>P06: Network dead zones in large facilities</h3>
+      <p>Large warehouses have Wi-Fi dead zones, often near metal racking, that interrupt scanning workflows</p>
+      
+      <div class="card">
+        <p class="card-title">Offline Scan Queueing <span class="badge badge-verified">VERIFIED</span></p>
+        <p class="muted">Aster Scan Suite</p>
+        <p>Local queueing means a dead zone does not stop the scanning workflow; every event syncs once back in range</p>
+        <p class="fine">Source: S05</p>
+      </div>
+      
+    </section>
+  
+</div>
+<footer>
+  <div class="wrap">
+    Generated 2026-09-23 &middot; 5 pain point(s) shown &middot; mode: internal
+  </div>
+</footer>
+</body>
+</html>

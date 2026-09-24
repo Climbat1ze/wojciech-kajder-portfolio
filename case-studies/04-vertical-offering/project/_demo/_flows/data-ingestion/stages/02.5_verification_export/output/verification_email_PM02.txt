@@ -1,0 +1,36 @@
+Vertical Offering — Verification Required
+
+Hi Mei-Lin Zhao,
+
+You have 5 item(s) pending review.
+Deadline: 2026-01-18
+
+ITEM #1: VQ-001
+  Feature: F05 — Offline Scan Queueing (Aster Scan Suite)
+  Description: Queues scan events locally when connectivity drops and syncs them automatically once the connection returns
+  Source: S05
+
+ITEM #2: VQ-002
+  Feature: F06 — Scan Analytics Dashboard (Aster Scan Suite)
+  Description: Shows scan volume and error rates broken down by device and by shift
+  Source: S05
+
+ITEM #3: VQ-003
+  Pain point: P06 — Network dead zones in large facilities (Network)
+  Description: Large warehouses have Wi-Fi dead zones, often near metal racking, that interrupt scanning workflows
+  Source: S05
+
+ITEM #4: VQ-004
+  Mapping: Offline Scan Queueing (Aster Scan Suite) -> Network dead zones in large facilities
+  How it addresses: Local queueing means a dead zone does not stop the scanning workflow; every event syncs once back in range
+
+ITEM #5: VQ-005
+  Mapping: Scan Analytics Dashboard (Aster Scan Suite) -> Slow, error-prone manual data entry
+  How it addresses: Per-shift, per-device error-rate visibility lets a supervisor spot and correct mis-scan patterns instead of discovering them later
+
+HOW TO RESPOND
+
+Reply with one line per decision:
+  accept 1, 2
+  correct 3 (what should change)
+  reject 4 (reason)

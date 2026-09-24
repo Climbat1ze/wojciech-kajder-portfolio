@@ -1,0 +1,154 @@
+{
+  "pains": [
+    {
+      "id": "P01",
+      "name": "Device operation in cold-storage and outdoor conditions",
+      "cluster": "Environmental",
+      "description": "Devices must work reliably from -20C to 45C in warehouse yards and cold-storage aisles",
+      "relevance": "H",
+      "mappingStatus": "VERIFIED",
+      "features": [],
+      "hardware": [
+        {
+          "id": "HW01",
+          "attribute": "Operating Temperature",
+          "value": "-20C to 45C",
+          "status": "VERIFIED",
+          "howItAddresses": "Confirmed operating range covers cold storage and outdoor yards",
+          "badge": null
+        },
+        {
+          "id": "HW02",
+          "attribute": "Display Brightness",
+          "value": "900 nits, sunlight readable",
+          "status": "VERIFIED",
+          "howItAddresses": "High-brightness display stays readable at outdoor loading docks",
+          "badge": null
+        }
+      ]
+    },
+    {
+      "id": "P02",
+      "name": "Unauthorized use of company devices",
+      "cluster": "Security",
+      "description": "Shared devices get used for non-work apps, risking data leakage and support overhead",
+      "relevance": "M",
+      "mappingStatus": "VERIFIED",
+      "features": [
+        {
+          "id": "F01",
+          "name": "Kiosk Lockdown Mode",
+          "product": "Aster Device Manager",
+          "description": "Restricts a device to a curated set of approved apps for frontline workers",
+          "source": "S01",
+          "status": "VERIFIED",
+          "howItAddresses": "Locks the device to approved work apps only, preventing unauthorized use on shared devices",
+          "mappingStatus": "VERIFIED",
+          "badge": null
+        }
+      ],
+      "hardware": []
+    },
+    {
+      "id": "P03",
+      "name": "Slow, error-prone manual data entry",
+      "cluster": "Operations",
+      "description": "Manual entry of item codes causes picking errors and slows fulfillment",
+      "relevance": "H",
+      "mappingStatus": "VERIFIED",
+      "features": [
+        {
+          "id": "F04",
+          "name": "High-Speed Barcode Engine",
+          "product": "Aster Scan Suite",
+          "description": "Fast 1D/2D barcode capture tuned for warehouse pick-and-pack workflows",
+          "source": "S03",
+          "status": "VERIFIED",
+          "howItAddresses": "High-speed scan engine reduces mis-scans and speeds up pick-and-pack",
+          "mappingStatus": "VERIFIED",
+          "badge": null
+        },
+        {
+          "id": "F06",
+          "name": "Scan Analytics Dashboard",
+          "product": "Aster Scan Suite",
+          "description": "Shows scan volume and error rates broken down by device and by shift",
+          "source": "S05",
+          "status": "VERIFIED",
+          "howItAddresses": "Per-shift, per-device error-rate visibility lets a supervisor spot and correct mis-scan patterns instead of discovering them later",
+          "mappingStatus": "PROPOSED",
+          "badge": {
+            "blockId": "BLOCK-001",
+            "label": "Pilot feature — limited field data so far"
+          }
+        }
+      ],
+      "hardware": []
+    },
+    {
+      "id": "P05",
+      "name": "Long onboarding time for seasonal staff",
+      "cluster": "Operations",
+      "description": "Seasonal hires need devices configured and ready within hours, not days",
+      "relevance": "M",
+      "mappingStatus": "VERIFIED",
+      "features": [
+        {
+          "id": "F03",
+          "name": "Zero-Touch Enrollment",
+          "product": "Aster Device Manager",
+          "description": "Enrolls large batches of devices automatically at first power-on",
+          "source": "S02",
+          "status": "VERIFIED",
+          "howItAddresses": "Automated zero-touch enrollment gets a new hire's device ready in minutes, not days",
+          "mappingStatus": "VERIFIED",
+          "badge": null
+        }
+      ],
+      "hardware": [
+        {
+          "id": "HW04",
+          "attribute": "Battery",
+          "value": "Hot-swappable, 8500mAh",
+          "status": "VERIFIED",
+          "howItAddresses": "Hot-swappable battery avoids downtime during seasonal peak shift handoffs",
+          "badge": null
+        }
+      ]
+    },
+    {
+      "id": "P06",
+      "name": "Network dead zones in large facilities",
+      "cluster": "Network",
+      "description": "Large warehouses have Wi-Fi dead zones, often near metal racking, that interrupt scanning workflows",
+      "relevance": "M",
+      "mappingStatus": "PROPOSED",
+      "features": [
+        {
+          "id": "F05",
+          "name": "Offline Scan Queueing",
+          "product": "Aster Scan Suite",
+          "description": "Queues scan events locally when connectivity drops and syncs them automatically once the connection returns",
+          "source": "S05",
+          "status": "VERIFIED",
+          "howItAddresses": "Local queueing means a dead zone does not stop the scanning workflow; every event syncs once back in range",
+          "mappingStatus": "VERIFIED",
+          "badge": null
+        }
+      ],
+      "hardware": []
+    }
+  ],
+  "removedByBlocks": [],
+  "annex": [],
+  "dataGaps": [],
+  "blocksApplied": [
+    {
+      "id": "BLOCK-001",
+      "scope": "features.Feature",
+      "match": "contains",
+      "pattern": "Analytics",
+      "action": "badge:Pilot feature — limited field data so far"
+    }
+  ]
+}

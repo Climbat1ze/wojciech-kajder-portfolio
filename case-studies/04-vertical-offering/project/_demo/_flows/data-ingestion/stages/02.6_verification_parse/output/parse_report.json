@@ -1,0 +1,35 @@
+{
+  "stage": "02.6",
+  "stage_name": "Verification Parse",
+  "status": "ok",
+  "timestamp": "2026-09-23T21:40:36.494Z",
+  "config": null,
+  "inputs": [],
+  "outputs": [],
+  "counts": {
+    "accepted": 4,
+    "rejected": 1,
+    "corrected": 0
+  },
+  "validation": {
+    "errors": [],
+    "warnings": []
+  },
+  "data": {
+    "pm": "PM02",
+    "response_id": "RESP-001",
+    "accepted": [
+      "VQ-001",
+      "VQ-002",
+      "VQ-003",
+      "VQ-004"
+    ],
+    "rejected": [
+      {
+        "entryId": "VQ-005",
+        "reason": "the analytics dashboard shows error rates, it does not change how\ndata gets entered — it's a monitoring tool, not a fix for P03. Might map\ncleanly to a different pain point once we define one for \"no visibility into\ndevice performance\", but that's not P03."
+      }
+    ],
+    "corrected": []
+  }
+}

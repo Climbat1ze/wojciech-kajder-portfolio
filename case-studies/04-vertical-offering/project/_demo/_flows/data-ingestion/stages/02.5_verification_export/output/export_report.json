@@ -1,0 +1,33 @@
+{
+  "stage": "02.5",
+  "stage_name": "Verification Export",
+  "status": "ok",
+  "timestamp": "2026-09-23T21:40:14.149Z",
+  "config": null,
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "_flows/data-ingestion/stages/02.5_verification_export/output/verification_email_PM02.txt",
+      "note": "verification email for PM02"
+    }
+  ],
+  "counts": {
+    "items": 5
+  },
+  "validation": {
+    "errors": [],
+    "warnings": []
+  },
+  "data": {
+    "pm": "PM02",
+    "pm_name": "Mei-Lin Zhao",
+    "deadline": "2026-01-18",
+    "number_to_entry_id": {
+      "1": "VQ-001",
+      "2": "VQ-002",
+      "3": "VQ-003",
+      "4": "VQ-004",
+      "5": "VQ-005"
+    }
+  }
+}
